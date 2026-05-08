@@ -16,9 +16,18 @@ class DetailPaketView extends GetView<DetailPaketController> {
         showUnselectedLabels: false,
         onTap: controller.changeMenu,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.receipt_long),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: '',
+          ),
         ],
       ),
 
@@ -34,6 +43,7 @@ class DetailPaketView extends GetView<DetailPaketController> {
                     onPressed: () => Get.back(),
                     icon: const Icon(Icons.arrow_back),
                   ),
+
                   const Expanded(
                     child: Center(
                       child: Text(
@@ -45,13 +55,14 @@ class DetailPaketView extends GetView<DetailPaketController> {
                       ),
                     ),
                   ),
+
                   const SizedBox(width: 40),
                 ],
               ),
 
               const SizedBox(height: 20),
 
-              /// KELAS (SUDAH BUKAN PAKET)
+              /// KELAS
               containerCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,9 +92,9 @@ class DetailPaketView extends GetView<DetailPaketController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: const [
-                        fiturItem(Icons.verified, 'Pelatih'),
-                        fiturItem(Icons.calendar_today, '1 Minggu 3x'),
-                        fiturItem(Icons.workspace_premium, 'Sertifikat'),
+                        FiturItem(Icons.verified, 'Pelatih'),
+                        FiturItem(Icons.calendar_today, '1 Minggu 3x'),
+                        FiturItem(Icons.workspace_premium, 'Sertifikat'),
                       ],
                     ),
                   ],
@@ -113,7 +124,9 @@ class DetailPaketView extends GetView<DetailPaketController> {
                         children: [
                           Text(
                             'Pak Tarjo',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text('⭐ 4.7'),
                           Text(
@@ -136,7 +149,7 @@ class DetailPaketView extends GetView<DetailPaketController> {
                         'Ganti',
                         style: TextStyle(
                           fontSize: 11,
-                          color: Colors.white, // ✅ FIX PUTIH
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -153,14 +166,20 @@ class DetailPaketView extends GetView<DetailPaketController> {
                   children: [
                     Text(
                       'Deskripsi Kelas',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+
                     SizedBox(height: 8),
+
                     Text(
                       'Belajar anyaman bambu secara fleksibel sesuai jadwal yang kamu pilih.',
                       style: TextStyle(fontSize: 12),
                     ),
+
                     SizedBox(height: 8),
+
                     Text('• Pilih tanggal sendiri'),
                     Text('• Pilih jam sendiri'),
                     Text('• Didampingi pelatih'),
@@ -226,7 +245,10 @@ class FiturItem extends StatelessWidget {
       children: [
         Icon(icon),
         const SizedBox(height: 4),
-        Text(title, style: const TextStyle(fontSize: 10)),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 10),
+        ),
       ],
     );
   }
