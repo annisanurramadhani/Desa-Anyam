@@ -5,6 +5,7 @@ class DetailPesananBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<DetailPesananController>(
-        () => DetailPesananController());
+      () => DetailPesananController(),
+    );
   }
 }

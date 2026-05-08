@@ -1,19 +1,34 @@
+import 'dart:io';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../routes/app_routes.dart';
 
 class EditProfileController extends GetxController {
 
+  var imageFile = Rx<File?>(null);
+  final picker = ImagePicker();
+
+  // PICK IMAGE
+  Future<void> pickImage() async {
+    final picked = await picker.pickImage(source: ImageSource.gallery);
+
+    if (picked != null) {
+      imageFile.value = File(picked.path);
+    }
+  }
+
+  // NAVIGATION
   void changeMenu(int index) {
     if (index == 0) {
-      Get.toNamed(Routes.JADWAL_SAYA); // ✅ jadwal
+      Get.toNamed(Routes.JADWAL_SAYA);
     }
 
     if (index == 1) {
-      Get.offAllNamed(Routes.HOME); // ✅ home
+      Get.offAllNamed(Routes.HOME);
     }
 
     if (index == 2) {
-      Get.toNamed(Routes.PROFILE_USER); // ✅ WAJIB TAMBAH INI
+      Get.toNamed(Routes.PROFILE_USER);
     }
   }
 

@@ -2,26 +2,24 @@ import 'package:get/get.dart';
 import '../../../routes/app_routes.dart';
 
 class PendaftaranBerhasilController extends GetxController {
+  void keDetailPesanan() {
+    Get.toNamed(
+      Routes.DETAIL_PESANAN,
+      arguments: Get.arguments, // kirim data
+    );
+  }
+
+  void keHome() {
+    Get.offAllNamed(Routes.HOME);
+  }
 
   void changeMenu(int index) {
     if (index == 0) {
-      Get.toNamed(Routes.JADWAL_SAYA); // ✅ jadwal
+      Get.toNamed(Routes.JADWAL_SAYA);
+    } else if (index == 1) {
+      Get.offAllNamed(Routes.HOME);
+    } else if (index == 2) {
+      Get.toNamed(Routes.PROFILE_USER);
     }
-
-    if (index == 1) {
-      Get.offAllNamed(Routes.HOME); // ✅ home
-    }
-
-    if (index == 2) {
-      Get.toNamed(Routes.PROFILE_USER); // ✅ profile
-    }
-  }
-
-  void goToDetailPesanan() {
-    Get.toNamed(Routes.DETAIL_PESANAN); // ✅ fix
-  }
-
-  void goToHome() {
-    Get.offAllNamed(Routes.HOME); // ✅ fix
   }
 }

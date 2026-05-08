@@ -9,14 +9,19 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F3F3),
+      backgroundColor: const Color(0xFF9B6B43), // 🔥 coklat konsisten
+
       body: SafeArea(
         child: Column(
           children: [
-            // HEADER
+
+            // TOP HEADER
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.only(top: 90, bottom: 50),
+              padding: const EdgeInsets.only(
+                top: 90,
+                bottom: 50,
+              ),
               decoration: const BoxDecoration(
                 color: Color(0xFF9B6B43),
                 borderRadius: BorderRadius.only(
@@ -35,25 +40,34 @@ class LoginView extends GetView<LoginController> {
                     ),
                   ),
 
-                  SizedBox(height: 10),
+            const SizedBox(height: 8),
 
                   Text(
                     'Silakan masuk ke akun Anda yang sudah ada',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                   ),
                 ],
               ),
             ),
 
+            const SizedBox(height: 30),
+
+            // 🔥 CONTAINER PUTIH
             Expanded(
-              child: SingleChildScrollView(
+              child: Container(
+                margin: const EdgeInsets.only(top: 10), // 🔥 biar ga terlalu ke atas
+                width: double.infinity,
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 28,
+                  horizontal: 24,
                   vertical: 24,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+
                     // EMAIL
                     const Text(
                       'EMAIL',
@@ -68,10 +82,8 @@ class LoginView extends GetView<LoginController> {
 
                     TextField(
                       controller: controller.emailC,
-                      keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
-                        hintText: 'Masukkan email Anda',
+                        hintText: 'cobacoba@gmail.com',
                         filled: true,
                         fillColor: const Color(0xFFE8EBF0),
                         border: OutlineInputBorder(
@@ -85,30 +97,17 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
 
-                    const SizedBox(height: 24),
+                      const SizedBox(height: 16),
 
-                    // PASSWORD
-                    const Text(
-                      'SANDI',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                        color: Color(0xFF2F2F2F),
-                      ),
-                    ),
-
-                    const SizedBox(height: 10),
+                      // PASSWORD
+                      const Text('SANDI'),
+                      const SizedBox(height: 8),
 
                     Obx(
                       () => TextField(
                         controller: controller.passwordC,
                         obscureText: controller.isHidden.value,
-                        textInputAction: TextInputAction.done,
-                        onSubmitted: (_) {
-                          controller.login();
-                        },
                         decoration: InputDecoration(
-                          hintText: 'Masukkan sandi Anda',
                           filled: true,
                           fillColor: const Color(0xFFE8EBF0),
                           border: OutlineInputBorder(
@@ -132,87 +131,57 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
 
-                    const SizedBox(height: 40),
+                      const SizedBox(height: 30),
 
                     // BUTTON LOGIN
                     SizedBox(
                       width: double.infinity,
                       height: 58,
-                      child: Obx(
-                        () => ElevatedButton(
-                          onPressed: controller.isLoading.value
-                              ? null
-                              : () {
-                                  controller.login();
-                                },
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            backgroundColor: const Color(0xFF9B6B43),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
+                      child: ElevatedButton(
+                        onPressed: controller.login,
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          backgroundColor: const Color(0xFF9B6B43),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
                           ),
-                          child: controller.isLoading.value
-                              ? const SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child: CircularProgressIndicator(
-                                    color: Colors.white,
-                                    strokeWidth: 2,
-                                  ),
-                                )
-                              : const Text(
-                                  'MASUK',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
                         ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 28),
-
-                    // REGISTER
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Belum punya akun?',
+                        child: const Text(
+                          'MASUK',
                           style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                             fontSize: 16,
-                            color: Color(0xFF6B7280),
                           ),
-                        ),
-
-                        TextButton(
-                          onPressed: controller.goToRegister,
-                          child: const Text(
-                            'DAFTAR',
-                            style: TextStyle(
-                              color: Color(0xFF9B6B43),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 10),
-
-                    const Center(
-                      child: Text(
-                        'Atau',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Color(0xFF6B7280),
                         ),
                       ),
                     ),
 
-                    const SizedBox(height: 24),
+                      const SizedBox(height: 20),
+
+                      // REGISTER
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Belum punya akun?'),
+                          TextButton(
+                            onPressed: controller.goToRegister,
+                            child: const Text(
+                              'DAFTAR',
+                              style: TextStyle(
+                                color: Color(0xFF9B6B43),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      const Center(child: Text('Atau')),
+
+                      const SizedBox(height: 20),
 
                     // GOOGLE LOGIN
                     Center(
@@ -221,7 +190,10 @@ class LoginView extends GetView<LoginController> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Image.asset('assets/images/google.png', width: 28),
+                            Image.asset(
+                              'assets/images/google.png',
+                              width: 28,
+                            ),
 
                             const SizedBox(width: 10),
 

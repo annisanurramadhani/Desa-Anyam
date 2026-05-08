@@ -25,11 +25,11 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
 
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
 
-              // HEADER
+              /// HEADER
               Row(
                 children: [
                   IconButton(
@@ -41,7 +41,7 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
                       child: Text(
                         'Pengrajin',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -53,15 +53,15 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
 
               const SizedBox(height: 16),
 
-              // SEARCH
+              /// SEARCH
               TextField(
                 decoration: InputDecoration(
-                  hintText: 'cari pengrajin',
+                  hintText: 'Cari pengrajin...',
                   prefixIcon: const Icon(Icons.search),
                   filled: true,
-                  fillColor: const Color(0xFFE5E5E5),
+                  fillColor: const Color(0xFFEDEDED),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(18),
                     borderSide: BorderSide.none,
                   ),
                 ),
@@ -69,12 +69,12 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
 
               const SizedBox(height: 20),
 
-              // LIST
+              /// LIST
               Expanded(
                 child: ListView(
                   children: [
                     buildItem('Pak Tarjo', '8+ Tahun', '4.2'),
-                    buildItem('Ibu Darsinah', '12+ Tahun', '4.2'),
+                    buildItem('Ibu Darsinah', '12+ Tahun', '4.5'),
                     buildItem('Ibu Watri', '6+ Tahun', null),
                     buildItem('Pak Agus', '7+ Tahun', null),
                   ],
@@ -87,16 +87,15 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
     );
   }
 
-  /// 🔥 ITEM YANG SUDAH ADA ONTAP
   Widget buildItem(String nama, String pengalaman, String? rating) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routes.PROFILE_PENGRAJIN); // ✅ pindah ke profile pengrajin
+        Get.toNamed(Routes.PROFILE_PENGRAJIN);
       },
       child: PengrajinCard(
         nama: nama,
         pengalaman: pengalaman,
-        rating: rating,
+        rating: rating ?? "0.0", // ✅ default kalau kosong
       ),
     );
   }
@@ -105,79 +104,111 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
 class PengrajinCard extends StatelessWidget {
   final String nama;
   final String pengalaman;
-  final String? rating;
+  final String rating;
 
   const PengrajinCard({
     super.key,
     required this.nama,
     required this.pengalaman,
-    this.rating,
+    required this.rating,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 14),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFF8FA1B2),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(18),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          )
+        ],
       ),
       child: Row(
         children: [
-          // FOTO
+
+          /// FOTO
           Container(
-            width: 70,
-            height: 70,
+            width: 65,
+            height: 65,
             decoration: BoxDecoration(
               color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(14),
             ),
+            child: const Icon(Icons.person, size: 30),
           ),
 
           const SizedBox(width: 14),
 
-          // TEXT
+          /// TEXT
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
                 Text(
                   nama,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
 
+                const SizedBox(height: 2),
+
                 const Text(
                   'Pengrajin Anyaman Bambu',
-                  style: TextStyle(fontSize: 13),
+                  style: TextStyle(fontSize: 12),
                 ),
 
                 const SizedBox(height: 6),
 
                 const Text(
-                  'Desa Dukuhsembung, Kec. Pangkah\nKab. Tegal, Jawa Tengah',
-                  style: TextStyle(fontSize: 11),
+                  'Dukuhsembung, Tegal',
+                  style: TextStyle(fontSize: 11, color: Colors.black54),
                 ),
 
-                const SizedBox(height: 6),
+                const SizedBox(height: 8),
 
                 Row(
                   children: [
-                    Text(pengalaman, style: const TextStyle(fontSize: 12)),
+
+                    /// ICON PENGALAMAN
+                    const Icon(Icons.workspace_premium,
+                        color: Colors.orange, size: 16),
+                    const SizedBox(width: 4),
+                    Text(
+                      pengalaman,
+                      style: const TextStyle(fontSize: 11),
+                    ),
+
                     const SizedBox(width: 12),
-                    if (rating != null)
-                      Text('⭐ $rating',
-                          style: const TextStyle(fontSize: 12)),
+
+                    /// ICON RATING
+                    const Icon(Icons.star,
+                        color: Colors.amber, size: 16),
+                    const SizedBox(width: 4),
+                    Text(
+                      rating,
+                      style: const TextStyle(fontSize: 11),
+                    ),
                   ],
                 ),
               ],
             ),
           ),
 
-          const Icon(Icons.arrow_forward_ios, size: 16),
+          /// ARROW
+          const Icon(
+            Icons.arrow_forward_ios_rounded,
+            size: 16,
+            color: Colors.grey,
+          ),
         ],
       ),
     );

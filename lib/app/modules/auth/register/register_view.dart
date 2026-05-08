@@ -1,267 +1,192 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
   const RegisterView({super.key});
 
-  Widget buildInputLabel(String text) {
-    return Text(
-      text,
-      style: const TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: 14,
-        color: Color(0xFF2F2F2F),
-      ),
-    );
-  }
-
-  InputDecoration buildInputDecoration({Widget? suffixIcon, String? hintText}) {
-    return InputDecoration(
-      hintText: hintText,
-
-      hintStyle: const TextStyle(color: Colors.black38, fontSize: 14),
-
-      filled: true,
-      fillColor: const Color(0xFFE8E0D6),
-
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: BorderSide.none,
-      ),
-
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: BorderSide.none,
-      ),
-
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: Color(0xFF9B6B43)),
-      ),
-
-      contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-
-      suffixIcon: suffixIcon,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF3EEE8),
+      backgroundColor: const Color(0xFF9B6B43),
 
       body: SafeArea(
         child: Column(
           children: [
-            // HEADER
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.only(
-                top: 24,
-                left: 24,
-                right: 24,
-                bottom: 48,
-              ),
-              decoration: const BoxDecoration(
-                color: Color(0xFF9B6B43),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(28),
-                  bottomRight: Radius.circular(28),
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+
+            /// 🔥 JARAK ATAS (FIX UTAMA)
+            const SizedBox(height: 60),
+
+            /// 🔥 HEADER (BACK + TITLE)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
                 children: [
-                  // BACK
                   GestureDetector(
                     onTap: () => Get.back(),
-                    child: Container(
-                      width: 46,
-                      height: 46,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.arrow_back_ios_new,
-                        size: 18,
-                        color: Color(0xFF6B7280),
+                    child: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
+                  ),
+
+                  const SizedBox(width: 10),
+
+                  const Expanded(
+                    child: Center(
+                      child: Text(
+                        'Daftar',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 40),
-
-                  const Center(
-                    child: Column(
-                      children: [
-                        Text(
-                          'Daftar',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 34,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-
-                        SizedBox(height: 10),
-
-                        Text(
-                          'Daftar untuk mulai menggunakan layanan.',
-                          style: TextStyle(color: Colors.white, fontSize: 16),
-                        ),
-                      ],
-                    ),
-                  ),
+                  const SizedBox(width: 34), // biar title tetap center
                 ],
               ),
             ),
 
-            // FORM
+            const SizedBox(height: 8),
+
+            const Text(
+              'Daftar untuk mulai menggunakan layanan.',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            /// 🔥 CONTAINER PUTIH
             Expanded(
-              child: SingleChildScrollView(
+              child: Container(
+                margin: const EdgeInsets.only(top: 10),
+                width: double.infinity,
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 28,
+                  horizontal: 24,
                   vertical: 24,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // NAMA
-                    buildInputLabel('Masukkan Nama'),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
+                ),
 
-                    const SizedBox(height: 10),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
-                    TextField(
-                      controller: controller.nameC,
-                      decoration: buildInputDecoration(
-                        hintText: 'Nama lengkap',
-                      ),
-                    ),
+                      /// NAMA
+                      const Text('NAMA'),
+                      const SizedBox(height: 8),
+                      input(controller.nameC, 'Nama lengkap'),
 
-                    const SizedBox(height: 24),
+                      const SizedBox(height: 16),
 
-                    // EMAIL
-                    buildInputLabel('Masukkan Email'),
+                      /// EMAIL
+                      const Text('EMAIL'),
+                      const SizedBox(height: 8),
+                      input(controller.emailC, 'email@gmail.com'),
 
-                    const SizedBox(height: 10),
+                      const SizedBox(height: 16),
 
-                    TextField(
-                      controller: controller.emailC,
-                      decoration: buildInputDecoration(hintText: 'Email aktif'),
-                    ),
+                      /// PASSWORD
+                      const Text('SANDI'),
+                      const SizedBox(height: 8),
+                      Obx(() => inputPassword(
+                            controller.passwordC,
+                            controller.isHiddenPassword.value,
+                            controller.togglePassword,
+                          )),
 
-                    const SizedBox(height: 24),
+                      const SizedBox(height: 16),
 
-                    // PASSWORD
-                    buildInputLabel('Masukkan Password'),
+                      /// CONFIRM
+                      const Text('ULANG SANDI'),
+                      const SizedBox(height: 8),
+                      Obx(() => inputPassword(
+                            controller.confirmPasswordC,
+                            controller.isHiddenConfirm.value,
+                            controller.toggleConfirmPassword,
+                          )),
 
-                    const SizedBox(height: 10),
+                      const SizedBox(height: 30),
 
-                    Obx(
-                      () => TextField(
-                        controller: controller.passwordC,
-
-                        obscureText: controller.isHiddenPassword.value,
-
-                        decoration: buildInputDecoration(
-                          hintText: 'Password',
-
-                          suffixIcon: IconButton(
-                            onPressed: controller.togglePassword,
-
-                            icon: Icon(
-                              controller.isHiddenPassword.value
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
-
-                              color: const Color(0xFFA0A4B8),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 24),
-
-                    // KONFIRMASI
-                    buildInputLabel('Konfirmasi Password'),
-
-                    const SizedBox(height: 10),
-
-                    Obx(
-                      () => TextField(
-                        controller: controller.confirmPasswordC,
-
-                        obscureText: controller.isHiddenConfirm.value,
-
-                        decoration: buildInputDecoration(
-                          hintText: 'Ulangi password',
-
-                          suffixIcon: IconButton(
-                            onPressed: controller.toggleConfirmPassword,
-
-                            icon: Icon(
-                              controller.isHiddenConfirm.value
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
-
-                              color: const Color(0xFFA0A4B8),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 50),
-
-                    // BUTTON
-                    SizedBox(
-                      width: double.infinity,
-                      height: 58,
-                      child: Obx(
-                        () => ElevatedButton(
-                          onPressed: controller.isLoading.value
-                              ? null
-                              : controller.register,
-
+                      /// BUTTON
+                      SizedBox(
+                        width: double.infinity,
+                        height: 55,
+                        child: ElevatedButton(
+                          onPressed: controller.register,
                           style: ElevatedButton.styleFrom(
-                            elevation: 0,
-
                             backgroundColor: const Color(0xFF9B6B43),
-
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(20),
                             ),
                           ),
-
-                          child: controller.isLoading.value
-                              ? const SizedBox(
-                                  width: 22,
-                                  height: 22,
-                                  child: CircularProgressIndicator(
-                                    color: Colors.white,
-                                    strokeWidth: 2,
-                                  ),
-                                )
-                              : const Text(
-                                  'DAFTAR',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
+                          child: const Text(
+                            'DAFTAR',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget input(TextEditingController c, String hint) {
+    return TextField(
+      controller: c,
+      decoration: InputDecoration(
+        hintText: hint,
+        filled: true,
+        fillColor: const Color(0xFFE8EBF0),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide.none,
+        ),
+      ),
+    );
+  }
+
+  Widget inputPassword(
+    TextEditingController c,
+    bool isHidden,
+    VoidCallback toggle,
+  ) {
+    return TextField(
+      controller: c,
+      obscureText: isHidden,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: const Color(0xFFE8EBF0),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide.none,
+        ),
+        suffixIcon: IconButton(
+          onPressed: toggle,
+          icon: Icon(
+            isHidden ? Icons.visibility_off : Icons.visibility,
+          ),
         ),
       ),
     );

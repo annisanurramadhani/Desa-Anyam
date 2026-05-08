@@ -10,22 +10,11 @@ class BookingKelasView extends GetView<BookingKelasController> {
     return Scaffold(
       backgroundColor: const Color(0xFFF4F4F4),
 
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        onTap: controller.changeMenu,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
-        ],
-      ),
-
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
               /// HEADER
@@ -38,9 +27,9 @@ class BookingKelasView extends GetView<BookingKelasController> {
                   const Expanded(
                     child: Center(
                       child: Text(
-                        'Kelas Pelatihan',
+                        "Booking Kelas",
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -52,161 +41,121 @@ class BookingKelasView extends GetView<BookingKelasController> {
 
               const SizedBox(height: 20),
 
-              /// CONTAINER UTAMA
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF8FA1B2),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Column(
-                  children: [
+              /// PILIH TANGGAL
+              const Text(
+                "Pilih Tanggal",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
 
-                    const Text(
-                      'Pilih Paket',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+              const SizedBox(height: 10),
+
+              Obx(
+                () => InkWell(
+                  onTap: () async {
+                    final picked = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime(2030),
+                    );
+
+                    if (picked != null) {
+                      controller.pickDate(picked);
+                    }
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(14),
                     ),
-
-                    const SizedBox(height: 4),
-
-                    const Text(
-                      'Pilih durasi paket sesuai kebutuhan belajar',
-                      style: TextStyle(fontSize: 11),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          controller.selectedDate.value == null
+                              ? "Pilih tanggal"
+                              : controller.selectedDate.value!
+                                  .toString()
+                                  .split(" ")[0],
+                        ),
+                        const Icon(Icons.calendar_today, size: 16),
+                      ],
                     ),
-
-                    const SizedBox(height: 16),
-
-                    /// JADWAL
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Row(
-                        children: [
-                          Icon(Icons.calendar_month),
-                          SizedBox(width: 10),
-                          Expanded(
-                            child: Text(
-                              '1 Minggu 3x Pertemuan Offline',
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ),
-                          Text(
-                            '120 Menit',
-                            style: TextStyle(fontSize: 10),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    const SizedBox(height: 16),
-
-                    /// LIST PAKET
-                    paketItem(0, '1 Bulan', '12 Pertemuan', 'Rp 299.000'),
-                    paketItem(1, '2 Bulan', '24 Pertemuan', 'Rp 549.000'),
-                    paketItem(2, '3 Bulan', '36 Pertemuan', 'Rp 799.000'),
-
-                    const SizedBox(height: 16),
-
-                    /// INFO
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      child: const Row(
-                        children: [
-                          Icon(Icons.school),
-                          SizedBox(width: 10),
-                          Expanded(
-                            child: Text(
-                              'Belajar menganyam dari dasar sampai mahir.',
-                              style: TextStyle(fontSize: 11),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
 
               const SizedBox(height: 20),
 
-              /// BUTTON
+              /// PILIH JAM
+              const Text(
+                "Pilih Jam",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+
+              const SizedBox(height: 10),
+
+              Wrap(
+                spacing: 10,
+                children: ["08:00", "10:00", "13:00", "15:00"].map((time) {
+                  return Obx(
+                    () => ChoiceChip(
+                      label: Text(time),
+                      selected: controller.selectedTime.value == time,
+                      selectedColor: const Color(0xFF9B6B43),
+                      labelStyle: TextStyle(
+                        color: controller.selectedTime.value == time
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                      onSelected: (_) => controller.pickTime(time),
+                    ),
+                  );
+                }).toList(),
+              ),
+
+              const SizedBox(height: 20),
+
+              /// HARGA
+              const Text(
+                "Rp 50.000 / sesi",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+
+              const Spacer(),
+
+              /// BUTTON 🔥 FIX TOTAL
               SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 55, // 🔥 lebih besar
                 child: ElevatedButton(
                   onPressed: controller.lanjutkan,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF9B6B43),
+                    backgroundColor: const Color(0xFF9B6B43), // ✅ sama persis
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
+                    elevation: 3,
                   ),
                   child: const Text(
-                    'Lanjutkan Pemesanan',
-                    style: TextStyle(color: Colors.white),
+                    "Lanjutkan Pemesanan",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  /// WIDGET PAKET
-  Widget paketItem(int index, String title, String sub, String price) {
-    return Obx(() {
-      final selected = controller.selectedIndex.value == index;
-
-      return GestureDetector(
-        onTap: () => controller.selectPaket(index),
-        child: Container(
-          margin: const EdgeInsets.only(bottom: 12),
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: selected ? Colors.brown : Colors.transparent,
-              width: 2,
-            ),
-          ),
-          child: Row(
-            children: [
-
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(title,
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
-                    Text(sub, style: const TextStyle(fontSize: 12)),
-                    const SizedBox(height: 6),
-                    Text(price,
-                        style: const TextStyle(
-                            color: Color(0xFF9B6B43),
-                            fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              ),
-
-              Icon(
-                selected
-                    ? Icons.radio_button_checked
-                    : Icons.radio_button_off,
-              )
-            ],
-          ),
-        ),
-      );
-    });
   }
 }

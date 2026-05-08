@@ -37,7 +37,7 @@ class DetailPaketView extends GetView<DetailPaketController> {
                   const Expanded(
                     child: Center(
                       child: Text(
-                        'Detail Paket',
+                        'Detail Kelas',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -51,25 +51,25 @@ class DetailPaketView extends GetView<DetailPaketController> {
 
               const SizedBox(height: 20),
 
-              /// PAKET
+              /// KELAS (SUDAH BUKAN PAKET)
               containerCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Paket 2 Bulan',
+                      'Kelas Anyaman',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
 
-                    const Text('24 Pertemuan'),
+                    const Text('1 Sesi'),
 
                     const SizedBox(height: 6),
 
                     const Text(
-                      'Rp 549.000',
+                      'Rp 50.000',
                       style: TextStyle(
                         color: Color(0xFF9B6B43),
                         fontWeight: FontWeight.bold,
@@ -81,9 +81,9 @@ class DetailPaketView extends GetView<DetailPaketController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: const [
-                        FiturItem(Icons.verified, 'Pelatih'),
-                        FiturItem(Icons.calendar_today, '1 Minggu 3x'),
-                        FiturItem(Icons.workspace_premium, 'Sertifikat'),
+                        fiturItem(Icons.verified, 'Pelatih'),
+                        fiturItem(Icons.calendar_today, '1 Minggu 3x'),
+                        fiturItem(Icons.workspace_premium, 'Sertifikat'),
                       ],
                     ),
                   ],
@@ -134,7 +134,10 @@ class DetailPaketView extends GetView<DetailPaketController> {
                       ),
                       child: const Text(
                         'Ganti',
-                        style: TextStyle(fontSize: 11),
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: Colors.white, // ✅ FIX PUTIH
+                        ),
                       ),
                     ),
                   ],
@@ -149,17 +152,17 @@ class DetailPaketView extends GetView<DetailPaketController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Deskripsi Paket',
+                      'Deskripsi Kelas',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Deskripsi paket untuk belajar lebih mendalam selama 2 bulan.',
+                      'Belajar anyaman bambu secara fleksibel sesuai jadwal yang kamu pilih.',
                       style: TextStyle(fontSize: 12),
                     ),
                     SizedBox(height: 8),
-                    Text('• Materi dasar hingga lanjutan'),
-                    Text('• 24x pertemuan praktik'),
+                    Text('• Pilih tanggal sendiri'),
+                    Text('• Pilih jam sendiri'),
                     Text('• Didampingi pelatih'),
                     Text('• Sertifikat selesai'),
                   ],
@@ -182,7 +185,10 @@ class DetailPaketView extends GetView<DetailPaketController> {
                   ),
                   child: const Text(
                     'Lanjutkan Pemesanan',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -193,7 +199,7 @@ class DetailPaketView extends GetView<DetailPaketController> {
     );
   }
 
-  /// WIDGET CARD
+  /// CARD
   Widget containerCard({required Widget child}) {
     return Container(
       width: double.infinity,

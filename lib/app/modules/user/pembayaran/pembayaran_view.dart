@@ -7,27 +7,17 @@ class PembayaranView extends GetView<PembayaranController> {
 
   @override
   Widget build(BuildContext context) {
+    final data = controller.data;
+
     return Scaffold(
       backgroundColor: const Color(0xFFF4F4F4),
 
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        onTap: controller.changeMenu,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
-        ],
-      ),
-
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               // HEADER
               Row(
                 children: [
@@ -38,10 +28,10 @@ class PembayaranView extends GetView<PembayaranController> {
                   const Expanded(
                     child: Center(
                       child: Text(
-                        'Pembayaran',
+                        "Pembayaran",
                         style: TextStyle(
-                          fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
                       ),
                     ),
@@ -57,10 +47,7 @@ class PembayaranView extends GetView<PembayaranController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Text(
-                      'Detail Pendaftaran',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    Text('Detail Pendaftaran', style: TextStyle(fontWeight: FontWeight.bold)),
 
                     SizedBox(height: 10),
                     Text('Nama Lengkap        : Syifa Hadju'),
@@ -80,10 +67,7 @@ class PembayaranView extends GetView<PembayaranController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Text(
-                      'Paket Yang Dipilih',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    Text('Paket Yang Dipilih', style: TextStyle(fontWeight: FontWeight.bold)),
                     SizedBox(height: 10),
 
                     Card(
@@ -95,20 +79,14 @@ class PembayaranView extends GetView<PembayaranController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Paket 2 Bulan',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                            Text('Paket 2 Bulan', style: TextStyle(fontWeight: FontWeight.bold)),
                             Text('24 Pertemuan'),
                             SizedBox(height: 4),
-                            Text(
-                              'Rp 549.000',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                            Text('Rp 549.000', style: TextStyle(fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -120,10 +98,7 @@ class PembayaranView extends GetView<PembayaranController> {
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Total Pembayaran',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    Text('Total Pembayaran', style: TextStyle(fontWeight: FontWeight.bold)),
                     SizedBox(height: 6),
                     Text(
                       'Rp 549.000',
@@ -140,68 +115,71 @@ class PembayaranView extends GetView<PembayaranController> {
 
               const Text('Pilih Metode Pembayaran'),
 
-              const SizedBox(height: 10),
+                      const SizedBox(height: 10),
 
               // METODE PEMBAYARAN
-              Obx(
-                () => InkWell(
-                  onTap: () => controller.selectMethod(0),
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: controller.selectedMethod.value == 0
-                            ? Colors.green
-                            : Colors.grey.shade300,
+              Obx(() => InkWell(
+                    onTap: () => controller.selectMethod(0),
+                    child: Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: controller.selectedMethod.value == 0
+                              ? Colors.green
+                              : Colors.grey.shade300,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+
+                          const Icon(Icons.check_circle, color: Colors.green),
+
+                          const SizedBox(width: 10),
+
+                          const Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Cash (Bayar di Tempat)'),
+                                Text(
+                                  'Bayar Saat Hari Pertama Kelas',
+                                  style: TextStyle(fontSize: 11),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          Radio(
+                            value: 0,
+                            groupValue: controller.selectedMethod.value,
+                            onChanged: (value) =>
+                                controller.selectMethod(value!),
+                          )
+                        ],
                       ),
                     ),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.check_circle, color: Colors.green),
+                  )),
 
-                        const SizedBox(width: 10),
+              const SizedBox(height: 10),
 
-                        const Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Cash (Bayar di Tempat)'),
-                              Text(
-                                'Bayar Saat Hari Pertama Kelas',
-                                style: TextStyle(fontSize: 11),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        Radio(
-                          value: 0,
-                          groupValue: controller.selectedMethod.value,
-                          onChanged: (value) => controller.selectMethod(value!),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 40),
-
-              // BUTTON
+              /// BUTTON
               SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 55,
                 child: ElevatedButton(
-                  onPressed: controller.lanjutPembayaran,
+                  onPressed: controller.bayar,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF9B6B43),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  child: const Text('Lanjutkan Ke Pembayaran'),
+                  child: const Text(
+                    "Pesan Sekarang",
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  ),
                 ),
               ),
             ],
@@ -211,16 +189,30 @@ class PembayaranView extends GetView<PembayaranController> {
     );
   }
 
-  // 🔹 BOX REUSABLE
-  Widget box({required Widget child}) {
+  /// 🔥 CARD FULL LEBAR (INI YANG FIX MASALAHMU)
+  Widget cardBox(String title, Widget child) {
     return Container(
-      width: double.infinity,
+      width: double.infinity, // 🔥 INI KUNCI BIAR FULL
+      margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: const Color(0xFF8FA1B2),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: child,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 10),
+          child,
+        ],
+      ),
     );
   }
 }

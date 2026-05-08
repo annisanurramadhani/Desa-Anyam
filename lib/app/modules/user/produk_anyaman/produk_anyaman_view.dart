@@ -28,6 +28,7 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Column(
             children: [
+
               // HEADER
               Row(
                 children: [
@@ -52,7 +53,7 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
 
               const SizedBox(height: 16),
 
-              // SEARCH
+              /// SEARCH
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Cari produk anyaman',
@@ -68,15 +69,15 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
 
               const SizedBox(height: 16),
 
-              // GRID PRODUK
+              /// GRID PRODUK
               Expanded(
                 child: GridView.builder(
                   itemCount: 8,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    mainAxisSpacing: 14,
-                    crossAxisSpacing: 14,
-                    childAspectRatio: 0.8,
+                    mainAxisSpacing: 12, // 🔥 lebih rapat
+                    crossAxisSpacing: 12,
+                    childAspectRatio: 0.85, // 🔥 kotak lebih kecil & proporsional
                   ),
                   itemBuilder: (context, index) {
                     return Material(
@@ -84,7 +85,6 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(14),
                         onTap: () {
-                          print("KLIK PRODUK"); // debug
                           Get.toNamed(Routes.DETAIL_PRODUK);
                         },
                         child: productCard(),
@@ -100,7 +100,7 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
     );
   }
 
-  // CARD PRODUK
+  /// CARD PRODUK
   Widget productCard() {
     return Container(
       decoration: BoxDecoration(
@@ -110,12 +110,13 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
           // IMAGE
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(14)),
             child: Image.asset(
               'assets/images/produk.png',
-              height: 100,
+              height: 90, // 🔥 lebih kecil
               width: double.infinity,
               fit: BoxFit.cover,
             ),
@@ -123,19 +124,29 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
 
           const SizedBox(height: 8),
 
+          /// NAMA PRODUK (LEBIH BESAR & BOLD 🔥)
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               'Keranjang Bambu',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
 
+          const SizedBox(height: 4),
+
+          /// HARGA
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               'Rp 50.000',
-              style: TextStyle(fontSize: 11, color: Colors.black87),
+              style: TextStyle(
+                fontSize: 11,
+                color: Colors.black87,
+              ),
             ),
           ),
         ],

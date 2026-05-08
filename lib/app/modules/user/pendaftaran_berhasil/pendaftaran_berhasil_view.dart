@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'pendaftaran_berhasil_controller.dart';
 
-class PendaftaranBerhasilView
-    extends GetView<PendaftaranBerhasilController> {
+class PendaftaranBerhasilView extends GetView<PendaftaranBerhasilController> {
   const PendaftaranBerhasilView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F4F4),
+      backgroundColor: const Color(0xFFF4F4F4), // 🔥 sama kayak halaman lain
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
@@ -17,8 +16,7 @@ class PendaftaranBerhasilView
         showUnselectedLabels: false,
         onTap: controller.changeMenu,
         items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.receipt_long), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
         ],
@@ -26,13 +24,11 @@ class PendaftaranBerhasilView
 
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
 
-              const SizedBox(height: 10),
-
-              // HEADER
+              /// 🔥 HEADER
               Row(
                 children: [
                   IconButton(
@@ -42,10 +38,10 @@ class PendaftaranBerhasilView
                   const Expanded(
                     child: Center(
                       child: Text(
-                        'Pembayaran Berhasil',
+                        "Pendaftaran Berhasil",
                         style: TextStyle(
-                          fontSize: 16,
                           fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
                       ),
                     ),
@@ -56,75 +52,83 @@ class PendaftaranBerhasilView
 
               const Spacer(),
 
-              // ICON CEKLIS
-              const Icon(
-                Icons.check_circle,
-                color: Colors.green,
-                size: 100,
-              ),
-
-              const SizedBox(height: 24),
-
-              const Text(
-                'Pendaftaran Berhasil!',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+              /// 🔥 ICON SUCCESS
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.green.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.check_circle,
+                  color: Colors.green,
+                  size: 80,
                 ),
               ),
 
-              const SizedBox(height: 12),
+              const SizedBox(height: 20),
 
+              /// 🔥 TITLE
               const Text(
-                'Terimakasih telah mendaftar kelas\npelatihan anyaman.',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14),
+                "Pendaftaran Berhasil!",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
               ),
 
               const SizedBox(height: 10),
 
+              /// 🔥 DESC
               const Text(
-                'Detail pendaftaran telah kami kirimkan\nke WhatsApp Anda.',
+                "Terimakasih telah mendaftar kelas\npelatihan anyaman.",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 13),
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.black54,
+                ),
               ),
 
               const Spacer(),
 
-              // BUTTON DETAIL
+              /// 🔥 BUTTON DETAIL (CONSISTENT)
               SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 55,
                 child: ElevatedButton(
-                  onPressed: controller.goToDetailPesanan,
+                  onPressed: controller.keDetailPesanan,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF9B6B43),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
+                    elevation: 0,
                   ),
                   child: const Text(
-                    'Lihat Detail Pesanan',
-                    style: TextStyle(color: Colors.white),
+                    "Lihat Detail Pesanan",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),
 
               const SizedBox(height: 12),
 
-              // TEXT KEMBALI
+              /// 🔥 BACK HOME
               GestureDetector(
-                onTap: controller.goToHome,
+                onTap: controller.keHome,
                 child: const Text(
-                  'Kembali Ke Beranda',
+                  "Kembali Ke Beranda",
                   style: TextStyle(
-                    color: Color(0xFF9B6B43),
-                    fontSize: 13,
+                    fontSize: 12,
+                    decoration: TextDecoration.underline,
+                    color: Colors.black54,
                   ),
                 ),
               ),
-
-              const SizedBox(height: 20),
             ],
           ),
         ),

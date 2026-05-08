@@ -78,16 +78,16 @@ class FormPendaftaranView extends GetView<FormPendaftaranController> {
                       suffix: const Icon(Icons.keyboard_arrow_down),
                     ),
 
-                    // NAMA PELATIH
+                    // PELATIH
                     inputField(
                       'Nama Pelatih',
-                      initialValue: 'Pak Tarjo',
+                      hint: 'Pak Tarjo',
                     ),
 
                     // LOKASI
                     inputField(
                       'Lokasi',
-                      initialValue: 'Balaidesa Dukuhsembung',
+                      hint: 'Balaidesa Dukuhsembung',
                     ),
                   ],
                 ),
@@ -95,7 +95,7 @@ class FormPendaftaranView extends GetView<FormPendaftaranController> {
 
               const SizedBox(height: 40),
 
-              // BUTTON
+              // BUTTON (FIX PUTIH)
               SizedBox(
                 width: double.infinity,
                 height: 50,
@@ -108,8 +108,12 @@ class FormPendaftaranView extends GetView<FormPendaftaranController> {
                     ),
                   ),
                   child: const Text(
-                    'Lanjutkan Ke Pembayaran',
-                    style: TextStyle(fontSize: 14),
+                    'Lanjutkan',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white, // ✅ FIX
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -120,9 +124,12 @@ class FormPendaftaranView extends GetView<FormPendaftaranController> {
     );
   }
 
-  // 🔹 WIDGET INPUT
-  Widget inputField(String label,
-      {Widget? suffix, String? initialValue}) {
+  // 🔹 INPUT FIELD (FIX AMAN)
+  Widget inputField(
+    String label, {
+    Widget? suffix,
+    String? hint,
+  }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 14),
       child: Column(
@@ -137,13 +144,15 @@ class FormPendaftaranView extends GetView<FormPendaftaranController> {
           const SizedBox(height: 6),
 
           TextField(
-            controller: TextEditingController(text: initialValue),
             decoration: InputDecoration(
+              hintText: hint,
               suffixIcon: suffix,
               filled: true,
               fillColor: Colors.white,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 12,
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none,

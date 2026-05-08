@@ -1,28 +1,23 @@
 import 'package:get/get.dart';
-import '../../../routes/app_routes.dart';
 
 class BookingKelasController extends GetxController {
-  var selectedIndex = (-1).obs;
+  var selectedDate = Rxn<DateTime>();
+  var selectedTime = ''.obs;
 
-  void selectPaket(int index) {
-    selectedIndex.value = index;
+  void pickDate(DateTime date) {
+    selectedDate.value = date;
   }
 
-  void changeMenu(int index) {
-    if (index == 0) {
-      Get.toNamed(Routes.JADWAL_SAYA); // ✅ jadwal
-    }
-
-    if (index == 1) {
-      Get.offAllNamed(Routes.HOME); // ✅ home
-    }
-
-    if (index == 2) {
-      Get.toNamed(Routes.PROFILE_USER); // ✅ profile
-    }
+  void pickTime(String time) {
+    selectedTime.value = time;
   }
 
   void lanjutkan() {
-    Get.snackbar('Info', 'Lanjut ke pembayaran');
+    if (selectedDate.value == null || selectedTime.value.isEmpty) {
+      Get.snackbar("Error", "Pilih tanggal dan jam dulu");
+      return;
+    }
+
+    Get.toNamed('/form-pendaftaran');
   }
 }

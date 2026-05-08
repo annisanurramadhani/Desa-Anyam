@@ -5,6 +5,7 @@ class PendaftaranBerhasilBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<PendaftaranBerhasilController>(
-        () => PendaftaranBerhasilController());
+      () => PendaftaranBerhasilController(),
+    );
   }
 }

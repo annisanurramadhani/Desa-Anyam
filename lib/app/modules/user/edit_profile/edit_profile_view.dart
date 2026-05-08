@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'edit_profile_controller.dart';
@@ -52,32 +53,51 @@ class EditProfileView extends GetView<EditProfileController> {
 
               const SizedBox(height: 20),
 
-              /// FOTO PROFIL
-              Stack(
-                children: [
-                  Container(
-                    width: 90,
-                    height: 90,
-                    decoration: const BoxDecoration(
-                      color: Colors.grey,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.person, size: 50),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
+              /// FOTO PROFIL (🔥 FIX BISA PILIH)
+              Obx(() {
+                return Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: 110,
+                      height: 110,
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
+                        color: Colors.grey[300],
+                        image: controller.imageFile.value != null
+                            ? DecorationImage(
+                                image: FileImage(controller.imageFile.value!),
+                                fit: BoxFit.cover,
+                              )
+                            : null,
                       ),
-                      child: const Icon(Icons.camera_alt, size: 18),
+                      child: controller.imageFile.value == null
+                          ? const Icon(Icons.person, size: 50)
+                          : null,
                     ),
-                  )
-                ],
-              ),
+
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: GestureDetector(
+                        onTap: controller.pickImage,
+                        child: Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.camera_alt,
+                            size: 18,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                );
+              }),
 
               const SizedBox(height: 20),
 
@@ -90,11 +110,9 @@ class EditProfileView extends GetView<EditProfileController> {
                 ),
                 child: Column(
                   children: [
-
                     inputField('Nama Lengkap'),
                     inputField('Email'),
                     inputField('No Telepon'),
-
                   ],
                 ),
               ),
@@ -104,7 +122,7 @@ class EditProfileView extends GetView<EditProfileController> {
               /// BUTTON
               SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 55,
                 child: ElevatedButton(
                   onPressed: controller.simpan,
                   style: ElevatedButton.styleFrom(
@@ -114,8 +132,11 @@ class EditProfileView extends GetView<EditProfileController> {
                     ),
                   ),
                   child: const Text(
-                    'SIMPAN PERUBAHAN',
-                    style: TextStyle(color: Colors.white),
+                    'Simpan Perubahan',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -140,7 +161,7 @@ class EditProfileView extends GetView<EditProfileController> {
               filled: true,
               fillColor: Colors.white,
               contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16),
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(14),
                 borderSide: BorderSide.none,

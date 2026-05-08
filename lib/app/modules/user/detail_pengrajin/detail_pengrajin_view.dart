@@ -28,6 +28,7 @@ class DetailPengrajinView extends GetView<DetailPengrajinController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               // HEADER
               Row(
                 children: [
@@ -103,7 +104,10 @@ class DetailPengrajinView extends GetView<DetailPengrajinController> {
                           ),
                           child: const Text(
                             'Pengrajin',
-                            style: TextStyle(color: Colors.white, fontSize: 11),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 11,
+                            ),
                           ),
                         ),
                       ],
@@ -138,6 +142,7 @@ class DetailPengrajinView extends GetView<DetailPengrajinController> {
 
                   const Icon(Icons.chat, color: Colors.green),
 
+                  // 🔥 BUTTON FIX
                   ElevatedButton(
                     onPressed: controller.goToBooking,
                     style: ElevatedButton.styleFrom(
@@ -148,7 +153,11 @@ class DetailPengrajinView extends GetView<DetailPengrajinController> {
                     ),
                     child: const Text(
                       'Pesan Kelas',
-                      style: TextStyle(fontSize: 11),
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: Colors.white, // ✅ FIX PUTIH
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -167,12 +176,12 @@ class DetailPengrajinView extends GetView<DetailPengrajinController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Deskripsi Singkat Pengrajin',
+                      'Deskripsi Pengrajin',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Pak Tarjo adalah pengrajin anyaman bambu yang berpengalaman dan aktif melatih masyarakat sekitar.',
+                      'Pak Tarjo adalah pengrajin anyaman bambu berpengalaman yang siap membimbing kamu belajar secara langsung dengan sistem fleksibel (pilih tanggal & jam sendiri).',
                       style: TextStyle(fontSize: 12),
                     ),
                   ],
