@@ -65,6 +65,24 @@ import '../modules/user/sertifikat/sertifikat_view.dart';
 import '../modules/user/notifikasi/notifikasi_binding.dart';
 import '../modules/user/notifikasi/notifikasi_view.dart';
 
+import '../modules/pengrajin/home_pengrajin/home_pengrajin_binding.dart';
+import '../modules/pengrajin/home_pengrajin/home_pengrajin_view.dart';
+
+import '../modules/pengrajin/jadwal/jadwal_pengrajin_binding.dart';
+import '../modules/pengrajin/jadwal/jadwal_pengrajin_view.dart';
+
+import '../modules/pengrajin/profile/profile_akun_pengrajin_binding.dart';
+import '../modules/pengrajin/profile/profile_akun_pengrajin_view.dart';
+
+import '../modules/pengrajin/edit_profile/edit_profile_pengrajin_binding.dart';
+import '../modules/pengrajin/edit_profile/edit_profile_pengrajin_view.dart';
+
+import '../modules/pengrajin/daftar_murid/daftar_murid_binding.dart';
+import '../modules/pengrajin/daftar_murid/daftar_murid_view.dart';
+
+import '../modules/pengrajin/payment/payment_view.dart';
+import '../modules/pengrajin/payment/payment_binding.dart';
+
 import 'app_routes.dart';
 
 class AppPages {
@@ -193,6 +211,39 @@ class AppPages {
       name: Routes.NOTIFIKASI,
       page: () => const NotifikasiView(),
       binding: NotifikasiBinding(),
+    ),
+
+    GetPage(
+      name: Routes.HOME_PENGRAJIN,
+      page: () => const HomePengrajinView(),
+      binding: HomePengrajinBinding(),
+    ),
+
+    GetPage(
+      name: Routes.JADWAL_PENGRAJIN,
+      page: () => const JadwalPengrajinView(),
+      binding: JadwalPengrajinBinding(),
+    ),
+    GetPage(
+      name: Routes.PROFILE_AKUN_PENGRAJIN,
+      page: () => const ProfileAkunPengrajinView(),
+      binding: ProfileAkunPengrajinBinding(),
+    ),
+    GetPage(
+      name: Routes.EDIT_PROFILE_PENGRAJIN,
+      page: () => const EditProfilePengrajinView(),
+      binding: EditProfilePengrajinBinding(),
+    ),
+    GetPage(
+      name: Routes.DAFTAR_MURID,
+      page: () => const DaftarMuridView(),
+      binding: DaftarMuridBinding(),
+    ), // app_pages.dart
+
+    GetPage(
+      name: Routes.PAYMENT,
+      page: () => const PaymentView(),
+      binding: PaymentBinding(),
     ),
   ];
 }

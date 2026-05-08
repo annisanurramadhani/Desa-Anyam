@@ -1,7 +1,6 @@
-// login_view.dart
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -14,14 +13,10 @@ class LoginView extends GetView<LoginController> {
       body: SafeArea(
         child: Column(
           children: [
-
-            // TOP HEADER
+            // HEADER
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.only(
-                top: 90,
-                bottom: 50,
-              ),
+              padding: const EdgeInsets.only(top: 90, bottom: 50),
               decoration: const BoxDecoration(
                 color: Color(0xFF9B6B43),
                 borderRadius: BorderRadius.only(
@@ -44,10 +39,7 @@ class LoginView extends GetView<LoginController> {
 
                   Text(
                     'Silakan masuk ke akun Anda yang sudah ada',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ],
               ),
@@ -62,7 +54,6 @@ class LoginView extends GetView<LoginController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     // EMAIL
                     const Text(
                       'EMAIL',
@@ -77,8 +68,10 @@ class LoginView extends GetView<LoginController> {
 
                     TextField(
                       controller: controller.emailC,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
-                        hintText: 'cobacoba@gmail.com',
+                        hintText: 'Masukkan email Anda',
                         filled: true,
                         fillColor: const Color(0xFFE8EBF0),
                         border: OutlineInputBorder(
@@ -110,7 +103,12 @@ class LoginView extends GetView<LoginController> {
                       () => TextField(
                         controller: controller.passwordC,
                         obscureText: controller.isHidden.value,
+                        textInputAction: TextInputAction.done,
+                        onSubmitted: (_) {
+                          controller.login();
+                        },
                         decoration: InputDecoration(
+                          hintText: 'Masukkan sandi Anda',
                           filled: true,
                           fillColor: const Color(0xFFE8EBF0),
                           border: OutlineInputBorder(
@@ -140,22 +138,37 @@ class LoginView extends GetView<LoginController> {
                     SizedBox(
                       width: double.infinity,
                       height: 58,
-                      child: ElevatedButton(
-                        onPressed: controller.login,
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          backgroundColor: const Color(0xFF9B6B43),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
+                      child: Obx(
+                        () => ElevatedButton(
+                          onPressed: controller.isLoading.value
+                              ? null
+                              : () {
+                                  controller.login();
+                                },
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: const Color(0xFF9B6B43),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
                           ),
-                        ),
-                        child: const Text(
-                          'MASUK',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
+                          child: controller.isLoading.value
+                              ? const SizedBox(
+                                  width: 24,
+                                  height: 24,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                    strokeWidth: 2,
+                                  ),
+                                )
+                              : const Text(
+                                  'MASUK',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
                         ),
                       ),
                     ),
@@ -208,10 +221,7 @@ class LoginView extends GetView<LoginController> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Image.asset(
-                              'assets/images/google.png',
-                              width: 28,
-                            ),
+                            Image.asset('assets/images/google.png', width: 28),
 
                             const SizedBox(width: 10),
 

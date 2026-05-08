@@ -1,0 +1,41 @@
+// payment_controller.dart
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class PaymentController extends GetxController {
+  final searchC = TextEditingController();
+
+  RxList<Map<String, dynamic>> paymentList = <Map<String, dynamic>>[
+    {
+      "nama": "Soleh",
+      "tanggal": "19 Mei 2025",
+      "metode": "Cash",
+      "status": "Lunas",
+      "harga": "Rp20.000",
+    },
+
+    {
+      "nama": "Budi Santoso",
+      "tanggal": "20 Mei 2025",
+      "metode": "Cash",
+      "status": "Belum Bayar",
+      "harga": "Rp20.000",
+    },
+
+    {
+      "nama": "Siti Nurhaliza",
+      "tanggal": "21 Mei 2025",
+      "metode": "Cash",
+      "status": "Lunas",
+      "harga": "Rp20.000",
+    },
+  ].obs;
+
+  @override
+  void onClose() {
+    searchC.dispose();
+
+    super.onClose();
+  }
+}

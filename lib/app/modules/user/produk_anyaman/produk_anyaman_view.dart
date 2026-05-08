@@ -28,7 +28,6 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Column(
             children: [
-
               // HEADER
               Row(
                 children: [
@@ -73,8 +72,7 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
               Expanded(
                 child: GridView.builder(
                   itemCount: 8,
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 14,
                     crossAxisSpacing: 14,
@@ -112,12 +110,9 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           // IMAGE
           ClipRRect(
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(14),
-            ),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(14)),
             child: Image.asset(
               'assets/images/produk.png',
               height: 100,
@@ -132,10 +127,7 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Text(
               'Keranjang Bambu',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-              ),
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
             ),
           ),
 
@@ -143,10 +135,7 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Text(
               'Rp 50.000',
-              style: TextStyle(
-                fontSize: 11,
-                color: Colors.black87,
-              ),
+              style: TextStyle(fontSize: 11, color: Colors.black87),
             ),
           ),
         ],

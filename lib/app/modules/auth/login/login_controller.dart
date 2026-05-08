@@ -1,21 +1,59 @@
-// login_controller.dart
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginController extends GetxController {
+import '../../../services/auth_services.dart';
 
+class LoginController extends GetxController {
   final emailC = TextEditingController();
   final passwordC = TextEditingController();
 
   RxBool isHidden = true.obs;
+  RxBool isLoading = false.obs;
 
   void togglePassword() {
     isHidden.value = !isHidden.value;
   }
 
-  void login() {
-    Get.offAllNamed('/home');
+  Future<void> login() async {
+    if (emailC.text.isEmpty || passwordC.text.isEmpty) {
+      Get.snackbar("Error", "Email dan password wajib diisi");
+
+      return;
+    }
+
+    try {
+      isLoading.value = true;
+
+      final response = await AuthService.login(
+        email: emailC.text,
+        password: passwordC.text,
+      );
+
+      debugPrint(response.toString());
+
+      if (response['message'] == 'Login berhasil') {
+        Get.snackbar("Sukses", "Login berhasil");
+
+        String role = response['user']['role'];
+
+        // LOGIN BERDASARKAN ROLE
+        if (role == 'pengrajin') {
+          Get.offAllNamed('/home-pengrajin');
+        } else if (role == 'pengguna') {
+          Get.offAllNamed('/home');
+        } else {
+          Get.snackbar("Error", "Role tidak dikenali");
+        }
+      } else {
+        Get.snackbar("Error", response['message']);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+
+      Get.snackbar("Error", e.toString());
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   void goToRegister() {

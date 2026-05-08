@@ -28,7 +28,6 @@ class PembayaranView extends GetView<PembayaranController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               // HEADER
               Row(
                 children: [
@@ -58,7 +57,10 @@ class PembayaranView extends GetView<PembayaranController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Text('Detail Pendaftaran', style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(
+                      'Detail Pendaftaran',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
 
                     SizedBox(height: 10),
                     Text('Nama Lengkap        : Syifa Hadju'),
@@ -78,7 +80,10 @@ class PembayaranView extends GetView<PembayaranController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Text('Paket Yang Dipilih', style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(
+                      'Paket Yang Dipilih',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     SizedBox(height: 10),
 
                     Card(
@@ -90,14 +95,20 @@ class PembayaranView extends GetView<PembayaranController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Paket 2 Bulan', style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text(
+                              'Paket 2 Bulan',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                             Text('24 Pertemuan'),
                             SizedBox(height: 4),
-                            Text('Rp 549.000', style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text(
+                              'Rp 549.000',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -109,7 +120,10 @@ class PembayaranView extends GetView<PembayaranController> {
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Total Pembayaran', style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(
+                      'Total Pembayaran',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     SizedBox(height: 6),
                     Text(
                       'Rp 549.000',
@@ -129,49 +143,49 @@ class PembayaranView extends GetView<PembayaranController> {
               const SizedBox(height: 10),
 
               // METODE PEMBAYARAN
-              Obx(() => InkWell(
-                    onTap: () => controller.selectMethod(0),
-                    child: Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          color: controller.selectedMethod.value == 0
-                              ? Colors.green
-                              : Colors.grey.shade300,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-
-                          const Icon(Icons.check_circle, color: Colors.green),
-
-                          const SizedBox(width: 10),
-
-                          const Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Cash (Bayar di Tempat)'),
-                                Text(
-                                  'Bayar Saat Hari Pertama Kelas',
-                                  style: TextStyle(fontSize: 11),
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          Radio(
-                            value: 0,
-                            groupValue: controller.selectedMethod.value,
-                            onChanged: (value) =>
-                                controller.selectMethod(value!),
-                          )
-                        ],
+              Obx(
+                () => InkWell(
+                  onTap: () => controller.selectMethod(0),
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: controller.selectedMethod.value == 0
+                            ? Colors.green
+                            : Colors.grey.shade300,
                       ),
                     ),
-                  )),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.check_circle, color: Colors.green),
+
+                        const SizedBox(width: 10),
+
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Cash (Bayar di Tempat)'),
+                              Text(
+                                'Bayar Saat Hari Pertama Kelas',
+                                style: TextStyle(fontSize: 11),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Radio(
+                          value: 0,
+                          groupValue: controller.selectedMethod.value,
+                          onChanged: (value) => controller.selectMethod(value!),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
 
               const SizedBox(height: 40),
 

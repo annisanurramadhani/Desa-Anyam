@@ -27,7 +27,6 @@ class DetailPaketView extends GetView<DetailPaketController> {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-
               /// HEADER
               Row(
                 children: [
@@ -57,7 +56,6 @@ class DetailPaketView extends GetView<DetailPaketController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     const Text(
                       'Paket 2 Bulan',
                       style: TextStyle(
@@ -83,11 +81,11 @@ class DetailPaketView extends GetView<DetailPaketController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: const [
-                        fiturItem(Icons.verified, 'Pelatih'),
-                        fiturItem(Icons.calendar_today, '1 Minggu 3x'),
-                        fiturItem(Icons.workspace_premium, 'Sertifikat'),
+                        FiturItem(Icons.verified, 'Pelatih'),
+                        FiturItem(Icons.calendar_today, '1 Minggu 3x'),
+                        FiturItem(Icons.workspace_premium, 'Sertifikat'),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -98,7 +96,6 @@ class DetailPaketView extends GetView<DetailPaketController> {
               containerCard(
                 child: Row(
                   children: [
-
                     Container(
                       width: 60,
                       height: 60,
@@ -139,7 +136,7 @@ class DetailPaketView extends GetView<DetailPaketController> {
                         'Ganti',
                         style: TextStyle(fontSize: 11),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -211,11 +208,11 @@ class DetailPaketView extends GetView<DetailPaketController> {
 }
 
 /// FITUR ITEM
-class fiturItem extends StatelessWidget {
+class FiturItem extends StatelessWidget {
   final IconData icon;
   final String title;
 
-  const fiturItem(this.icon, this.title, {super.key});
+  const FiturItem(this.icon, this.title, {super.key});
 
   @override
   Widget build(BuildContext context) {
