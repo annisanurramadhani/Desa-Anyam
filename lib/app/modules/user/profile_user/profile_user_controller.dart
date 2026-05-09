@@ -5,15 +5,15 @@ class ProfileUserController extends GetxController {
 
   void changeMenu(int index) {
     if (index == 0) {
-      Get.toNamed(Routes.JADWAL_SAYA); // ✅ jadwal
+      Get.toNamed(Routes.JADWAL_SAYA);
     }
 
     if (index == 1) {
-      Get.offAllNamed(Routes.HOME); // ✅ home
+      Get.offAllNamed(Routes.HOME);
     }
 
     if (index == 2) {
-      Get.toNamed(Routes.PROFILE_USER); // ✅ WAJIB ADA
+      Get.toNamed(Routes.PROFILE_USER);
     }
   }
 
@@ -23,6 +23,11 @@ class ProfileUserController extends GetxController {
 
   void goToSertifikat() {
     Get.toNamed(Routes.SERTIFIKAT);
+  }
+
+  /// 🔥 TAMBAHAN INI
+  void goToPesanan() {
+    Get.toNamed(Routes.DETAIL_PESANAN);
   }
 
   void logout() {

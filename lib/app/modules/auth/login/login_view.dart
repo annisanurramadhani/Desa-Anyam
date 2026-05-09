@@ -81,7 +81,6 @@ class LoginView extends GetView<LoginController> {
                       TextField(
                         controller: controller.emailC,
                         decoration: InputDecoration(
-                          hintText: 'email@gmail.com',
                           filled: true,
                           fillColor: const Color(0xFFE8EBF0),
                           border: OutlineInputBorder(

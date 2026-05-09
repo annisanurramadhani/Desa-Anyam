@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../routes/app_routes.dart';
 import 'jadwal_saya_controller.dart';
 
 class JadwalSayaView extends GetView<JadwalSayaController> {
@@ -8,78 +9,102 @@ class JadwalSayaView extends GetView<JadwalSayaController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F4F4),
+      backgroundColor: const Color(0xFFF6F3EF),
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        selectedItemColor: const Color(0xFF6B4F3B),
+        unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_today),
+            label: 'Jadwal Saya',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Akun'),
         ],
       ),
 
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          child: Column(
-            children: [
-
-              /// HEADER
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () => Get.back(),
-                    icon: const Icon(Icons.arrow_back),
-                  ),
-                  const Expanded(
-                    child: Center(
-                      child: Text(
-                        'Jadwal Saya',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            /// HEADER
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () => Get.back(),
+                  icon: const Icon(Icons.arrow_back),
+                ),
+                const Expanded(
+                  child: Center(
+                    child: Text(
+                      'Jadwal Saya',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF4E342E),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 40),
+                ),
+                const SizedBox(width: 40),
+              ],
+            ),
+
+            const SizedBox(height: 16),
+
+            const Text(
+              "Jadwal Kelas",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+
+            const SizedBox(height: 6),
+
+            const Text(
+              "Berikut adalah jadwal kelas yang sudah Anda daftarkan.",
+              style: TextStyle(color: Colors.black54),
+            ),
+
+            const SizedBox(height: 16),
+
+            /// INFO BOX
+            Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF2ECE6),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: const Row(
+                children: [
+                  Icon(Icons.info, color: Color(0xFF6B4F3B)),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      "Status pembayaran akan dikonfirmasi oleh pengrajin setelah Anda membayar saat kelas berlangsung.",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
                 ],
               ),
+            ),
 
-              const SizedBox(height: 16),
+            const SizedBox(height: 16),
 
-              /// LIST
-              Expanded(
-                child: Obx(() {
-                  if (controller.jadwalList.isEmpty) {
-                    return const Center(
-                      child: Text("Belum ada jadwal"),
-                    );
-                  }
+            /// LIST DATA
+            Obx(() {
+              if (controller.jadwalList.isEmpty) {
+                return const Center(child: Text("Belum ada jadwal"));
+              }
 
-                  return ListView.builder(
-                    itemCount: controller.jadwalList.length,
-                    itemBuilder: (context, index) {
-                      final item = controller.jadwalList[index];
-
-                      return JadwalCard(
-                        tanggal: item["tanggal"] ?? "-",
-                        bulan: item["bulan"] ?? "-",
-                        hari: item["hari"] ?? "-",
-                        title: item["title"] ?? "-",
-                        jam: item["jam"] ?? "-",
-                        lokasi: item["lokasi"] ?? "-",
-                      );
-                    },
-                  );
-                }),
-              ),
-            ],
-          ),
+              return Column(
+                children: controller.jadwalList.map((item) {
+                  return JadwalCard(item: item);
+                }).toList(),
+              );
+            }),
+          ],
         ),
       ),
     );
@@ -87,112 +112,128 @@ class JadwalSayaView extends GetView<JadwalSayaController> {
 }
 
 class JadwalCard extends StatelessWidget {
-  final String tanggal;
-  final String bulan;
-  final String hari;
-  final String title;
-  final String jam;
-  final String lokasi;
+  final Map<String, dynamic> item;
 
-  const JadwalCard({
-    super.key,
-    required this.tanggal,
-    required this.bulan,
-    required this.hari,
-    required this.title,
-    required this.jam,
-    required this.lokasi,
-  });
+  const JadwalCard({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 14),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: const Color(0xFF8FA1B2),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
+    final String status = item["status"]?.toString() ?? "Belum Lunas";
+    final bool isLunas = status == "Lunas";
 
-          /// TANGGAL
-          Container(
-            width: 60,
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade300,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
+    final Color statusColor = isLunas ? Colors.green : const Color(0xFFB57F50);
+
+    return InkWell(
+      borderRadius: BorderRadius.circular(20),
+
+      /// ✅ FIX NAVIGASI DI SINI
+      onTap: () {
+        Get.toNamed(
+          Routes.DETAIL_JADWAL, // ✅ SUDAH BENAR
+          arguments: item,
+        );
+      },
+
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF2ECE6),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          children: [
+            /// HEADER
+            Row(
               children: [
-                Text(bulan, style: const TextStyle(fontSize: 10)),
-                Text(
-                  tanggal,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                const Icon(Icons.calendar_today, color: Color(0xFF6B4F3B)),
+                const SizedBox(width: 10),
+
+                const Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Pengrajin Anyaman Bambu",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text("Bersama Pak Tarjo", style: TextStyle(fontSize: 12)),
+                    ],
                   ),
                 ),
-                Text(hari, style: const TextStyle(fontSize: 10)),
-              ],
-            ),
-          ),
-
-          const SizedBox(width: 12),
-
-          /// INFO
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-
-                /// TITLE (tanpa panah)
-                Text(
-                  title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-                const SizedBox(height: 4),
-
-                Text(
-                  "Jam: $jam WIB",
-                  style: const TextStyle(fontSize: 11),
-                ),
-
-                const SizedBox(height: 6),
 
                 Container(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(12),
+                    horizontal: 10,
+                    vertical: 4,
                   ),
-                  child: const Text(
-                    'Terkonfirmasi',
+                  decoration: BoxDecoration(
+                    color: statusColor.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    status,
                     style: TextStyle(
-                      fontSize: 10,
-                      color: Colors.white,
+                      fontSize: 11,
+                      color: statusColor,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
+              ],
+            ),
 
-                const SizedBox(height: 6),
+            const Divider(height: 20),
 
-                Text(
-                  lokasi,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 10),
+            infoRow(Icons.calendar_today, "Tanggal", item["tanggal"]),
+            infoRow(Icons.access_time, "Jam", item["jam"]),
+            infoRow(Icons.location_on, "Lokasi", item["lokasi"]),
+            infoRow(Icons.sell, "Harga", "Rp ${item["harga"] ?? 0} / sesi"),
+
+            const SizedBox(height: 10),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.circle,
+                      size: 10,
+                      color: isLunas ? Colors.green : Colors.brown,
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      isLunas ? "Selesai" : "Berlangsung",
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ],
+                ),
+
+                const Row(
+                  children: [
+                    Text("Lihat Detail"),
+                    SizedBox(width: 4),
+                    Icon(Icons.chevron_right, size: 16),
+                  ],
                 ),
               ],
             ),
-          ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget infoRow(IconData icon, String title, dynamic value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        children: [
+          Icon(icon, size: 16, color: const Color(0xFF6B4F3B)),
+          const SizedBox(width: 10),
+          Text("$title : "),
+          Expanded(child: Text(value?.toString() ?? "-")),
         ],
       ),
     );

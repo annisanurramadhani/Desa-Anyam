@@ -9,15 +9,15 @@ class EditProfileView extends GetView<EditProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F4F4),
+      backgroundColor: const Color(0xFFF6F3EF),
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 2,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        selectedItemColor: const Color(0xFF6B4F3B),
+        unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
         ],
@@ -25,11 +25,11 @@ class EditProfileView extends GetView<EditProfileController> {
 
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
 
-              /// HEADER
+              /// 🔥 HEADER
               Row(
                 children: [
                   IconButton(
@@ -39,10 +39,11 @@ class EditProfileView extends GetView<EditProfileController> {
                   const Expanded(
                     child: Center(
                       child: Text(
-                        'Edit Profil',
+                        "Edit Profil",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          color: Color(0xFF4E342E),
                         ),
                       ),
                     ),
@@ -53,77 +54,116 @@ class EditProfileView extends GetView<EditProfileController> {
 
               const SizedBox(height: 20),
 
-              /// FOTO PROFIL (🔥 FIX BISA PILIH)
-              Obx(() {
-                return Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      width: 110,
-                      height: 110,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey[300],
-                        image: controller.imageFile.value != null
-                            ? DecorationImage(
-                                image: FileImage(controller.imageFile.value!),
-                                fit: BoxFit.cover,
-                              )
-                            : null,
-                      ),
-                      child: controller.imageFile.value == null
-                          ? const Icon(Icons.person, size: 50)
-                          : null,
-                    ),
-
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: GestureDetector(
-                        onTap: controller.pickImage,
-                        child: Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.camera_alt,
-                            size: 18,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                );
-              }),
-
-              const SizedBox(height: 20),
-
-              /// FORM
+              /// 🔥 CARD ATAS (FOTO + BACKGROUND)
               Container(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF8FA1B2),
-                  borderRadius: BorderRadius.circular(16),
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFEBDDCB), Color(0xFFF5EFE6)],
+                  ),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
                   children: [
-                    inputField('Nama Lengkap'),
-                    inputField('Email'),
-                    inputField('No Telepon'),
+
+                    /// FOTO
+                    Obx(() {
+                      return Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: 110,
+                            height: 110,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: const Color(0xFFD9C2A6),
+                              border: Border.all(color: Colors.white, width: 3),
+                              image: controller.imageFile.value != null
+                                  ? DecorationImage(
+                                      image: FileImage(
+                                          controller.imageFile.value!),
+                                      fit: BoxFit.cover,
+                                    )
+                                  : null,
+                            ),
+                            child: controller.imageFile.value == null
+                                ? const Icon(Icons.person, size: 50)
+                                : null,
+                          ),
+
+                          /// BUTTON CAMERA
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: GestureDetector(
+                              onTap: controller.pickImage,
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.camera_alt,
+                                  size: 18,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      );
+                    }),
+
+                    const SizedBox(height: 12),
+
+                    const Text(
+                      "Klik ikon kamera untuk mengubah foto profil",
+                      style: TextStyle(fontSize: 12, color: Colors.black54),
+                    ),
                   ],
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
 
-              /// BUTTON
+              /// 🔥 FORM CARD
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF2ECE6),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  children: [
+
+                    inputField(
+                      label: "Nama Lengkap",
+                      icon: Icons.person,
+                      controller: controller.namaC,
+                    ),
+
+                    inputField(
+                      label: "Email",
+                      icon: Icons.email,
+                      controller: controller.emailC,
+                    ),
+
+                    inputField(
+                      label: "No Telepon",
+                      icon: Icons.phone,
+                      controller: controller.telpC,
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              /// 🔥 BUTTON
               SizedBox(
                 width: double.infinity,
                 height: 55,
-                child: ElevatedButton(
+                child: ElevatedButton.icon(
                   onPressed: controller.simpan,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF9B6B43),
@@ -131,12 +171,10 @@ class EditProfileView extends GetView<EditProfileController> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  child: const Text(
-                    'Simpan Perubahan',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  icon: const Icon(Icons.save, color: Colors.white),
+                  label: const Text(
+                    "Simpan Perubahan",
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
               ),
@@ -147,21 +185,47 @@ class EditProfileView extends GetView<EditProfileController> {
     );
   }
 
-  /// INPUT FIELD
-  Widget inputField(String label) {
+  /// 🔥 INPUT FIELD PREMIUM
+  Widget inputField({
+    required String label,
+    required IconData icon,
+    required TextEditingController controller,
+  }) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.only(bottom: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: const TextStyle(fontSize: 12)),
-          const SizedBox(height: 6),
+
+          /// LABEL + ICON
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFE8DED2),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(icon, size: 16),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                label,
+                style: const TextStyle(fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 8),
+
+          /// INPUT
           TextField(
+            controller: controller,
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.white,
               contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(14),
                 borderSide: BorderSide.none,

@@ -1,181 +1,201 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'detail_produk_controller.dart';
 
-class DetailProdukView extends GetView<DetailProdukController> {
+class DetailProdukView extends StatelessWidget {
   const DetailProdukView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF4F4F4),
+    final data = Get.arguments ?? {};
 
+    final String image = data["image"] ?? "assets/images/produk1.jpg";
+    final String title = data["title"] ?? "Kerombong Bambu";
+    final String price = data["price"] ?? "Rp 55.000";
+    final String desc =
+        data["desc"] ??
+        "Kerombong bambu asli anyaman tangan, kuat dan multifungsi.";
+
+    return Scaffold(
+      backgroundColor: const Color(0xFFF6F3EF),
+
+      /// 🔥 BOTTOM NAV
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        onTap: controller.changeMenu,
+        currentIndex: 1,
+        selectedItemColor: const Color(0xFF6B4F3B),
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {},
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today), label: 'Jadwal Saya'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Akun'),
         ],
       ),
 
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: ListView(
           padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+          children: [
 
-              /// HEADER
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () => Get.back(),
-                    icon: const Icon(Icons.arrow_back),
-                  ),
-                  const Expanded(
-                    child: Center(
-                      child: Text(
-                        'Detail Produk',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+            /// 🔥 HEADER
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () => Get.back(),
+                  icon: const Icon(Icons.arrow_back),
+                ),
+                const Expanded(
+                  child: Center(
+                    child: Text(
+                      "Detail Produk",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF4E342E),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 40),
+                ),
+                const SizedBox(width: 40),
+              ],
+            ),
+
+            const SizedBox(height: 16),
+
+            /// 🔥 IMAGE
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                image,
+                height: 220,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            /// 🔥 TITLE
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF4E342E),
+              ),
+            ),
+
+            const SizedBox(height: 6),
+
+            /// 🔥 PRICE
+            Text(
+              price,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF8B5E3C),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            /// 🔥 DESKRIPSI
+            const Row(
+              children: [
+                Icon(Icons.description, color: Color(0xFF6B4F3B)),
+                SizedBox(width: 8),
+                Text(
+                  "Deskripsi Produk",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                )
+              ],
+            ),
+
+            const SizedBox(height: 8),
+
+            Text(
+              desc,
+              style: const TextStyle(color: Colors.black54),
+            ),
+
+            const SizedBox(height: 20),
+
+            /// 🔥 DETAIL BOX
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF2ECE6),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                children: [
+                  infoItem(Icons.straighten, "Ukuran", "30cm x 25cm x 12cm"),
+                  divider(),
+                  infoItem(Icons.eco, "Bahan", "Bambu"),
+                  divider(),
+                  infoItem(Icons.palette, "Warna", "Natural"),
+                  divider(),
+                  infoItem(Icons.inventory_2, "Stok", "55 tersedia"),
                 ],
               ),
+            ),
 
-              const SizedBox(height: 16),
+            const SizedBox(height: 20),
 
-              /// IMAGE
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Image.asset(
-                  'assets/images/produk.png',
-                  width: double.infinity,
-                  height: 190,
-                  fit: BoxFit.cover,
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
-              /// NAMA PRODUK
-              const Text(
-                'Kerombong Bambu',
-                style: TextStyle(
-                  fontSize: 18, // 🔥 lebih besar
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              const SizedBox(height: 4),
-
-              /// HARGA
-              const Text(
-                'Rp 55.000',
-                style: TextStyle(
-                  color: Color(0xFF9B6B43),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
-              /// DESKRIPSI
-              const Text(
-                'Deskripsi Produk',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-
-              const SizedBox(height: 6),
-
-              const Text(
-                'Kerombong bambu asli anyaman tangan, kuat dan multifungsi. '
-                'Cocok untuk penyimpanan, logistik, hingga dekorasi.',
-                style: TextStyle(fontSize: 12),
-              ),
-
-              const SizedBox(height: 16),
-
-              /// DETAIL BOX
-              Container(
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF8FA1B2),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  children: [
-                    detailRow('Ukuran', '30cm x 25cm x 12cm'),
-                    detailRow('Bahan', 'Bambu'),
-                    detailRow('Warna', 'Natural'),
-                    detailRow('Stok', '55 tersedia'),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 30),
-
-              /// BUTTON WHATSAPP 🔥 (SUDAH FIX)
-              SizedBox(
-                width: double.infinity,
-                height: 55,
-                child: ElevatedButton.icon(
-                  onPressed: controller.pesanWhatsapp,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF9B6B43),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+            /// 🔥 BUTTON WHATSAPP
+            SizedBox(
+              height: 60,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  /// nanti bisa pakai url_launcher
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF8B5E3C),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  icon: const FaIcon(
-                    FontAwesomeIcons.whatsapp, // ✅ ICON ASLI
-                    color: Colors.white,
-                  ),
-                  label: const Text(
-                    'Pesan via WhatsApp',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                ),
+                icon: const FaIcon(FontAwesomeIcons.whatsapp),
+                label: const Text(
+                  "Pesan via WhatsApp",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                 ),
               ),
-
-              const SizedBox(height: 10),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  /// 🔹 ROW DETAIL
-  Widget detailRow(String title, String value) {
+  /// 🔥 ITEM DETAIL
+  Widget infoItem(IconData icon, String title, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
-          SizedBox(
-            width: 90,
+          Icon(icon, color: const Color(0xFF6B4F3B)),
+          const SizedBox(width: 10),
+          Expanded(
             child: Text(
               title,
               style: const TextStyle(fontWeight: FontWeight.w500),
             ),
           ),
-          const Text(': '),
-          Expanded(child: Text(value)),
+          Text(value),
         ],
       ),
     );
+  }
+
+  Widget divider() {
+    return const Divider(height: 20);
   }
 }

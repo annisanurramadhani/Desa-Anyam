@@ -14,34 +14,24 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
 
       bottomNavigationBar: Container(
         height: 85,
-
         decoration: const BoxDecoration(
           color: Colors.white,
-
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
         ),
-
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-
           children: [
             // JADWAL
             InkWell(
-              onTap: () {
-                Get.offAllNamed('/home-pengrajin');
-              },
-
+              onTap: () {},
               borderRadius: BorderRadius.circular(20),
-
               child: SizedBox(
                 width: 90,
-
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-
                   children: const [
                     Icon(Icons.calendar_month, color: Color(0xFFB87333)),
 
@@ -49,7 +39,6 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
 
                     Text(
                       'Jadwal',
-
                       style: TextStyle(
                         color: Color(0xFFB87333),
                         fontWeight: FontWeight.bold,
@@ -66,15 +55,11 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
               onTap: () {
                 Get.offAllNamed('/home-pengrajin');
               },
-
               borderRadius: BorderRadius.circular(20),
-
               child: SizedBox(
                 width: 90,
-
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-
                   children: const [
                     Icon(Icons.home_outlined, color: Colors.grey),
 
@@ -82,7 +67,6 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
 
                     Text(
                       'Beranda',
-
                       style: TextStyle(color: Colors.grey, fontSize: 13),
                     ),
                   ],
@@ -95,15 +79,11 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
               onTap: () {
                 Get.toNamed('/profile-akun-pengrajin');
               },
-
               borderRadius: BorderRadius.circular(20),
-
               child: SizedBox(
                 width: 90,
-
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-
                   children: const [
                     Icon(Icons.person_outline),
 
@@ -121,10 +101,8 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-
             children: [
               // HEADER
               Row(
@@ -133,62 +111,91 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
                     onTap: () {
                       Get.back();
                     },
-
                     borderRadius: BorderRadius.circular(30),
-
-                    child: const Padding(
-                      padding: EdgeInsets.all(6),
-
-                      child: Icon(
-                        Icons.arrow_back,
-                        size: 32,
-                        color: Colors.black,
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      child: const Icon(
+                        Icons.arrow_back_ios_new,
+                        size: 26,
+                        color: Color(0xFF2B0D0D),
                       ),
                     ),
                   ),
 
-                  const Expanded(
-                    child: Center(
-                      child: Text(
-                        'Jadwal',
+                  const SizedBox(width: 10),
 
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Jadwal Kelas',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF2B0D0D),
+                          ),
                         ),
-                      ),
+
+                        SizedBox(height: 4),
+
+                        Text(
+                          'jadwal pelatihan anyaman',
+                          style: TextStyle(fontSize: 14, color: Colors.black54),
+                        ),
+                      ],
                     ),
                   ),
 
-                  const SizedBox(width: 32),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18),
+                      border: Border.all(color: const Color(0xFFB87333)),
+                    ),
+                    child: Row(
+                      children: const [
+                        Icon(
+                          Icons.calendar_month,
+                          size: 20,
+                          color: Color(0xFFB87333),
+                        ),
+
+                        SizedBox(width: 8),
+
+                        Text(
+                          'Hari Ini',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF2B0D0D),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 26),
 
               // KALENDER
               Container(
                 width: double.infinity,
-
                 padding: const EdgeInsets.all(20),
-
                 decoration: BoxDecoration(
                   color: Colors.white,
-
                   borderRadius: BorderRadius.circular(30),
-
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.04),
-
                       blurRadius: 10,
-
                       offset: const Offset(0, 4),
                     ),
                   ],
                 ),
-
                 child: Obx(
                   () => TableCalendar(
                     firstDay: DateTime.utc(2020, 1, 1),
@@ -209,13 +216,10 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
 
                     headerStyle: const HeaderStyle(
                       formatButtonVisible: false,
-
                       titleCentered: true,
-
                       titleTextStyle: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-
                         color: Color(0xFF2B0D0D),
                       ),
                     ),
@@ -223,25 +227,21 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
                     calendarStyle: CalendarStyle(
                       todayDecoration: BoxDecoration(
                         color: Colors.brown.shade200,
-
                         shape: BoxShape.circle,
                       ),
 
                       selectedDecoration: const BoxDecoration(
                         color: Color(0xFFB87333),
-
                         shape: BoxShape.circle,
                       ),
 
                       selectedTextStyle: const TextStyle(
                         color: Colors.white,
-
                         fontWeight: FontWeight.bold,
                       ),
 
                       todayTextStyle: const TextStyle(
                         color: Colors.white,
-
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -254,7 +254,6 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
               Obx(
                 () => Text(
                   'Jadwal ${controller.selectedDay.value.day}-${controller.selectedDay.value.month}-${controller.selectedDay.value.year}',
-
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -268,31 +267,23 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
               // INFO
               Container(
                 width: double.infinity,
-
                 padding: const EdgeInsets.all(20),
-
                 decoration: BoxDecoration(
                   color: const Color(0xFFF1E2D3),
-
                   borderRadius: BorderRadius.circular(24),
                 ),
-
                 child: Row(
                   children: [
                     Container(
                       width: 70,
                       height: 70,
-
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
                       ),
-
                       child: const Icon(
                         Icons.calendar_month,
-
                         color: Color(0xFFB87333),
-
                         size: 34,
                       ),
                     ),
@@ -302,11 +293,9 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
                     const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-
                         children: [
                           Text(
                             'Pengrajin hanya menerima\n1 murid per hari.',
-
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -317,7 +306,6 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
 
                           Text(
                             'Pastikan jadwal tidak bentrok ya!',
-
                             style: TextStyle(
                               fontSize: 15,
                               color: Colors.black54,
@@ -335,31 +323,23 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
               // CARD JADWAL
               Container(
                 width: double.infinity,
-
                 padding: const EdgeInsets.all(20),
-
                 decoration: BoxDecoration(
                   color: const Color(0xFFD6E9FF),
-
                   borderRadius: BorderRadius.circular(28),
                 ),
-
                 child: Row(
                   children: [
                     Container(
                       width: 70,
                       height: 70,
-
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
                       ),
-
                       child: const Icon(
                         Icons.person,
-
                         size: 38,
-
                         color: Colors.blue,
                       ),
                     ),
@@ -370,14 +350,11 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
                       child: Obx(
                         () => Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-
                           children: [
                             Text(
                               controller.namaMurid.value,
-
                               style: const TextStyle(
                                 fontSize: 18,
-
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -386,7 +363,6 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
 
                             Text(
                               controller.kelas.value,
-
                               style: const TextStyle(fontSize: 16),
                             ),
 
@@ -396,9 +372,7 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
                               children: [
                                 const Icon(
                                   Icons.access_time,
-
                                   size: 15,
-
                                   color: Colors.black54,
                                 ),
 
@@ -406,10 +380,8 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
 
                                 Text(
                                   controller.waktu.value,
-
                                   style: const TextStyle(
                                     fontSize: 15,
-
                                     color: Colors.black54,
                                   ),
                                 ),

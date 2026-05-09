@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../routes/app_routes.dart';
 import 'belajar_anyaman_controller.dart';
 
 class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
@@ -8,26 +9,29 @@ class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F4F4),
+      backgroundColor: const Color(0xFFF6F3EF),
 
+      /// 🔥 BOTTOM NAVBAR
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        currentIndex: 1,
+        selectedItemColor: const Color(0xFF6B4F3B),
+        unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_today),
+            label: 'Jadwal Saya',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Akun'),
         ],
       ),
 
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          padding: const EdgeInsets.all(20),
           children: [
-
-            /// HEADER
+            /// 🔥 HEADER
             Row(
               children: [
                 IconButton(
@@ -39,8 +43,9 @@ class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
                     child: Text(
                       'Belajar Anyaman',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 22,
                         fontWeight: FontWeight.bold,
+                        color: Color(0xFF4E342E),
                       ),
                     ),
                   ),
@@ -51,58 +56,70 @@ class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
 
             const SizedBox(height: 20),
 
-            /// KATEGORI
-            const Text(
-              'Kategori Materi',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+            /// 🔥 HERO (TANPA FOTO)
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFFEDE3D7), Color(0xFFF5EFE6)],
+                ),
+                borderRadius: BorderRadius.circular(20),
               ),
-            ),
-
-            const SizedBox(height: 14),
-
-            SizedBox(
-              height: 100,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
+              child: const Row(
                 children: [
-                  categoryItem('assets/images/1.png', 'Dasar'),
-                  categoryItem('assets/images/2.png', 'Tas'),
-                  categoryItem('assets/images/3.png', 'Caping'),
-                  categoryItem('assets/images/4.png', 'Kipas'),
+                  Icon(Icons.school, size: 40, color: Color(0xFF6B4F3B)),
+                  SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      'Pelajari berbagai teknik anyaman bambu dari dasar hingga mahir.',
+                      style: TextStyle(fontSize: 13),
+                    ),
+                  ),
                 ],
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
 
-            /// MATERI
+            /// 🔥 TITLE
             const Text(
-              'Materi Baru',
+              'Materi',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
+                color: Color(0xFF4E342E),
               ),
             ),
 
-            const SizedBox(height: 14),
+            const SizedBox(height: 16),
+
+            /// 🔥 LIST MATERI (SUDAH ADA VIDEO)
+            materiItem(
+              image: 'assets/images/m1.png',
+              title: 'Dasar Anyaman Silang',
+              subtitle: 'Teknik dasar anyaman untuk pemula.',
+              video: 'assets/videos/video1.mp4',
+            ),
 
             materiItem(
-              title: 'Dasar Anyaman Silang',
-              subtitle: 'Teknik dasar anyaman untuk pemula',
-            ),
-            materiItem(
+              image: 'assets/images/m2.png',
               title: 'Keranjang Bambu',
-              subtitle: 'Cara membuat keranjang sederhana',
+              subtitle: 'Cara membuat keranjang sederhana.',
+              video: 'assets/videos/m2.mp4',
             ),
+
             materiItem(
+              image: 'assets/images/m3.png',
               title: 'Tas Anyaman',
-              subtitle: 'Membuat tas bambu yang kuat',
+              subtitle: 'Membuat tas bambu yang kuat.',
+              video: 'assets/videos/m3.mp4',
             ),
+
             materiItem(
+              image: 'assets/images/m4.png',
               title: 'Tampah Bambu',
-              subtitle: 'Anyaman bulat yang rapi',
+              subtitle: 'Anyaman bulat yang rapi.',
+              video: 'assets/videos/m4.mp4',
             ),
           ],
         ),
@@ -110,83 +127,65 @@ class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
     );
   }
 
-  /// CATEGORY
-  Widget categoryItem(String imagePath, String title) {
-    return Container(
-      width: 90,
-      margin: const EdgeInsets.only(right: 12),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(18),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 6,
-                  offset: const Offset(0, 3),
-                )
-              ],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  /// MATERI
+  /// 🔥 ITEM MATERI (SUDAH KIRIM VIDEO)
   Widget materiItem({
+    required String image,
     required String title,
     required String subtitle,
+    required String video,
   }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 14),
-      decoration: BoxDecoration(
-        color: const Color(0xFF8FA1B2),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 100,
-            height: 90,
-            decoration: const BoxDecoration(
-              color: Color(0xFF5B6068),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(16),
-                bottomLeft: Radius.circular(16),
-              ),
-            ),
-            child: const Icon(
-              Icons.play_circle_fill,
-              color: Colors.white,
-              size: 40,
-            ),
-          ),
+    return InkWell(
+      borderRadius: BorderRadius.circular(20),
+      onTap: () {
+        Get.toNamed(
+          Routes.DETAIL_MATERI,
+          arguments: {
+            "title": title,
+            "subtitle": subtitle,
+            "image": image,
+            "video": video, // 🔥 INI PENTING
+          },
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 14),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          children: [
+            /// IMAGE + PLAY ICON
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
+                  child: Image.asset(
+                    image,
+                    width: 100,
+                    height: 80,
+                    fit: BoxFit.cover,
+                  ),
+                ),
 
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(12),
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.play_arrow),
+                ),
+              ],
+            ),
+
+            const SizedBox(width: 12),
+
+            /// TEXT
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -194,19 +193,18 @@ class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
                     title,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontSize: 15,
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    subtitle,
-                    style: const TextStyle(fontSize: 12),
-                  ),
+                  Text(subtitle, style: const TextStyle(fontSize: 12)),
                 ],
               ),
             ),
-          ),
-        ],
+
+            const Icon(Icons.chevron_right),
+          ],
+        ),
       ),
     );
   }

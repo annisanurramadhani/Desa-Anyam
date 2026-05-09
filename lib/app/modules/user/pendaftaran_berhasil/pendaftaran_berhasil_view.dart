@@ -8,130 +8,191 @@ class PendaftaranBerhasilView extends GetView<PendaftaranBerhasilController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F4F4), // 🔥 sama kayak halaman lain
+      backgroundColor: const Color(0xFFF6F3EF),
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        selectedItemColor: const Color(0xFF6B4F3B),
+        unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today), label: 'Jadwal Saya'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Akun'),
         ],
       ),
 
       body: SafeArea(
-        child: Padding(
+        child: ListView(
           padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
+          children: [
 
-              /// 🔥 HEADER
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () => Get.back(),
-                    icon: const Icon(Icons.arrow_back),
-                  ),
-                  const Expanded(
-                    child: Center(
-                      child: Text(
-                        "Pendaftaran Berhasil",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
+            /// HEADER
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () => Get.back(),
+                  icon: const Icon(Icons.arrow_back),
+                ),
+                const Expanded(
+                  child: Center(
+                    child: Text(
+                      "Pendaftaran Berhasil",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Color(0xFF4E342E),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 40),
-                ],
-              ),
-
-              const Spacer(),
-
-              /// 🔥 ICON SUCCESS
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.green.withOpacity(0.1),
-                  shape: BoxShape.circle,
                 ),
-                child: const Icon(
-                  Icons.check_circle,
-                  color: Colors.green,
-                  size: 80,
-                ),
+                const SizedBox(width: 40),
+              ],
+            ),
+
+            const SizedBox(height: 20),
+
+            /// ICON SUCCESS
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.green.withOpacity(0.1),
+                shape: BoxShape.circle,
               ),
-
-              const SizedBox(height: 20),
-
-              /// 🔥 TITLE
-              const Text(
-                "Pendaftaran Berhasil!",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
+              child: const Icon(
+                Icons.check,
+                size: 80,
+                color: Colors.green,
               ),
+            ),
 
-              const SizedBox(height: 10),
+            const SizedBox(height: 20),
 
-              /// 🔥 DESC
-              const Text(
-                "Terimakasih telah mendaftar kelas\npelatihan anyaman.",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.black54,
-                ),
+            const Text(
+              "Pendaftaran Berhasil!",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
               ),
+            ),
 
-              const Spacer(),
+            const SizedBox(height: 10),
 
-              /// 🔥 BUTTON DETAIL (CONSISTENT)
-              SizedBox(
-                width: double.infinity,
-                height: 55,
-                child: ElevatedButton(
-                  onPressed: controller.keDetailPesanan,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF9B6B43),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: const Text(
-                    "Lihat Detail Pesanan",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
+            const Text(
+              "Terima kasih, pendaftaran kelas Anda telah berhasil.",
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black54),
+            ),
+
+            const SizedBox(height: 20),
+
+            /// 🔥 DETAIL PENDAFTARAN
+            detailCard(),
+
+            const SizedBox(height: 16),
+
+            /// 🔥 INFO PEMBAYARAN
+            infoPembayaran(),
+
+            const SizedBox(height: 20),
+
+            /// BUTTON
+            SizedBox(
+              height: 55,
+              child: ElevatedButton(
+                onPressed: controller.keHome,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF6B4F3B),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-              ),
-
-              const SizedBox(height: 12),
-
-              /// 🔥 BACK HOME
-              GestureDetector(
-                onTap: controller.keHome,
                 child: const Text(
-                  "Kembali Ke Beranda",
-                  style: TextStyle(
-                    fontSize: 12,
-                    decoration: TextDecoration.underline,
-                    color: Colors.black54,
-                  ),
+                  "Kembali ke Beranda",
+                  style: TextStyle(color: Colors.white),
                 ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// 🔥 DETAIL CARD
+  Widget detailCard() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF2ECE6),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        children: [
+
+          Row(
+            children: const [
+              Icon(Icons.description, color: Color(0xFF6B4F3B)),
+              SizedBox(width: 10),
+              Text(
+                "Detail Pendaftaran",
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
           ),
-        ),
+
+          const SizedBox(height: 14),
+
+          detailItem(Icons.person, "Nama Lengkap", "Syifa Hadju"),
+          detailItem(Icons.chat, "No. WhatsApp", "08123456789"),
+          detailItem(Icons.calendar_today, "Tanggal", "06 April 2026"),
+          detailItem(Icons.access_time, "Jam", "09:00"),
+          detailItem(Icons.location_on, "Lokasi", "Balaidesa Dukuhsembung"),
+          detailItem(Icons.person_outline, "Pelatih", "Pak Tarjo"),
+          detailItem(Icons.category, "Kelas", "Anyaman Bambu"),
+          detailItem(Icons.sell, "Harga", "Rp 50.000 / sesi"),
+        ],
+      ),
+    );
+  }
+
+  /// 🔥 ITEM DETAIL
+  Widget detailItem(IconData icon, String title, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        children: [
+          Icon(icon, size: 18, color: const Color(0xFF6B4F3B)),
+          const SizedBox(width: 10),
+          Expanded(child: Text(title)),
+          Text(value),
+        ],
+      ),
+    );
+  }
+
+  /// 🔥 INFO PEMBAYARAN
+  Widget infoPembayaran() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.green.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: const Row(
+        children: [
+          Icon(Icons.info, color: Colors.green),
+          SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              "Pembayaran dilakukan secara tunai langsung kepada pelatih saat kelas berlangsung.",
+              style: TextStyle(fontSize: 12),
+            ),
+          )
+        ],
       ),
     );
   }

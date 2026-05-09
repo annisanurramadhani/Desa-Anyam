@@ -2,9 +2,8 @@ import 'package:get/get.dart';
 import '../../../routes/app_routes.dart';
 
 class PembayaranController extends GetxController {
-  var selectedMethod = 0.obs;
+  var selectedMethod = (-1).obs; // ✅ FIX
 
-  // ✅ DATA DARI HALAMAN SEBELUMNYA
   late Map<String, dynamic> data;
 
   @override
@@ -13,7 +12,6 @@ class PembayaranController extends GetxController {
     data = Get.arguments ?? {};
   }
 
-  // ✅ BOTTOM NAVIGATION
   void changeMenu(int index) {
     if (index == 0) {
       Get.toNamed(Routes.JADWAL_SAYA);
@@ -24,24 +22,23 @@ class PembayaranController extends GetxController {
     }
   }
 
-  // ✅ PILIH METODE PEMBAYARAN
   void selectMethod(int index) {
     selectedMethod.value = index;
   }
 
-  // ✅ TOTAL HARGA (AMAN DARI NULL)
   int get totalHarga {
     return data["harga"] ?? 0;
   }
 
-  // ✅ BUTTON BAYAR (FINAL)
   void bayar() {
     if (selectedMethod.value == -1) {
       Get.snackbar("Error", "Pilih metode pembayaran dulu");
       return;
     }
 
-    // 🔥 PINDAH KE HALAMAN BERHASIL
-    Get.offAllNamed(Routes.PENDAFTARAN_BERHASIL);
+    Get.offAllNamed(
+      Routes.PENDAFTARAN_BERHASIL,
+      arguments: data, // 🔥 biar lanjut ke detail
+    );
   }
 }

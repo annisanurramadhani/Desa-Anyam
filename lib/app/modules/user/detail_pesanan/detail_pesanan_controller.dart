@@ -23,4 +23,9 @@ class DetailPesananController extends GetxController {
       Get.toNamed(Routes.PROFILE_USER);
     }
   }
+
+  /// 🔥 TAMBAHAN INI BIAR GA ERROR
+  void kirimReview() {
+    Get.snackbar("Berhasil", "Review berhasil dikirim");
+  }
 }

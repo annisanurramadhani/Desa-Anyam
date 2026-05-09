@@ -4,8 +4,21 @@ import '../../../routes/app_routes.dart';
 
 class ProfilePengrajinController extends GetxController {
 
-  final String noWa = "6281234567890"; // 🔥 ganti nomor pengrajin
+  /// 🔥 DATA DARI HALAMAN SEBELUMNYA
+  late Map data;
 
+  /// 🔥 NOMOR WA (bisa nanti dari database)
+  final String noWa = "6281234567890";
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    /// 🔥 AMBIL ARGUMENT
+    data = Get.arguments ?? {};
+  }
+
+  /// 🔥 BOTTOM NAVIGATION
   void changeMenu(int index) {
     if (index == 0) {
       Get.toNamed(Routes.JADWAL_SAYA);
@@ -16,15 +29,25 @@ class ProfilePengrajinController extends GetxController {
     }
   }
 
+  /// 🔥 KE BOOKING
   void goToBooking() {
-    Get.toNamed(Routes.BOOKING_KELAS);
+    Get.toNamed(
+      Routes.BOOKING_KELAS,
+      arguments: data, // 🔥 biar data pengrajin ikut kebawa
+    );
   }
 
-  /// 🔥 WHATSAPP
+  /// 🔥 WHATSAPP DINAMIS
   void openWhatsapp() async {
-    final url = "https://wa.me/$noWa?text=Halo%20Pak%20Tarjo%2C%20saya%20ingin%20tanya%20kelas%20anyaman";
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
+    final String nama = data["name"] ?? "Pengrajin";
+
+    final url =
+        "https://wa.me/$noWa?text=Halo%20$nama,%20saya%20ingin%20tanya%20kelas%20anyaman";
+
+    final uri = Uri.parse(url);
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     } else {
       Get.snackbar("Error", "Tidak bisa membuka WhatsApp");
     }

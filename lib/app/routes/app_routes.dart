@@ -1,4 +1,6 @@
 abstract class Routes {
+  //user
+
   static const SPLASH = '/splash';
   static const LOGIN = '/login';
   static const REGISTER = '/register';
@@ -30,12 +32,16 @@ abstract class Routes {
   static const SERTIFIKAT = '/sertifikat';
 
   static const NOTIFIKASI = '/notifikasi';
+  static const DETAIL_JADWAL = '/detail-jadwal';
+  static const DETAIL_MATERI = '/detail-materi';
+
+  //pengrajin
 
   static const HOME_PENGRAJIN = '/home-pengrajin';
   static const JADWAL_PENGRAJIN = '/jadwal-pengrajin';
   static const PROFILE_AKUN_PENGRAJIN = '/profile-akun-pengrajin';
   static const EDIT_PROFILE_PENGRAJIN = '/edit-profile-pengrajin';
-  static const DAFTAR_MURID = '/daftar-murid';
 
+  static const DAFTAR_MURID = '/daftar-murid';
   static const PAYMENT = '/payment';
 }

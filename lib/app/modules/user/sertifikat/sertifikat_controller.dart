@@ -3,21 +3,40 @@ import '../../../routes/app_routes.dart';
 
 class SertifikatController extends GetxController {
 
+  /// 🔥 STATE (kalau nanti ada sertifikat)
+  var hasCertificate = false.obs;
+
   void changeMenu(int index) {
-    if (index == 0) {
-      Get.toNamed(Routes.JADWAL_SAYA); // ✅ jadwal
-    }
+    switch (index) {
+      case 0:
+        Get.toNamed(Routes.JADWAL_SAYA);
+        break;
 
-    if (index == 1) {
-      Get.offAllNamed(Routes.HOME); // ✅ home
-    }
+      case 1:
+        Get.offAllNamed(Routes.HOME);
+        break;
 
-    if (index == 2) {
-      Get.toNamed(Routes.PROFILE_USER); // ✅ WAJIB ADA
+      case 2:
+        Get.toNamed(Routes.PROFILE_USER);
+        break;
     }
   }
 
+  /// 🔥 DOWNLOAD
   void download() {
-    Get.snackbar('Download', 'Sertifikat berhasil diunduh');
+    if (!hasCertificate.value) {
+      Get.snackbar(
+        'Info',
+        'Belum ada sertifikat yang bisa diunduh',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return;
+    }
+
+    Get.snackbar(
+      'Berhasil',
+      'Sertifikat berhasil diunduh',
+      snackPosition: SnackPosition.BOTTOM,
+    );
   }
 }

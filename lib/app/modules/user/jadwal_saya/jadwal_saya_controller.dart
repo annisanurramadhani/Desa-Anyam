@@ -5,8 +5,34 @@ class JadwalSayaController extends GetxController {
 
   var jadwalList = <Map<String, dynamic>>[].obs;
 
-  void tambahJadwal(Map<String, dynamic> data) {
-    jadwalList.add(data);
+  @override
+  void onInit() {
+    super.onInit();
+
+    /// 🔥 DATA DUMMY (BISA DIGANTI API)
+    jadwalList.value = [
+      {
+        "tanggal": "06 April 2026",
+        "jam": "09:00",
+        "lokasi": "Balaidesa Dukuhsembung",
+        "harga": "50.000",
+        "status": "Belum Lunas"
+      },
+      {
+        "tanggal": "15 Maret 2026",
+        "jam": "09:00",
+        "lokasi": "Balaidesa Dukuhsembung",
+        "harga": "50.000",
+        "status": "Lunas"
+      },
+      {
+        "tanggal": "20 April 2026",
+        "jam": "09:00",
+        "lokasi": "Balaidesa Dukuhsembung",
+        "harga": "50.000",
+        "status": "Belum Lunas"
+      },
+    ];
   }
 
   void changeMenu(int index) {

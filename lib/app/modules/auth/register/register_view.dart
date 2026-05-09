@@ -14,22 +14,17 @@ class RegisterView extends GetView<RegisterController> {
         child: Column(
           children: [
 
-            /// 🔥 JARAK ATAS (FIX UTAMA)
             const SizedBox(height: 60),
 
-            /// 🔥 HEADER (BACK + TITLE)
+            /// HEADER
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
                   GestureDetector(
                     onTap: () => Get.back(),
-                    child: const Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                    ),
+                    child: const Icon(Icons.arrow_back, color: Colors.white),
                   ),
-
                   const SizedBox(width: 10),
 
                   const Expanded(
@@ -45,7 +40,7 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
 
-                  const SizedBox(width: 34), // biar title tetap center
+                  const SizedBox(width: 34),
                 ],
               ),
             ),
@@ -54,23 +49,17 @@ class RegisterView extends GetView<RegisterController> {
 
             const Text(
               'Daftar untuk mulai menggunakan layanan.',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-              ),
+              style: TextStyle(color: Colors.white, fontSize: 14),
             ),
 
             const SizedBox(height: 30),
 
-            /// 🔥 CONTAINER PUTIH
+            /// FORM
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(top: 10),
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 24,
-                ),
+                padding: const EdgeInsets.all(24),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -87,14 +76,14 @@ class RegisterView extends GetView<RegisterController> {
                       /// NAMA
                       const Text('NAMA'),
                       const SizedBox(height: 8),
-                      input(controller.nameC, 'Nama lengkap'),
+                      input(controller.nameC),
 
                       const SizedBox(height: 16),
 
                       /// EMAIL
                       const Text('EMAIL'),
                       const SizedBox(height: 8),
-                      input(controller.emailC, 'email@gmail.com'),
+                      input(controller.emailC),
 
                       const SizedBox(height: 16),
 
@@ -152,11 +141,11 @@ class RegisterView extends GetView<RegisterController> {
     );
   }
 
-  Widget input(TextEditingController c, String hint) {
+  /// ✅ INPUT TANPA HINT
+  Widget input(TextEditingController c) {
     return TextField(
       controller: c,
       decoration: InputDecoration(
-        hintText: hint,
         filled: true,
         fillColor: const Color(0xFFE8EBF0),
         border: OutlineInputBorder(
@@ -167,6 +156,7 @@ class RegisterView extends GetView<RegisterController> {
     );
   }
 
+  /// PASSWORD
   Widget inputPassword(
     TextEditingController c,
     bool isHidden,

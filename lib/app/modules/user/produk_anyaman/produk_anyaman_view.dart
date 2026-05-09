@@ -1,36 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../routes/app_routes.dart';
-import 'produk_anyaman_controller.dart';
 
-class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
+class ProdukAnyamanView extends StatelessWidget {
   const ProdukAnyamanView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF4F4F4),
+    final List<Map<String, String>> produk = [
+      {
+        "image": "assets/images/produk1.jpg",
+        "title": "Keranjang Bulat",
+        "desc": "Anyaman bambu berkualitas kuat dan tahan lama.",
+        "price": "Rp 50.000",
+      },
+      {
+        "image": "assets/images/produk2.jpg",
+        "title": "Keranjang Kotak",
+        "desc": "Desain modern dan elegan.",
+        "price": "Rp 60.000",
+      },
+      {
+        "image": "assets/images/produk3.jpg",
+        "title": "Tampah Bambu",
+        "desc": "Anyaman bulat tradisional.",
+        "price": "Rp 40.000",
+      },
+      {
+        "image": "assets/images/produk4.jpg",
+        "title": "Tempat Serbaguna",
+        "desc": "Cocok untuk dekorasi rumah.",
+        "price": "Rp 55.000",
+      },
+    ];
 
+    return Scaffold(
+      backgroundColor: const Color(0xFFF6F3EF),
+
+      /// 🔥 BOTTOM NAV
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        onTap: controller.changeMenu,
+        currentIndex: 1,
+        selectedItemColor: const Color(0xFF6B4F3B),
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {},
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today), label: 'Jadwal Saya'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Akun'),
         ],
       ),
 
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          child: Column(
-            children: [
-
-              // HEADER
-              Row(
+        child: Column(
+          children: [
+            /// 🔥 HEADER
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Row(
                 children: [
                   IconButton(
                     onPressed: () => Get.back(),
@@ -39,10 +66,11 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
                   const Expanded(
                     child: Center(
                       child: Text(
-                        'Produk Anyaman',
+                        "Produk Anyaman",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
+                          color: Color(0xFF4E342E),
                         ),
                       ),
                     ),
@@ -50,103 +78,138 @@ class ProdukAnyamanView extends GetView<ProdukAnyamanController> {
                   const SizedBox(width: 40),
                 ],
               ),
+            ),
 
-              const SizedBox(height: 16),
-
-              /// SEARCH
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Cari produk anyaman',
-                  prefixIcon: const Icon(Icons.search),
-                  filled: true,
-                  fillColor: const Color(0xFFE5E5E5),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide.none,
+            /// 🔥 SEARCH
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF0E7DD),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: const TextField(
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.search),
+                    hintText: "Cari produk anyaman",
+                    border: InputBorder.none,
                   ),
                 ),
               ),
+            ),
 
-              const SizedBox(height: 16),
+            const SizedBox(height: 20),
 
-              /// GRID PRODUK
-              Expanded(
+            /// 🔥 GRID
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: GridView.builder(
-                  itemCount: 8,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  itemCount: produk.length,
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    mainAxisSpacing: 12, // 🔥 lebih rapat
                     crossAxisSpacing: 12,
-                    childAspectRatio: 0.85, // 🔥 kotak lebih kecil & proporsional
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 0.9, // ✅ FIX biar tidak kepanjangan
                   ),
                   itemBuilder: (context, index) {
-                    return Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(14),
-                        onTap: () {
-                          Get.toNamed(Routes.DETAIL_PRODUK);
-                        },
-                        child: productCard(),
+                    final item = produk[index];
+
+                    return InkWell(
+                      onTap: () {
+                        Get.toNamed(
+                          Routes.DETAIL_PRODUK,
+                          arguments: item,
+                        );
+                      },
+                      child: productCard(
+                        image: item["image"]!,
+                        title: item["title"]!,
+                        desc: item["desc"]!,
+                        price: item["price"]!,
                       ),
                     );
                   },
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  /// CARD PRODUK
-  Widget productCard() {
+  /// 🔥 CARD PRODUK
+  Widget productCard({
+    required String image,
+    required String title,
+    required String desc,
+    required String price,
+  }) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF8FA1B2),
-        borderRadius: BorderRadius.circular(14),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 8,
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
-          // IMAGE
+          /// IMAGE
           ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(14)),
+            borderRadius:
+                const BorderRadius.vertical(top: Radius.circular(20)),
             child: Image.asset(
-              'assets/images/produk.png',
-              height: 90, // 🔥 lebih kecil
+              image,
+              height: 120, // ✅ lebih pendek biar rapi
               width: double.infinity,
               fit: BoxFit.cover,
             ),
           ),
 
-          const SizedBox(height: 8),
-
-          /// NAMA PRODUK (LEBIH BESAR & BOLD 🔥)
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Text(
-              'Keranjang Bambu',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-
-          const SizedBox(height: 4),
-
-          /// HARGA
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Text(
-              'Rp 50.000',
-              style: TextStyle(
-                fontSize: 11,
-                color: Colors.black87,
-              ),
+          /// TEXT
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    color: Color(0xFF4E342E),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  desc,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 11,
+                    color: Colors.black54,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  price,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    color: Color(0xFF4E342E),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

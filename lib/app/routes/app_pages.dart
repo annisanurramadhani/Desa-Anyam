@@ -1,5 +1,3 @@
-// app_pages.dart
-
 import 'package:get/get.dart';
 
 import '../modules/splash/splash_binding.dart';
@@ -26,8 +24,8 @@ import '../modules/user/detail_pengrajin/detail_pengrajin_view.dart';
 import '../modules/user/booking_kelas/booking_kelas_binding.dart';
 import '../modules/user/booking_kelas/booking_kelas_view.dart';
 
-import '../modules/user/detail_paket/detail_paket_binding.dart';
-import '../modules/user/detail_paket/detail_paket_view.dart';
+import '../modules/user/detail_jadwal/detail_jadwal_binding.dart';
+import '../modules/user/detail_jadwal/detail_jadwal_view.dart';
 
 import '../modules/user/form_pendaftaran/form_pendaftaran_binding.dart';
 import '../modules/user/form_pendaftaran/form_pendaftaran_view.dart';
@@ -65,6 +63,10 @@ import '../modules/user/sertifikat/sertifikat_view.dart';
 import '../modules/user/notifikasi/notifikasi_binding.dart';
 import '../modules/user/notifikasi/notifikasi_view.dart';
 
+import '../modules/user/detail_materi/detail_materi_binding.dart';
+import '../modules/user/detail_materi/detail_materi_view.dart';
+
+/// ================= PENGRAJIN =================
 import '../modules/pengrajin/home_pengrajin/home_pengrajin_binding.dart';
 import '../modules/pengrajin/home_pengrajin/home_pengrajin_view.dart';
 
@@ -80,13 +82,14 @@ import '../modules/pengrajin/edit_profile/edit_profile_pengrajin_view.dart';
 import '../modules/pengrajin/daftar_murid/daftar_murid_binding.dart';
 import '../modules/pengrajin/daftar_murid/daftar_murid_view.dart';
 
-import '../modules/pengrajin/payment/payment_view.dart';
 import '../modules/pengrajin/payment/payment_binding.dart';
+import '../modules/pengrajin/payment/payment_view.dart';
 
 import 'app_routes.dart';
 
 class AppPages {
   static final pages = [
+
     GetPage(
       name: Routes.SPLASH,
       page: () => const SplashView(),
@@ -135,10 +138,11 @@ class AppPages {
       binding: BookingKelasBinding(),
     ),
 
+    /// ✅ PENTING (INI YANG DIPAKAI)
     GetPage(
-      name: Routes.DETAIL_PAKET,
-      page: () => const DetailPaketView(),
-      binding: DetailPaketBinding(),
+      name: Routes.DETAIL_JADWAL,
+      page: () => const DetailJadwalView(),
+      binding: DetailJadwalBinding(),
     ),
 
     GetPage(
@@ -214,6 +218,13 @@ class AppPages {
     ),
 
     GetPage(
+      name: Routes.DETAIL_MATERI,
+      page: () => const DetailMateriView(),
+      binding: DetailMateriBinding(),
+    ),
+
+    /// ================= PENGRAJIN =================
+    GetPage(
       name: Routes.HOME_PENGRAJIN,
       page: () => const HomePengrajinView(),
       binding: HomePengrajinBinding(),
@@ -224,21 +235,24 @@ class AppPages {
       page: () => const JadwalPengrajinView(),
       binding: JadwalPengrajinBinding(),
     ),
+
     GetPage(
       name: Routes.PROFILE_AKUN_PENGRAJIN,
       page: () => const ProfileAkunPengrajinView(),
       binding: ProfileAkunPengrajinBinding(),
     ),
+
     GetPage(
       name: Routes.EDIT_PROFILE_PENGRAJIN,
       page: () => const EditProfilePengrajinView(),
       binding: EditProfilePengrajinBinding(),
     ),
+
     GetPage(
       name: Routes.DAFTAR_MURID,
       page: () => const DaftarMuridView(),
       binding: DaftarMuridBinding(),
-    ), // app_pages.dart
+    ),
 
     GetPage(
       name: Routes.PAYMENT,

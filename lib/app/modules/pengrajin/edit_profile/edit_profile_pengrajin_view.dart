@@ -93,37 +93,43 @@ class EditProfilePengrajinView extends GetView<EditProfilePengrajinController> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Get.offAllNamed('/profile-akun-pengrajin');
+                      Get.back();
                     },
-
                     borderRadius: BorderRadius.circular(30),
-
-                    child: const Padding(
-                      padding: EdgeInsets.all(6),
-
-                      child: Icon(
-                        Icons.arrow_back,
-                        size: 32,
-                        color: Colors.black,
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      child: const Icon(
+                        Icons.arrow_back_ios_new,
+                        size: 28,
+                        color: Color(0xFF2B0D0D),
                       ),
                     ),
                   ),
 
-                  const Expanded(
-                    child: Center(
-                      child: Text(
-                        'Edit Profil',
+                  const SizedBox(width: 12),
 
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Edit Profil',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF2B0D0D),
+                          ),
                         ),
-                      ),
+
+                        SizedBox(height: 2),
+
+                        Text(
+                          'Ubah informasi akun pengrajin',
+                          style: TextStyle(fontSize: 14, color: Colors.black54),
+                        ),
+                      ],
                     ),
                   ),
-
-                  const SizedBox(width: 32),
                 ],
               ),
 
