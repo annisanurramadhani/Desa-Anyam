@@ -5,9 +5,11 @@ import '../../../services/auth_services.dart';
 
 class LoginController extends GetxController {
   final emailC = TextEditingController();
+
   final passwordC = TextEditingController();
 
   RxBool isHidden = true.obs;
+
   RxBool isLoading = false.obs;
 
   void togglePassword() {
@@ -36,7 +38,6 @@ class LoginController extends GetxController {
 
         String role = response['user']['role'];
 
-        // LOGIN BERDASARKAN ROLE
         if (role == 'pengrajin') {
           Get.offAllNamed('/home-pengrajin');
         } else if (role == 'pengguna') {
@@ -60,14 +61,5 @@ class LoginController extends GetxController {
     Get.toNamed('/register');
   }
 
-  void loginGoogle() {
-    // login google
-  }
-
-  @override
-  void onClose() {
-    emailC.dispose();
-    passwordC.dispose();
-    super.onClose();
-  }
+  void loginGoogle() {}
 }

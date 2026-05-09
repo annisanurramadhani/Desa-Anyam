@@ -36,7 +36,9 @@ class RegisterController extends GetxController {
       Get.snackbar(
         'Error',
         'Semua field wajib diisi',
+
         backgroundColor: Colors.red,
+
         colorText: Colors.white,
       );
 
@@ -47,7 +49,9 @@ class RegisterController extends GetxController {
       Get.snackbar(
         'Error',
         'Konfirmasi password tidak sama',
+
         backgroundColor: Colors.red,
+
         colorText: Colors.white,
       );
 
@@ -59,7 +63,9 @@ class RegisterController extends GetxController {
 
       final response = await AuthService.register(
         nama: nameC.text.trim(),
+
         email: emailC.text.trim(),
+
         password: passwordC.text.trim(),
       );
 
@@ -69,16 +75,22 @@ class RegisterController extends GetxController {
         Get.snackbar(
           'Berhasil',
           'Akun berhasil dibuat',
+
           backgroundColor: Colors.green,
+
           colorText: Colors.white,
         );
 
-        Get.offAllNamed('/login');
+        Future.delayed(const Duration(milliseconds: 500), () {
+          Get.offAllNamed('/login');
+        });
       } else {
         Get.snackbar(
           'Error',
           response['message'],
+
           backgroundColor: Colors.red,
+
           colorText: Colors.white,
         );
       }
@@ -88,24 +100,13 @@ class RegisterController extends GetxController {
       Get.snackbar(
         'Error',
         'Tidak dapat terhubung ke server',
+
         backgroundColor: Colors.red,
+
         colorText: Colors.white,
       );
 
       print(e);
     }
-  }
-
-  @override
-  void onClose() {
-    nameC.dispose();
-
-    emailC.dispose();
-
-    passwordC.dispose();
-
-    confirmPasswordC.dispose();
-
-    super.onClose();
   }
 }
