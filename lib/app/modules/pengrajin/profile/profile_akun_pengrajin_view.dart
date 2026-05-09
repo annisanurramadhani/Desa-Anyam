@@ -321,14 +321,35 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
                 width: double.infinity,
                 height: 55,
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.defaultDialog(
+                      title: 'Logout',
+
+                      middleText: 'Apakah Anda yakin ingin keluar?',
+
+                      textConfirm: 'Ya',
+
+                      textCancel: 'Batal',
+
+                      confirmTextColor: Colors.white,
+
+                      buttonColor: const Color(0xFF8B4513),
+
+                      onConfirm: () {
+                        Get.offAllNamed('/login');
+                      },
+                    );
+                  },
+
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF8B4513),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                     ),
                   ),
+
                   icon: const Icon(Icons.logout, color: Colors.white, size: 24),
+
                   label: const Text(
                     'KELUAR',
                     style: TextStyle(

@@ -16,7 +16,7 @@ class PaymentController extends GetxController {
     },
 
     {
-      "nama": "Budi Santoso",
+      "nama": "Budi",
       "tanggal": "20 Mei 2025",
       "metode": "Cash",
       "status": "Belum Bayar",
@@ -24,7 +24,7 @@ class PaymentController extends GetxController {
     },
 
     {
-      "nama": "Siti Nurhaliza",
+      "nama": "Siti",
       "tanggal": "21 Mei 2025",
       "metode": "Cash",
       "status": "Lunas",

@@ -161,7 +161,7 @@ class PaymentView extends GetView<PaymentController> {
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
-                              Icons.payments,
+                              Icons.person,
                               color: Color(0xFF6B3408),
                               size: 34,
                             ),
@@ -220,12 +220,12 @@ class PaymentView extends GetView<PaymentController> {
                                 ),
 
                                 buildItem(
-                                  icon: Icons.payments_outlined,
+                                  icon: Icons.account_balance_wallet,
                                   text: pembayaran['metode'],
                                 ),
 
                                 buildItem(
-                                  icon: Icons.attach_money,
+                                  icon: Icons.payments_outlined,
                                   text: pembayaran['harga'],
                                 ),
 

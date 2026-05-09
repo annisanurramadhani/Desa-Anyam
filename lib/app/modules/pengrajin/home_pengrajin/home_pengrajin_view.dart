@@ -348,7 +348,7 @@ class HomePengrajinView extends GetView<HomePengrajinController> {
                 children: [
                   Obx(
                     () => buildStatCard(
-                      icon: Icons.school,
+                      icon: Icons.groups,
                       title: 'Jumlah Murid',
                       value: controller.jumlahMurid.value.toString(),
                       subtitle: 'Murid Aktif',
@@ -359,7 +359,7 @@ class HomePengrajinView extends GetView<HomePengrajinController> {
 
                   Obx(
                     () => buildStatCard(
-                      icon: Icons.menu_book,
+                      icon: Icons.class_,
                       title: 'Jumlah Kelas',
                       value: controller.jumlahKelas.value.toString(),
                       subtitle: 'Kelas Aktif',
