@@ -44,7 +44,9 @@ class ProdukAnyamanView extends StatelessWidget {
         onTap: (index) {},
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today), label: 'Jadwal Saya'),
+            icon: Icon(Icons.calendar_today),
+            label: 'Jadwal Saya',
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Akun'),
         ],
@@ -53,7 +55,6 @@ class ProdukAnyamanView extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-
             /// HEADER
             Padding(
               padding: const EdgeInsets.all(20),
@@ -107,8 +108,7 @@ class ProdukAnyamanView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: GridView.builder(
                   itemCount: produk.length,
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
@@ -119,10 +119,7 @@ class ProdukAnyamanView extends StatelessWidget {
 
                     return InkWell(
                       onTap: () {
-                        Get.toNamed(
-                          Routes.DETAIL_PRODUK,
-                          arguments: item,
-                        );
+                        Get.toNamed(Routes.DETAIL_PRODUK, arguments: item);
                       },
                       child: productCard(
                         image: item["image"]!,
@@ -163,28 +160,29 @@ class ProdukAnyamanView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
-          /// IMAGE
+          /// 🔥 IMAGE (LEBIH BESAR)
           Stack(
             children: [
               ClipRRect(
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(18)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(18),
+                ),
                 child: Image.asset(
                   image,
-                  height: 110, // 🔥 LEBIH KECIL
+                  height: 140, // 🔥 dari 110 → jadi 140
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
 
-              /// PRICE
               Positioned(
                 top: 6,
                 right: 6,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 3,
+                  ),
                   decoration: BoxDecoration(
                     color: const Color(0xFF6B4F3B),
                     borderRadius: BorderRadius.circular(12),
@@ -202,43 +200,38 @@ class ProdukAnyamanView extends StatelessWidget {
             ],
           ),
 
-          /// TEXT
+          /// 🔥 TEXT (DIKECILIN)
           Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Text(
                   title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 13,
+                    fontSize: 12, // 🔥 lebih kecil
                     color: Color(0xFF4E342E),
                   ),
                 ),
 
-                const SizedBox(height: 3),
+                const SizedBox(height: 2),
 
                 Text(
                   desc,
-                  maxLines: 2,
+                  maxLines: 1, // 🔥 dari 2 → 1 biar padat
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 10,
-                    color: Colors.black54,
-                  ),
+                  style: const TextStyle(fontSize: 10, color: Colors.black54),
                 ),
 
-                const SizedBox(height: 8),
+                const SizedBox(height: 6),
 
-                /// BUTTON SIMPLE (LEBIH CLEAN)
                 Text(
                   "Lihat Detail",
                   style: TextStyle(
-                    fontSize: 11,
+                    fontSize: 10,
                     color: const Color(0xFF6B4F3B),
                     fontWeight: FontWeight.w600,
                   ),

@@ -20,9 +20,17 @@ class ProfilePengrajinView extends GetView<ProfilePengrajinController> {
         onTap: controller.changeMenu,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today), label: 'Jadwal Saya'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Akun'),
+            icon: Icon(Icons.calendar_today),
+            label: 'Jadwal Saya',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Beranda',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Akun',
+          ),
         ],
       ),
 
@@ -38,6 +46,7 @@ class ProfilePengrajinView extends GetView<ProfilePengrajinController> {
                   onPressed: () => Get.back(),
                   icon: const Icon(Icons.arrow_back),
                 ),
+
                 const Expanded(
                   child: Center(
                     child: Text(
@@ -50,6 +59,7 @@ class ProfilePengrajinView extends GetView<ProfilePengrajinController> {
                     ),
                   ),
                 ),
+
                 const SizedBox(width: 40),
               ],
             ),
@@ -87,11 +97,15 @@ class ProfilePengrajinView extends GetView<ProfilePengrajinController> {
 
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 4),
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
+
                         decoration: BoxDecoration(
                           color: const Color(0xFFF1E2D3),
                           borderRadius: BorderRadius.circular(20),
                         ),
+
                         child: const Text(
                           "Pengrajin Anyaman Bambu",
                           style: TextStyle(fontSize: 11),
@@ -116,75 +130,51 @@ class ProfilePengrajinView extends GetView<ProfilePengrajinController> {
               ],
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
 
-            /// 🔥 BUTTON UTAMA (PINDAH KE SINI & DIPERBESAR)
-            SizedBox(
-              width: double.infinity,
-              height: 60, // 🔥 lebih besar
-              child: ElevatedButton(
-                onPressed: controller.goToBooking,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF6B4F3B),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18),
-                  ),
-                ),
-                child: const Text(
-                  "Pesan Kelas",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            /// 🔥 STATS
+            /// STATS + WA
             Row(
               children: [
+
                 Expanded(
                   child: statBox(
                     Icons.workspace_premium,
-                    data["exp"] ?? "0",
+                    data["exp"] ?? "5 Tahun",
                     "Pengalaman",
                   ),
                 ),
+
                 const SizedBox(width: 10),
+
                 Expanded(
                   child: statBox(
                     Icons.star,
-                    data["rating"] ?? "0",
+                    data["rating"] ?? "4.9",
                     "Rating",
                   ),
                 ),
-              ],
-            ),
 
-            const SizedBox(height: 12),
+                const SizedBox(width: 10),
 
-            /// 🔥 WA (SENDIRI, BUKAN SEJAJAR)
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                width: 55,
-                height: 55,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: IconButton(
-                  onPressed: controller.openWhatsapp,
-                  icon: const FaIcon(
-                    FontAwesomeIcons.whatsapp,
-                    color: Colors.green,
-                    size: 22,
+                Container(
+                  width: 58,
+                  height: 58,
+
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+
+                  child: IconButton(
+                    onPressed: controller.openWhatsapp,
+                    icon: const FaIcon(
+                      FontAwesomeIcons.whatsapp,
+                      color: Colors.green,
+                      size: 24,
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
 
             const SizedBox(height: 20),
@@ -196,14 +186,80 @@ class ProfilePengrajinView extends GetView<ProfilePengrajinController> {
                 children: [
                   Text(
                     "Deskripsi Pengrajin",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+
                   SizedBox(height: 8),
+
                   Text(
                     "Pengrajin ini berpengalaman melatih masyarakat dalam teknik anyaman bambu dari dasar hingga mahir.",
                     style: TextStyle(fontSize: 12),
                   ),
                 ],
+              ),
+            ),
+
+            const SizedBox(height: 18),
+
+            /// ULASAN PELANGGAN
+            const Text(
+              "Ulasan Pelanggan",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF4E342E),
+              ),
+            ),
+
+            const SizedBox(height: 12),
+
+            reviewCard(
+              "Siti Rahma",
+              "Pelatihannya sangat mudah dipahami dan pengrajinnya ramah.",
+            ),
+
+            const SizedBox(height: 10),
+
+            reviewCard(
+              "Dewi Lestari",
+              "Saya jadi bisa membuat anyaman sendiri setelah ikut kelas.",
+            ),
+
+            const SizedBox(height: 10),
+
+            reviewCard(
+              "Nabila Putri",
+              "Materi lengkap dan praktiknya sangat membantu pemula.",
+            ),
+
+            const SizedBox(height: 24),
+
+            /// BUTTON PESAN KELAS
+            SizedBox(
+              width: double.infinity,
+              height: 58,
+
+              child: ElevatedButton(
+                onPressed: controller.goToBooking,
+
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF9B6B43),
+
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                ),
+
+                child: const Text(
+                  "Pesan Kelas",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
           ],
@@ -212,24 +268,119 @@ class ProfilePengrajinView extends GetView<ProfilePengrajinController> {
     );
   }
 
-  Widget statBox(IconData icon, String value, String label) {
+  Widget statBox(
+    IconData icon,
+    String value,
+    String label,
+  ) {
     return Container(
-      height: 55,
+      height: 58,
+
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
+
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 18, color: Colors.orange),
+          Icon(
+            icon,
+            size: 18,
+            color: Colors.orange,
+          ),
+
           const SizedBox(width: 6),
+
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(value, style: const TextStyle(fontWeight: FontWeight.bold)),
-              Text(label, style: const TextStyle(fontSize: 10)),
+              Text(
+                value,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              Text(
+                label,
+                style: const TextStyle(fontSize: 10),
+              ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget reviewCard(String name, String review) {
+    return Container(
+      padding: const EdgeInsets.all(14),
+
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+      ),
+
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          /// FOTO
+          CircleAvatar(
+            radius: 20,
+            backgroundColor: const Color(0xFFE8DED2),
+            child: Text(
+              name[0],
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+
+          const SizedBox(width: 12),
+
+          /// ISI
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                Row(
+                  children: [
+                    Text(
+                      name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const SizedBox(width: 6),
+
+                    const Icon(
+                      Icons.star,
+                      color: Colors.orange,
+                      size: 14,
+                    ),
+
+                    const Text(
+                      "5.0",
+                      style: TextStyle(fontSize: 11),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 6),
+
+                Text(
+                  review,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -239,10 +390,12 @@ class ProfilePengrajinView extends GetView<ProfilePengrajinController> {
   Widget containerCard({required Widget child}) {
     return Container(
       padding: const EdgeInsets.all(16),
+
       decoration: BoxDecoration(
         color: const Color(0xFFF2ECE6),
         borderRadius: BorderRadius.circular(16),
       ),
+
       child: child,
     );
   }

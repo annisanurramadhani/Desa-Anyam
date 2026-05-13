@@ -13,7 +13,7 @@ class BookingKelasView extends GetView<BookingKelasController> {
       /// 🔥 BOTTOM NAV
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
-        selectedItemColor: const Color(0xFF6B4F3B),
+        selectedItemColor: const Color(0xFF9B6B43),
         unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
@@ -44,7 +44,7 @@ class BookingKelasView extends GetView<BookingKelasController> {
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF4E342E),
+                        color: Color(0xFF9B6B43),
                       ),
                     ),
                   ),
@@ -61,7 +61,7 @@ class BookingKelasView extends GetView<BookingKelasController> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
-                color: Color(0xFF4E342E),
+                color: Color(0xFF9B6B43),
               ),
             ),
 
@@ -119,7 +119,7 @@ class BookingKelasView extends GetView<BookingKelasController> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
-                color: Color(0xFF4E342E),
+                color: Color(0xFF9B6B43),
               ),
             ),
 
@@ -140,7 +140,7 @@ class BookingKelasView extends GetView<BookingKelasController> {
                           height: 60,
                           decoration: BoxDecoration(
                             color: selected
-                                ? const Color(0xFF6B4F3B)
+                                ? const Color(0xFF9B6B43)
                                 : const Color(0xFFF2ECE6),
                             borderRadius: BorderRadius.circular(16),
                             border: Border.all(color: const Color(0xFFD8CBB8)),
@@ -274,13 +274,13 @@ class BookingKelasView extends GetView<BookingKelasController> {
               child: ElevatedButton(
                 onPressed: controller.lanjutkan,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF6B4F3B),
+                  backgroundColor: const Color(0xFF9B6B43),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
                 child: const Text(
-                  "Lanjutkan Pemesanan",
+                  "Lanjutkan",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

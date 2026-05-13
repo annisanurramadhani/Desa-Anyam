@@ -13,7 +13,12 @@ class JadwalSayaView extends GetView<JadwalSayaController> {
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
-        selectedItemColor: const Color(0xFF6B4F3B),
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+
+        selectedItemColor: const Color(
+          0xFF6B4F3B,
+        ), // 🔥 dibenerin biar keliatan
         unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
@@ -30,7 +35,6 @@ class JadwalSayaView extends GetView<JadwalSayaController> {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-
             /// HEADER
             Row(
               children: [
@@ -56,21 +60,17 @@ class JadwalSayaView extends GetView<JadwalSayaController> {
 
             const SizedBox(height: 10),
 
-            /// 🔥 DESKRIPSI TENGAH (SUDAH DIPINDAH)
             const Center(
               child: Text(
                 "Berikut adalah jadwal kelas yang sudah Anda daftarkan.",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 13,
-                ),
+                style: TextStyle(color: Colors.black54, fontSize: 13),
               ),
             ),
 
             const SizedBox(height: 16),
 
-            /// INFO BOX
+            /// INFO BOX (tetap)
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
@@ -86,7 +86,7 @@ class JadwalSayaView extends GetView<JadwalSayaController> {
                       "Status pembayaran akan dikonfirmasi oleh pengrajin setelah Anda membayar saat kelas berlangsung.",
                       style: TextStyle(fontSize: 12),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -122,27 +122,22 @@ class JadwalCard extends StatelessWidget {
     final String status = item["status"]?.toString() ?? "Belum Lunas";
     final bool isLunas = status == "Lunas";
 
-    final Color statusColor =
-        isLunas ? Colors.green : const Color(0xFFB57F50);
+    final Color statusColor = isLunas ? Colors.green : const Color(0xFFB57F50);
 
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       onTap: () {
-        Get.toNamed(
-          Routes.DETAIL_JADWAL,
-          arguments: item,
-        );
+        Get.toNamed(Routes.DETAIL_JADWAL, arguments: item);
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFF2ECE6),
+          color: Colors.white, // ✅ INI YANG DIUBAH (BIAR PUTIH)
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
           children: [
-
             /// HEADER
             Row(
               children: [
@@ -157,17 +152,16 @@ class JadwalCard extends StatelessWidget {
                         "Pengrajin Anyaman Bambu",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Text(
-                        "Bersama Pak Tarjo",
-                        style: TextStyle(fontSize: 12),
-                      ),
+                      Text("Bersama Pak Tarjo", style: TextStyle(fontSize: 12)),
                     ],
                   ),
                 ),
 
                 Container(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 4),
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: statusColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(20),

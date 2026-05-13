@@ -20,7 +20,7 @@ class DetailProdukView extends StatelessWidget {
       /// BOTTOM NAV
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
-        selectedItemColor: const Color(0xFF6B4F3B),
+        selectedItemColor: const Color(0xFF9B6B43),
         unselectedItemColor: Colors.grey,
         onTap: (index) {},
         items: const [
@@ -145,7 +145,7 @@ class DetailProdukView extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF8B5E3C),
+                  backgroundColor: const Color(0xFF9B6B43),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -166,7 +166,6 @@ class DetailProdukView extends StatelessWidget {
     );
   }
 
-  /// 🔥 ITEM DETAIL TANPA ICON
   Widget infoItem(String title, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),

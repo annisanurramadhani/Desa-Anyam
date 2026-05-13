@@ -131,7 +131,7 @@ class EditProfileView extends GetView<EditProfileController> {
                 child: ElevatedButton(
                   onPressed: controller.simpan,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF6B4F3B),
+                    backgroundColor: const Color(0xFF9B6B43),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),

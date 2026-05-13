@@ -105,7 +105,7 @@ class PendaftaranBerhasilView extends GetView<PendaftaranBerhasilController> {
               child: ElevatedButton(
                 onPressed: controller.keHome,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF6B4F3B),
+                  backgroundColor: const Color(0xFF9B6B43),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),

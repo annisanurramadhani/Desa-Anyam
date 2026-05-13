@@ -15,7 +15,7 @@ class DetailJadwalView extends GetView<DetailJadwalController> {
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
-        selectedItemColor: const Color(0xFF6B4F3B),
+        selectedItemColor: const Color(0xFF9B6B43),
         unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
@@ -101,7 +101,6 @@ class DetailJadwalView extends GetView<DetailJadwalController> {
               ),
             ),
 
-            /// 🔥 REVIEW (HANYA MUNCUL KALAU SUDAH LUNAS)
             if (isSelesai) ...[
               const SizedBox(height: 16),
 
@@ -115,14 +114,10 @@ class DetailJadwalView extends GetView<DetailJadwalController> {
                       "Bagikan pengalaman Anda setelah mengikuti kelas ini.",
                       style: TextStyle(fontSize: 13),
                     ),
-
                     const SizedBox(height: 14),
-
                     const Text("Rating"),
-
                     const SizedBox(height: 8),
 
-                    /// ⭐ RATING
                     Obx(
                       () => Row(
                         children: List.generate(
@@ -141,9 +136,7 @@ class DetailJadwalView extends GetView<DetailJadwalController> {
                     ),
 
                     const SizedBox(height: 14),
-
                     const Text("Ulasan Anda"),
-
                     const SizedBox(height: 8),
 
                     TextField(
@@ -169,7 +162,7 @@ class DetailJadwalView extends GetView<DetailJadwalController> {
                       child: ElevatedButton(
                         onPressed: controller.kirimReview,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF6B4F3B),
+                          backgroundColor: const Color(0xFF9B6B43),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
@@ -182,7 +175,6 @@ class DetailJadwalView extends GetView<DetailJadwalController> {
                     ),
 
                     const SizedBox(height: 10),
-
                     const Text(
                       "* Review hanya tersedia setelah kelas selesai.",
                       style: TextStyle(fontSize: 11, color: Colors.black54),
@@ -197,7 +189,7 @@ class DetailJadwalView extends GetView<DetailJadwalController> {
     );
   }
 
-  /// CARD
+  /// 🔥 CARD (SUDAH JADI PUTIH)
   Widget cardSection({
     required IconData icon,
     required String title,
@@ -206,7 +198,7 @@ class DetailJadwalView extends GetView<DetailJadwalController> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF2ECE6),
+        color: Colors.white, // ✅ INI YANG DIUBAH
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -216,7 +208,8 @@ class DetailJadwalView extends GetView<DetailJadwalController> {
             children: [
               Icon(icon, color: const Color(0xFF6B4F3B)),
               const SizedBox(width: 8),
-              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+              Text(title,
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
             ],
           ),
           const SizedBox(height: 14),
@@ -226,7 +219,6 @@ class DetailJadwalView extends GetView<DetailJadwalController> {
     );
   }
 
-  /// INFO ROW
   Widget infoRow(String title, dynamic value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
@@ -240,15 +232,14 @@ class DetailJadwalView extends GetView<DetailJadwalController> {
     );
   }
 
-  /// STATUS ROW
   Widget statusRow(String title, String? value) {
     value = value ?? "-";
 
     Color color = value == "Lunas"
         ? Colors.green
         : value == "Belum Lunas"
-        ? Colors.orange
-        : Colors.brown;
+            ? Colors.orange
+            : Colors.brown;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
@@ -263,10 +254,8 @@ class DetailJadwalView extends GetView<DetailJadwalController> {
               children: [
                 Text(value),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
                     color: color.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(20),

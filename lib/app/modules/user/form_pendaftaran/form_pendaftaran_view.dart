@@ -84,9 +84,7 @@ class FormPendaftaranView extends StatelessWidget {
 
                   textField(
                     "Lokasi",
-                    TextEditingController(
-                      text: data["Balaidesa Dukuhsembung"] ?? "-",
-                    ),
+                    TextEditingController(text: data["lokasi"] ?? "-"),
                     readOnly: true,
                   ),
                 ],
@@ -108,7 +106,7 @@ class FormPendaftaranView extends StatelessWidget {
                   Get.toNamed(Routes.PENDAFTARAN_BERHASIL);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF6B4F3B),
+                  backgroundColor: const Color(0xFF9B6B43),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
