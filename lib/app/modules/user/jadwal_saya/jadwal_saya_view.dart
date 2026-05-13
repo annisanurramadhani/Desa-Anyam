@@ -30,6 +30,7 @@ class JadwalSayaView extends GetView<JadwalSayaController> {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
+
             /// HEADER
             Row(
               children: [
@@ -53,18 +54,18 @@ class JadwalSayaView extends GetView<JadwalSayaController> {
               ],
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
 
-            const Text(
-              "Jadwal Kelas",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-
-            const SizedBox(height: 6),
-
-            const Text(
-              "Berikut adalah jadwal kelas yang sudah Anda daftarkan.",
-              style: TextStyle(color: Colors.black54),
+            /// 🔥 DESKRIPSI TENGAH (SUDAH DIPINDAH)
+            const Center(
+              child: Text(
+                "Berikut adalah jadwal kelas yang sudah Anda daftarkan.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 13,
+                ),
+              ),
             ),
 
             const SizedBox(height: 16),
@@ -85,7 +86,7 @@ class JadwalSayaView extends GetView<JadwalSayaController> {
                       "Status pembayaran akan dikonfirmasi oleh pengrajin setelah Anda membayar saat kelas berlangsung.",
                       style: TextStyle(fontSize: 12),
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
@@ -121,19 +122,17 @@ class JadwalCard extends StatelessWidget {
     final String status = item["status"]?.toString() ?? "Belum Lunas";
     final bool isLunas = status == "Lunas";
 
-    final Color statusColor = isLunas ? Colors.green : const Color(0xFFB57F50);
+    final Color statusColor =
+        isLunas ? Colors.green : const Color(0xFFB57F50);
 
     return InkWell(
       borderRadius: BorderRadius.circular(20),
-
-      /// ✅ FIX NAVIGASI DI SINI
       onTap: () {
         Get.toNamed(
-          Routes.DETAIL_JADWAL, // ✅ SUDAH BENAR
+          Routes.DETAIL_JADWAL,
           arguments: item,
         );
       },
-
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.all(16),
@@ -143,6 +142,7 @@ class JadwalCard extends StatelessWidget {
         ),
         child: Column(
           children: [
+
             /// HEADER
             Row(
               children: [
@@ -157,16 +157,17 @@ class JadwalCard extends StatelessWidget {
                         "Pengrajin Anyaman Bambu",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Text("Bersama Pak Tarjo", style: TextStyle(fontSize: 12)),
+                      Text(
+                        "Bersama Pak Tarjo",
+                        style: TextStyle(fontSize: 12),
+                      ),
                     ],
                   ),
                 ),
 
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
+                      horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
                     color: statusColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(20),
@@ -209,7 +210,6 @@ class JadwalCard extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 const Row(
                   children: [
                     Text("Lihat Detail"),

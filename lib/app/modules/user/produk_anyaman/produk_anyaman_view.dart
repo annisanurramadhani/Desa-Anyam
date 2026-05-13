@@ -11,7 +11,7 @@ class ProdukAnyamanView extends StatelessWidget {
       {
         "image": "assets/images/produk1.jpg",
         "title": "Keranjang Bulat",
-        "desc": "Anyaman bambu berkualitas kuat dan tahan lama.",
+        "desc": "Anyaman bambu kuat dan tahan lama.",
         "price": "Rp 50.000",
       },
       {
@@ -23,13 +23,13 @@ class ProdukAnyamanView extends StatelessWidget {
       {
         "image": "assets/images/produk3.jpg",
         "title": "Tampah Bambu",
-        "desc": "Anyaman bulat tradisional.",
+        "desc": "Anyaman tradisional.",
         "price": "Rp 40.000",
       },
       {
         "image": "assets/images/produk4.jpg",
         "title": "Tempat Serbaguna",
-        "desc": "Cocok untuk dekorasi rumah.",
+        "desc": "Cocok dekorasi rumah.",
         "price": "Rp 55.000",
       },
     ];
@@ -37,7 +37,6 @@ class ProdukAnyamanView extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF6F3EF),
 
-      /// 🔥 BOTTOM NAV
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
         selectedItemColor: const Color(0xFF6B4F3B),
@@ -54,7 +53,8 @@ class ProdukAnyamanView extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            /// 🔥 HEADER
+
+            /// HEADER
             Padding(
               padding: const EdgeInsets.all(20),
               child: Row(
@@ -68,7 +68,7 @@ class ProdukAnyamanView extends StatelessWidget {
                       child: Text(
                         "Produk Anyaman",
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF4E342E),
                         ),
@@ -80,7 +80,7 @@ class ProdukAnyamanView extends StatelessWidget {
               ),
             ),
 
-            /// 🔥 SEARCH
+            /// SEARCH
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Container(
@@ -99,20 +99,20 @@ class ProdukAnyamanView extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
 
-            /// 🔥 GRID
+            /// GRID
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: GridView.builder(
                   itemCount: produk.length,
                   gridDelegate:
                       const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                    childAspectRatio: 0.9, // ✅ FIX biar tidak kepanjangan
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 0.85, // 🔥 LEBIH PADAT
                   ),
                   itemBuilder: (context, index) {
                     final item = produk[index];
@@ -141,7 +141,7 @@ class ProdukAnyamanView extends StatelessWidget {
     );
   }
 
-  /// 🔥 CARD PRODUK
+  /// 🔥 CARD BARU (COMPACT & MODERN)
   Widget productCard({
     required String image,
     required String title,
@@ -151,27 +151,55 @@ class ProdukAnyamanView extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 8,
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
           ),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
           /// IMAGE
-          ClipRRect(
-            borderRadius:
-                const BorderRadius.vertical(top: Radius.circular(20)),
-            child: Image.asset(
-              image,
-              height: 120, // ✅ lebih pendek biar rapi
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(18)),
+                child: Image.asset(
+                  image,
+                  height: 110, // 🔥 LEBIH KECIL
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+
+              /// PRICE
+              Positioned(
+                top: 6,
+                right: 6,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF6B4F3B),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    price,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 9,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
 
           /// TEXT
@@ -180,33 +208,39 @@ class ProdukAnyamanView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
                 Text(
                   title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: 13,
                     color: Color(0xFF4E342E),
                   ),
                 ),
-                const SizedBox(height: 4),
+
+                const SizedBox(height: 3),
+
                 Text(
                   desc,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                    fontSize: 11,
+                    fontSize: 10,
                     color: Colors.black54,
                   ),
                 ),
-                const SizedBox(height: 6),
+
+                const SizedBox(height: 8),
+
+                /// BUTTON SIMPLE (LEBIH CLEAN)
                 Text(
-                  price,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                    color: Color(0xFF4E342E),
+                  "Lihat Detail",
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: const Color(0xFF6B4F3B),
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],

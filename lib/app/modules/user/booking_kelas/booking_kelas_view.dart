@@ -40,7 +40,7 @@ class BookingKelasView extends GetView<BookingKelasController> {
                 const Expanded(
                   child: Center(
                     child: Text(
-                      "Booking Kelas",
+                      "Pesan Kelas",
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
@@ -135,18 +135,13 @@ class BookingKelasView extends GetView<BookingKelasController> {
 
                       return GestureDetector(
                         onTap: () => controller.pickTime(time),
-                        child: Container(
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
                           height: 60,
                           decoration: BoxDecoration(
-                            gradient: selected
-                                ? const LinearGradient(
-                                    colors: [
-                                      Color(0xFF8B5E3C),
-                                      Color(0xFF6B4F3B),
-                                    ],
-                                  )
-                                : null,
-                            color: selected ? null : const Color(0xFFF2ECE6),
+                            color: selected
+                                ? const Color(0xFF6B4F3B)
+                                : const Color(0xFFF2ECE6),
                             borderRadius: BorderRadius.circular(16),
                             border: Border.all(color: const Color(0xFFD8CBB8)),
                           ),
@@ -164,6 +159,7 @@ class BookingKelasView extends GetView<BookingKelasController> {
                                 ),
                               ),
 
+                              /// CHECK ICON
                               if (selected)
                                 Positioned(
                                   right: 8,
@@ -220,7 +216,6 @@ class BookingKelasView extends GetView<BookingKelasController> {
                   children: [
                     const Row(
                       children: [
-                        Icon(Icons.description, color: Color(0xFF6B4F3B)),
                         SizedBox(width: 10),
                         Text(
                           "Ringkasan Pemesanan",
@@ -231,9 +226,9 @@ class BookingKelasView extends GetView<BookingKelasController> {
 
                     const SizedBox(height: 14),
 
-                    summaryItem("Pengrajin", controller.data["name"] ?? "-"),
-
-                    summaryItem("Kelas", "Pengrajin Anyaman Bambu"),
+                    summaryItem("Pelatih", controller.data["name"] ?? "-"),
+                    summaryItem("Kelas", "Belajar Anyaman Bambu"),
+                    summaryItem("Lokasi", "Balaidesa Dukuhsembung"),
 
                     summaryItem(
                       "Tanggal",
@@ -273,7 +268,7 @@ class BookingKelasView extends GetView<BookingKelasController> {
 
             const SizedBox(height: 20),
 
-            /// BUTTON (SUDAH TANPA ICON)
+            /// BUTTON
             SizedBox(
               height: 60,
               child: ElevatedButton(

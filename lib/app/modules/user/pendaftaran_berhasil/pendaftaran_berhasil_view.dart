@@ -53,7 +53,7 @@ class PendaftaranBerhasilView extends GetView<PendaftaranBerhasilController> {
 
             const SizedBox(height: 20),
 
-            /// ICON SUCCESS
+            /// SUCCESS ICON (INI BOLEH TETAP ADA BIAR UX BAGUS)
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
@@ -89,12 +89,12 @@ class PendaftaranBerhasilView extends GetView<PendaftaranBerhasilController> {
 
             const SizedBox(height: 20),
 
-            /// 🔥 DETAIL PENDAFTARAN
+            /// DETAIL
             detailCard(),
 
             const SizedBox(height: 16),
 
-            /// 🔥 INFO PEMBAYARAN
+            /// INFO
             infoPembayaran(),
 
             const SizedBox(height: 20),
@@ -122,7 +122,7 @@ class PendaftaranBerhasilView extends GetView<PendaftaranBerhasilController> {
     );
   }
 
-  /// 🔥 DETAIL CARD
+  /// 🔥 DETAIL CARD (NO ICON + CENTER TITLE)
   Widget detailCard() {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -133,48 +133,50 @@ class PendaftaranBerhasilView extends GetView<PendaftaranBerhasilController> {
       child: Column(
         children: [
 
-          Row(
-            children: const [
-              Icon(Icons.description, color: Color(0xFF6B4F3B)),
-              SizedBox(width: 10),
-              Text(
-                "Detail Pendaftaran",
-                style: TextStyle(fontWeight: FontWeight.bold),
+          /// TITLE CENTER
+          const Center(
+            child: Text(
+              "Detail Pendaftaran",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
               ),
-            ],
+            ),
           ),
 
           const SizedBox(height: 14),
 
-          detailItem(Icons.person, "Nama Lengkap", "Syifa Hadju"),
-          detailItem(Icons.chat, "No. WhatsApp", "08123456789"),
-          detailItem(Icons.calendar_today, "Tanggal", "06 April 2026"),
-          detailItem(Icons.access_time, "Jam", "09:00"),
-          detailItem(Icons.location_on, "Lokasi", "Balaidesa Dukuhsembung"),
-          detailItem(Icons.person_outline, "Pelatih", "Pak Tarjo"),
-          detailItem(Icons.category, "Kelas", "Anyaman Bambu"),
-          detailItem(Icons.sell, "Harga", "Rp 50.000 / sesi"),
+          detailItem("Nama Lengkap", "Syifa Hadju"),
+          detailItem("No. WhatsApp", "08123456789"),
+          detailItem("Tanggal", "06 April 2026"),
+          detailItem("Jam", "09:00"),
+          detailItem("Lokasi", "Balaidesa Dukuhsembung"),
+          detailItem("Pelatih", "Pak Tarjo"),
+          detailItem("Kelas", "Anyaman Bambu"),
+          detailItem("Harga", "Rp 50.000 / sesi"),
         ],
       ),
     );
   }
 
-  /// 🔥 ITEM DETAIL
-  Widget detailItem(IconData icon, String title, String value) {
+  /// 🔥 ITEM TANPA ICON
+  Widget detailItem(String title, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(icon, size: 18, color: const Color(0xFF6B4F3B)),
-          const SizedBox(width: 10),
-          Expanded(child: Text(title)),
-          Text(value),
+          Text(title),
+          Text(
+            value,
+            style: const TextStyle(fontWeight: FontWeight.w500),
+          ),
         ],
       ),
     );
   }
 
-  /// 🔥 INFO PEMBAYARAN
+  /// 🔥 INFO PEMBAYARAN (NO ICON)
   Widget infoPembayaran() {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -182,17 +184,9 @@ class PendaftaranBerhasilView extends GetView<PendaftaranBerhasilController> {
         color: Colors.green.withOpacity(0.1),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: const Row(
-        children: [
-          Icon(Icons.info, color: Colors.green),
-          SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              "Pembayaran dilakukan secara tunai langsung kepada pelatih saat kelas berlangsung.",
-              style: TextStyle(fontSize: 12),
-            ),
-          )
-        ],
+      child: const Text(
+        "Pembayaran dilakukan secara tunai langsung kepada pelatih saat kelas berlangsung.",
+        style: TextStyle(fontSize: 12),
       ),
     );
   }

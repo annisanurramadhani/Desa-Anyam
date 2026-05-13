@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DetailProdukView extends StatelessWidget {
   const DetailProdukView({super.key});
@@ -10,16 +9,15 @@ class DetailProdukView extends StatelessWidget {
     final data = Get.arguments ?? {};
 
     final String image = data["image"] ?? "assets/images/produk1.jpg";
-    final String title = data["title"] ?? "Kerombong Bambu";
+    final String title = data["title"] ?? "Keranjang Bambu";
     final String price = data["price"] ?? "Rp 55.000";
     final String desc =
-        data["desc"] ??
-        "Kerombong bambu asli anyaman tangan, kuat dan multifungsi.";
+        data["desc"] ?? "Anyaman bambu asli, kuat dan multifungsi.";
 
     return Scaffold(
       backgroundColor: const Color(0xFFF6F3EF),
 
-      /// 🔥 BOTTOM NAV
+      /// BOTTOM NAV
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
         selectedItemColor: const Color(0xFF6B4F3B),
@@ -38,7 +36,7 @@ class DetailProdukView extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           children: [
 
-            /// 🔥 HEADER
+            /// HEADER
             Row(
               children: [
                 IconButton(
@@ -63,7 +61,7 @@ class DetailProdukView extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            /// 🔥 IMAGE
+            /// IMAGE
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.asset(
@@ -76,7 +74,7 @@ class DetailProdukView extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            /// 🔥 TITLE
+            /// TITLE
             Text(
               title,
               style: const TextStyle(
@@ -88,7 +86,7 @@ class DetailProdukView extends StatelessWidget {
 
             const SizedBox(height: 6),
 
-            /// 🔥 PRICE
+            /// PRICE
             Text(
               price,
               style: const TextStyle(
@@ -100,23 +98,18 @@ class DetailProdukView extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            /// 🔥 DESKRIPSI
-            const Row(
-              children: [
-                Icon(Icons.description, color: Color(0xFF6B4F3B)),
-                SizedBox(width: 8),
-                Text(
-                  "Deskripsi Produk",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                )
-              ],
+            /// DESKRIPSI TITLE (NO ICON)
+            const Text(
+              "Deskripsi Produk",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
             ),
 
             const SizedBox(height: 8),
 
+            /// DESKRIPSI
             Text(
               desc,
               style: const TextStyle(color: Colors.black54),
@@ -124,7 +117,7 @@ class DetailProdukView extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            /// 🔥 DETAIL BOX
+            /// DETAIL BOX (NO ICON)
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -133,38 +126,36 @@ class DetailProdukView extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  infoItem(Icons.straighten, "Ukuran", "30cm x 25cm x 12cm"),
+                  infoItem("Ukuran", "30cm x 25cm x 12cm"),
                   divider(),
-                  infoItem(Icons.eco, "Bahan", "Bambu"),
+                  infoItem("Bahan", "Bambu"),
                   divider(),
-                  infoItem(Icons.palette, "Warna", "Natural"),
+                  infoItem("Warna", "Natural"),
                   divider(),
-                  infoItem(Icons.inventory_2, "Stok", "55 tersedia"),
+                  infoItem("Stok", "55 tersedia"),
                 ],
               ),
             ),
 
             const SizedBox(height: 20),
 
-            /// 🔥 BUTTON WHATSAPP
+            /// BUTTON (NO ICON + TEXT WHITE)
             SizedBox(
               height: 60,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  /// nanti bisa pakai url_launcher
-                },
+              child: ElevatedButton(
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF8B5E3C),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                icon: const FaIcon(FontAwesomeIcons.whatsapp),
-                label: const Text(
+                child: const Text(
                   "Pesan via WhatsApp",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
+                    color: Colors.white, // 🔥 penting
                   ),
                 ),
               ),
@@ -175,19 +166,16 @@ class DetailProdukView extends StatelessWidget {
     );
   }
 
-  /// 🔥 ITEM DETAIL
-  Widget infoItem(IconData icon, String title, String value) {
+  /// 🔥 ITEM DETAIL TANPA ICON
+  Widget infoItem(String title, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(icon, color: const Color(0xFF6B4F3B)),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.w500),
-            ),
+          Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.w500),
           ),
           Text(value),
         ],

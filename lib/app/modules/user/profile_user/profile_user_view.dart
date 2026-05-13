@@ -28,7 +28,7 @@ class ProfileUserView extends GetView<ProfileUserController> {
           padding: const EdgeInsets.all(20),
           children: [
 
-            /// 🔥 HEADER (TANPA NOTIFIKASI)
+            /// HEADER
             Row(
               children: [
                 IconButton(
@@ -47,13 +47,13 @@ class ProfileUserView extends GetView<ProfileUserController> {
                     ),
                   ),
                 ),
-                const SizedBox(width: 40), // biar balance
+                const SizedBox(width: 40),
               ],
             ),
 
             const SizedBox(height: 20),
 
-            /// 🔥 PROFILE CARD
+            /// PROFILE CARD (SUDAH TANPA QUOTE)
             Container(
               padding: const EdgeInsets.all(18),
               decoration: BoxDecoration(
@@ -62,82 +62,54 @@ class ProfileUserView extends GetView<ProfileUserController> {
                 ),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Column(
+              child: Row(
                 children: [
 
-                  Row(
-                    children: [
-
-                      /// FOTO
-                      Container(
-                        width: 80,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFD9C2A6),
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 3),
-                        ),
-                        child: const Icon(Icons.person, size: 40),
-                      ),
-
-                      const SizedBox(width: 14),
-
-                      /// INFO
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "Syifa Hadju",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 6),
-
-                          Row(
-                            children: [
-                              Icon(Icons.email, size: 16),
-                              SizedBox(width: 6),
-                              Text("cobacoba@gmail.com"),
-                            ],
-                          ),
-
-                          SizedBox(height: 4),
-
-                          Row(
-                            children: [
-                              Icon(Icons.phone, size: 16),
-                              SizedBox(width: 6),
-                              Text("0895123456"),
-                            ],
-                          ),
-                        ],
-                      )
-                    ],
+                  /// FOTO
+                  Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFD9C2A6),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 3),
+                    ),
+                    child: const Icon(Icons.person, size: 40),
                   ),
 
-                  const SizedBox(height: 16),
+                  const SizedBox(width: 14),
 
-                  /// 🔥 QUOTE
-                  Container(
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      color: Colors.green.withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: const Row(
-                      children: [
-                        Icon(Icons.eco, color: Colors.green),
-                        SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            "Terus belajar, berkarya, dan berbagi manfaat.",
-                            style: TextStyle(fontSize: 13),
-                          ),
+                  /// INFO
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "Syifa Hadju",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 6),
+
+                      Row(
+                        children: [
+                          Icon(Icons.email, size: 16),
+                          SizedBox(width: 6),
+                          Text("cobacoba@gmail.com"),
+                        ],
+                      ),
+
+                      SizedBox(height: 4),
+
+                      Row(
+                        children: [
+                          Icon(Icons.phone, size: 16),
+                          SizedBox(width: 6),
+                          Text("0895123456"),
+                        ],
+                      ),
+                    ],
                   )
                 ],
               ),
@@ -145,7 +117,7 @@ class ProfileUserView extends GetView<ProfileUserController> {
 
             const SizedBox(height: 20),
 
-            /// 🔥 MENU (SUDAH DIHAPUS DETAIL PESANAN)
+            /// MENU
             menuCard(
               icon: Icons.edit,
               color: Colors.green,
@@ -164,7 +136,7 @@ class ProfileUserView extends GetView<ProfileUserController> {
 
             const SizedBox(height: 30),
 
-            /// 🔥 LOGOUT
+            /// LOGOUT
             SizedBox(
               width: double.infinity,
               height: 55,
@@ -189,7 +161,7 @@ class ProfileUserView extends GetView<ProfileUserController> {
     );
   }
 
-  /// 🔥 MENU CARD
+  /// MENU CARD
   Widget menuCard({
     required IconData icon,
     required Color color,

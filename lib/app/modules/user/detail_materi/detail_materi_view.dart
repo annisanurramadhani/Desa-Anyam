@@ -16,7 +16,6 @@ class DetailMateriView extends GetView<DetailMateriController> {
       body: SafeArea(
         child: GetBuilder<DetailMateriController>(
           builder: (c) {
-            /// LOADING VIDEO
             if (!c.videoC.value.isInitialized) {
               return const Center(child: CircularProgressIndicator());
             }
@@ -25,7 +24,7 @@ class DetailMateriView extends GetView<DetailMateriController> {
               padding: const EdgeInsets.all(20),
               children: [
 
-                /// ================= HEADER =================
+                /// HEADER
                 Row(
                   children: [
                     IconButton(
@@ -39,6 +38,7 @@ class DetailMateriView extends GetView<DetailMateriController> {
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
+                            color: Color(0xFF4E342E),
                           ),
                         ),
                       ),
@@ -47,9 +47,8 @@ class DetailMateriView extends GetView<DetailMateriController> {
                   ],
                 ),
 
-                const SizedBox(height: 8),
+                const SizedBox(height: 6),
 
-                /// SUBTITLE
                 Center(
                   child: Text(
                     data["subtitle"] ?? "",
@@ -60,121 +59,133 @@ class DetailMateriView extends GetView<DetailMateriController> {
                 const SizedBox(height: 20),
 
                 /// ================= VIDEO =================
-                Stack(
-                  children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
 
-                    /// VIDEO
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: AspectRatio(
+                      /// VIDEO
+                      AspectRatio(
                         aspectRatio: c.videoC.value.aspectRatio,
                         child: VideoPlayer(c.videoC),
                       ),
-                    ),
 
-                    /// GRADIENT ATAS
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      child: Container(
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.vertical(
-                              top: Radius.circular(20)),
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.black.withOpacity(0.6),
-                              Colors.transparent
-                            ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
+                      /// 🔥 GRADIENT (BIAR CINEMATIC)
+                      Positioned.fill(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.black.withOpacity(0.4),
+                                Colors.transparent,
+                                Colors.black.withOpacity(0.5),
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            ),
                           ),
                         ),
                       ),
-                    ),
 
-                    /// PLAY BUTTON (AUTO HIDE)
-                    Positioned.fill(
-                      child: Center(
-                        child: Obx(() => GestureDetector(
-                              onTap: c.togglePlay,
-                              child: AnimatedOpacity(
-                                duration: const Duration(milliseconds: 300),
-                                opacity: c.isPlaying.value ? 0 : 1,
-                                child: Container(
-                                  padding: const EdgeInsets.all(16),
-                                  decoration: const BoxDecoration(
-                                    color: Colors.black54,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Icon(
-                                    Icons.play_arrow,
-                                    color: Colors.white,
-                                    size: 40,
-                                  ),
+                      /// 🔥 PLAY BUTTON (SMOOTH)
+                      Obx(() => GestureDetector(
+                            onTap: c.togglePlay,
+                            child: AnimatedOpacity(
+                              duration: const Duration(milliseconds: 300),
+                              opacity: c.isPlaying.value ? 0 : 1,
+                              child: Container(
+                                padding: const EdgeInsets.all(18),
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.6),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.play_arrow,
+                                  color: Colors.white,
+                                  size: 45,
                                 ),
                               ),
-                            )),
-                      ),
-                    ),
+                            ),
+                          )),
 
-                    /// PROGRESS BAR
-                    Positioned(
-                      bottom: 10,
-                      left: 10,
-                      right: 10,
-                      child: VideoProgressIndicator(
-                        c.videoC,
-                        allowScrubbing: true,
-                        colors: const VideoProgressColors(
-                          playedColor: Color(0xFF6B4F3B),
-                          bufferedColor: Colors.white54,
-                          backgroundColor: Colors.white30,
+                      /// 🔥 PROGRESS BAR (LEBIH CLEAN)
+                      Positioned(
+                        bottom: 8,
+                        left: 10,
+                        right: 10,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: VideoProgressIndicator(
+                            c.videoC,
+                            allowScrubbing: true,
+                            colors: const VideoProgressColors(
+                              playedColor: Color(0xFF6B4F3B),
+                              bufferedColor: Colors.white30,
+                              backgroundColor: Colors.white24,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
 
-                const SizedBox(height: 20),
-
-                /// ================= DESKRIPSI =================
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Text(
-                    data["subtitle"] ??
-                        "Materi ini menjelaskan teknik dasar anyaman.",
-                    style: const TextStyle(fontSize: 13),
-                  ),
-                ),
-
-                const SizedBox(height: 20),
-
-                /// ================= INFO GESTURE =================
-                Container(
-                  padding: const EdgeInsets.all(14),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFE7EFE5),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: const Row(
-                    children: [
-                      Icon(Icons.pan_tool, color: Colors.green),
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                          "✋ Buka tangan = Pause\n👍 Jempol = Play",
-                          style: TextStyle(fontSize: 12),
+                      /// 🔥 FLOATING GESTURE HINT (HALUS)
+                      Positioned(
+                        top: 12,
+                        right: 12,
+                        child: AnimatedOpacity(
+                          duration: const Duration(milliseconds: 500),
+                          opacity: 0.8,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: const Row(
+                              children: [
+                                Text("✋ Pause",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 11)),
+                                SizedBox(width: 10),
+                                Text("👍 Play",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 11)),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
+
+                const SizedBox(height: 20),
+
+                /// 🔥 DESKRIPSI (LEBIH PREMIUM)
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.04),
+                        blurRadius: 8,
+                      )
+                    ],
+                  ),
+                  child: Text(
+                    data["subtitle"] ??
+                        "Materi ini menjelaskan teknik dasar anyaman.",
+                    style: const TextStyle(
+                      fontSize: 13,
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
               ],
             );
           },

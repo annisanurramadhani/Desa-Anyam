@@ -20,7 +20,6 @@ class FormPendaftaranView extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-
             /// HEADER
             Row(
               children: [
@@ -61,7 +60,6 @@ class FormPendaftaranView extends StatelessWidget {
               ),
               child: Column(
                 children: [
-
                   textField("Nama Lengkap", namaC),
                   textField("No. WhatsApp", waC),
                   textField("Email (Opsional)", emailC),
@@ -81,6 +79,14 @@ class FormPendaftaranView extends StatelessWidget {
                   textField(
                     "Nama Pelatih",
                     TextEditingController(text: data["pengrajin"] ?? "-"),
+                    readOnly: true,
+                  ),
+
+                  textField(
+                    "Lokasi",
+                    TextEditingController(
+                      text: data["Balaidesa Dukuhsembung"] ?? "-",
+                    ),
                     readOnly: true,
                   ),
                 ],
@@ -115,7 +121,7 @@ class FormPendaftaranView extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -123,8 +129,11 @@ class FormPendaftaranView extends StatelessWidget {
   }
 
   /// TEXTFIELD TANPA ICON
-  Widget textField(String label, TextEditingController controller,
-      {bool readOnly = false}) {
+  Widget textField(
+    String label,
+    TextEditingController controller, {
+    bool readOnly = false,
+  }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 14),
       child: Column(

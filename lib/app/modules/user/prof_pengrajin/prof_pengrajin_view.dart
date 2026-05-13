@@ -64,24 +64,6 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
                 style: TextStyle(color: Colors.black54),
               ),
 
-              const SizedBox(height: 16),
-
-              /// 🔥 SEARCH
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF0E7DD),
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const TextField(
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.search),
-                    hintText: 'Cari pengrajin...',
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-
               const SizedBox(height: 20),
 
               /// 🔥 LIST
@@ -149,12 +131,15 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
-            BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8),
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 8,
+            ),
           ],
         ),
         child: Row(
           children: [
-            /// 🔥 FOTO
+            /// FOTO
             ClipRRect(
               borderRadius: BorderRadius.circular(40),
               child: Image.asset(
@@ -167,7 +152,7 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
 
             const SizedBox(width: 14),
 
-            /// 🔥 TEXT
+            /// TEXT
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -183,7 +168,6 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
 
                   const SizedBox(height: 6),
 
-                  /// 🔥 BADGE
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 10,
@@ -201,10 +185,10 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
 
                   const SizedBox(height: 6),
 
-                  /// 🔥 LOKASI
                   const Row(
                     children: [
-                      Icon(Icons.location_on, size: 14, color: Colors.black54),
+                      Icon(Icons.location_on,
+                          size: 14, color: Colors.black54),
                       SizedBox(width: 4),
                       Text(
                         'Dukuhsembung, Tegal',
@@ -215,47 +199,33 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
 
                   const SizedBox(height: 8),
 
-                  /// 🔥 STATS
                   Row(
                     children: [
-                      /// pengalaman
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.workspace_premium,
-                            size: 16,
-                            color: Colors.orange,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            pengalaman,
-                            style: const TextStyle(fontSize: 11),
-                          ),
-                        ],
-                      ),
+                      const Icon(Icons.workspace_premium,
+                          size: 16, color: Colors.orange),
+                      const SizedBox(width: 4),
+                      Text(pengalaman,
+                          style: const TextStyle(fontSize: 11)),
 
                       const SizedBox(width: 12),
 
-                      /// divider
-                      Container(width: 1, height: 12, color: Colors.grey[300]),
+                      Container(
+                          width: 1, height: 12, color: Colors.grey[300]),
 
                       const SizedBox(width: 12),
 
-                      /// rating
-                      Row(
-                        children: [
-                          const Icon(Icons.star, size: 16, color: Colors.amber),
-                          const SizedBox(width: 4),
-                          Text(rating, style: const TextStyle(fontSize: 11)),
-                        ],
-                      ),
+                      const Icon(Icons.star,
+                          size: 16, color: Colors.amber),
+                      const SizedBox(width: 4),
+                      Text(rating,
+                          style: const TextStyle(fontSize: 11)),
                     ],
                   ),
                 ],
               ),
             ),
 
-            /// 🔥 ARROW BULAT
+            /// ARROW
             Container(
               width: 36,
               height: 36,
