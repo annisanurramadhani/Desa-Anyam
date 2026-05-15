@@ -1,5 +1,3 @@
-// register_controller.dart
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,6 +27,7 @@ class RegisterController extends GetxController {
   }
 
   Future<void> register() async {
+    // VALIDASI KOSONG
     if (nameC.text.isEmpty ||
         emailC.text.isEmpty ||
         passwordC.text.isEmpty ||
@@ -38,20 +37,19 @@ class RegisterController extends GetxController {
         'Semua field wajib diisi',
 
         backgroundColor: Colors.red,
-
         colorText: Colors.white,
       );
 
       return;
     }
 
+    // VALIDASI PASSWORD
     if (passwordC.text != confirmPasswordC.text) {
       Get.snackbar(
         'Error',
         'Konfirmasi password tidak sama',
 
         backgroundColor: Colors.red,
-
         colorText: Colors.white,
       );
 
@@ -69,44 +67,44 @@ class RegisterController extends GetxController {
         password: passwordC.text.trim(),
       );
 
-      isLoading.value = false;
+      // REGISTER BERHASIL
+      if (response['success'] == true) {
+        final data = response['data'];
 
-      if (response['message'] == 'Register berhasil') {
         Get.snackbar(
           'Berhasil',
-          'Akun berhasil dibuat',
+          data['message'],
 
           backgroundColor: Colors.green,
-
           colorText: Colors.white,
         );
 
         Future.delayed(const Duration(milliseconds: 500), () {
           Get.offAllNamed('/login');
         });
-      } else {
+      }
+      // REGISTER GAGAL
+      else {
         Get.snackbar(
           'Error',
           response['message'],
 
           backgroundColor: Colors.red,
-
           colorText: Colors.white,
         );
       }
     } catch (e) {
-      isLoading.value = false;
+      debugPrint(e.toString());
 
       Get.snackbar(
         'Error',
         'Tidak dapat terhubung ke server',
 
         backgroundColor: Colors.red,
-
         colorText: Colors.white,
       );
-
-      print(e);
+    } finally {
+      isLoading.value = false;
     }
   }
 }

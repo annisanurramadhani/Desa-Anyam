@@ -157,41 +157,33 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Get.back();
+                      Get.offAllNamed('/home-pengrajin');
                     },
+
                     borderRadius: BorderRadius.circular(30),
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      child: const Icon(
-                        Icons.arrow_back_ios_new,
-                        size: 28,
-                        color: Color(0xFF2B0D0D),
+
+                    child: const Padding(
+                      padding: EdgeInsets.all(6),
+
+                      child: Icon(
+                        Icons.arrow_back,
+                        size: 32,
+                        color: Colors.black,
                       ),
                     ),
                   ),
 
-                  const SizedBox(width: 12),
+                  const Expanded(
+                    child: Center(
+                      child: Text(
+                        'Profil',
 
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Profil Pengrajin',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF2B0D0D),
-                          ),
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
-
-                        const SizedBox(height: 2),
-
-                        const Text(
-                          'Informasi akun pengrajin',
-                          style: TextStyle(fontSize: 14, color: Colors.black54),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
 
@@ -199,14 +191,13 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
                     onTap: () {
                       Get.toNamed('/edit-profile-pengrajin');
                     },
+
                     borderRadius: BorderRadius.circular(30),
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      child: const Icon(
-                        Icons.edit,
-                        size: 26,
-                        color: Color(0xFF2B0D0D),
-                      ),
+
+                    child: const Padding(
+                      padding: EdgeInsets.all(6),
+
+                      child: Icon(Icons.edit, size: 28, color: Colors.black),
                     ),
                   ),
                 ],

@@ -15,7 +15,8 @@ class DaftarMuridController extends GetxController {
       "jam": "09.00 WIB",
       "pengrajin": "Pak Tono",
       "lokasi": "Balaidesa Dukuhsembung",
-      "harga": "Rp20.000",
+      "harga": "Rp50.000",
+      "status": "Selesai",
     },
 
     {
@@ -26,7 +27,8 @@ class DaftarMuridController extends GetxController {
       "jam": "13.00 WIB",
       "pengrajin": "Pak Tono",
       "lokasi": "Balaidesa Dukuhsembung",
-      "harga": "Rp20.000",
+      "harga": "Rp50.000",
+      "status": "Selesai",
     },
 
     {
@@ -37,14 +39,8 @@ class DaftarMuridController extends GetxController {
       "jam": "09.00 WIB",
       "pengrajin": "Pak Tono",
       "lokasi": "Balaidesa Dukuhsembung",
-      "harga": "Rp20.000",
+      "harga": "Rp50.000",
+      "status": "dalam proses",
     },
   ].obs;
-
-  @override
-  void onClose() {
-    searchC.dispose();
-
-    super.onClose();
-  }
 }

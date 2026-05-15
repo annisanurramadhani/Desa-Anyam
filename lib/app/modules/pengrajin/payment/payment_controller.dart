@@ -12,7 +12,7 @@ class PaymentController extends GetxController {
       "tanggal": "19 Mei 2025",
       "metode": "Cash",
       "status": "Lunas",
-      "harga": "Rp20.000",
+      "harga": "Rp50.000",
     },
 
     {
@@ -20,7 +20,7 @@ class PaymentController extends GetxController {
       "tanggal": "20 Mei 2025",
       "metode": "Cash",
       "status": "Belum Bayar",
-      "harga": "Rp20.000",
+      "harga": "Rp50.000",
     },
 
     {
@@ -28,7 +28,7 @@ class PaymentController extends GetxController {
       "tanggal": "21 Mei 2025",
       "metode": "Cash",
       "status": "Lunas",
-      "harga": "Rp20.000",
+      "harga": "Rp50.000",
     },
   ].obs;
 

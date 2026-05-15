@@ -109,73 +109,37 @@ class JadwalPengrajinView extends GetView<JadwalPengrajinController> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Get.back();
+                      Get.offAllNamed('/home-pengrajin');
                     },
+
                     borderRadius: BorderRadius.circular(30),
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      child: const Icon(
-                        Icons.arrow_back_ios_new,
-                        size: 26,
-                        color: Color(0xFF2B0D0D),
+
+                    child: const Padding(
+                      padding: EdgeInsets.all(6),
+
+                      child: Icon(
+                        Icons.arrow_back,
+                        size: 32,
+                        color: Colors.black,
                       ),
                     ),
                   ),
 
-                  const SizedBox(width: 10),
-
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
-                          'Jadwal Kelas',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF2B0D0D),
-                          ),
+                  const Expanded(
+                    child: Center(
+                      child: Text(
+                        'Jadwal',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
-
-                        SizedBox(height: 4),
-
-                        Text(
-                          'jadwal pelatihan anyaman',
-                          style: TextStyle(fontSize: 14, color: Colors.black54),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
 
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 12,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18),
-                      border: Border.all(color: const Color(0xFFB87333)),
-                    ),
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.calendar_month,
-                          size: 20,
-                          color: Color(0xFFB87333),
-                        ),
-
-                        SizedBox(width: 8),
-
-                        Text(
-                          'Hari Ini',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF2B0D0D),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // AGAR TITLE TETAP CENTER
+                  const SizedBox(width: 32),
                 ],
               ),
 

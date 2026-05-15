@@ -33,19 +33,29 @@ class LoginController extends GetxController {
 
       debugPrint(response.toString());
 
-      if (response['message'] == 'Login berhasil') {
-        Get.snackbar("Sukses", "Login berhasil");
+      // LOGIN BERHASIL
+      if (response['success'] == true) {
+        final data = response['data'];
 
-        String role = response['user']['role'];
+        Get.snackbar("Sukses", data['message']);
 
+        String role = data['user']['role'];
+
+        // ROLE PENGRAJIN
         if (role == 'pengrajin') {
           Get.offAllNamed('/home-pengrajin');
-        } else if (role == 'pengguna') {
+        }
+        // ROLE PENGGUNA
+        else if (role == 'pengguna') {
           Get.offAllNamed('/home');
-        } else {
+        }
+        // ROLE TIDAK ADA
+        else {
           Get.snackbar("Error", "Role tidak dikenali");
         }
-      } else {
+      }
+      // LOGIN GAGAL
+      else {
         Get.snackbar("Error", response['message']);
       }
     } catch (e) {
