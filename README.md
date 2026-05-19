@@ -1,16 +1,74 @@
-# desa_anyam
+# Desa-Anyam
 
-A new Flutter project.
+Aplikasi mobile berbasis Flutter untuk mendukung pembelajaran, promosi, dan peningkatan ekonomi pengrajin anyaman bambu di Desa Dukuhsembung.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Deskripsi
 
-A few resources to get you started if this is your first Flutter project:
+Aplikasi ini dirancang untuk menghubungkan pengguna (masyarakat) dengan pengrajin lokal melalui fitur:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Pembelajaran anyaman bambu
+- Booking kelas langsung dengan pengrajin
+- Katalog produk anyaman
+- Manajemen jadwal kelas
+- Profil pengguna & pengrajin
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## Tujuan
+
+- Meningkatkan pendapatan pengrajin lokal di Desa Dukuhsembung  
+- Mempermudah akses belajar anyaman bambu  
+- Mendigitalisasi proses booking kelas  
+- Memperluas pemasaran produk anyaman  
+
+---
+
+## Fitur Utama
+
+### Pengguna
+- Masuk & Daftar  
+- Melihat materi pembelajaran  
+- Booking kelas anyaman  
+- Melihat jadwal kelas  
+- Melihat produk anyaman  
+- Profil pengguna  
+- Riwayat aktivitas  
+
+### Pengrajin
+- Melihat daftar murid  
+- Mengelola jadwal kelas  
+- Konfirmasi pembayaran (COD)  
+- Profil pengrajin  
+
+### Umum
+- Navigasi Bottom Navigation  
+- UI modern & responsive  
+- State management menggunakan GetX  
+
+---
+
+## Teknologi yang Digunakan
+
+- Flutter  
+- Dart  
+- GetX (State Management & Routing)  
+- Material UI  
+
+---
+
+## Cara Menjalankan Project
+
+1. Clone repository:
+```bash
+git clone https://github.com/username/anyaman-app.git
+
+2. Masuk ke folder projek:
+cd desa-anyam
+
+3.Install Dependencies:
+flutter pub get
+
+4. Jalankan Aplikasi:
+flutter run
