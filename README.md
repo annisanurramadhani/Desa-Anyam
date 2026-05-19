@@ -37,6 +37,7 @@ Aplikasi ini dirancang untuk menghubungkan pengguna (masyarakat) dengan pengraji
 - Riwayat aktivitas  
 
 ### Pengrajin
+- Masuk
 - Melihat daftar murid  
 - Mengelola jadwal kelas  
 - Konfirmasi pembayaran (COD)  
