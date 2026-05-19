@@ -62,13 +62,10 @@ Aplikasi ini dirancang untuk menghubungkan pengguna (masyarakat) dengan pengraji
 ## Cara Menjalankan Project
 
 1. Clone repository:
-git clone https://github.com/username/anyaman-app.git
-
-2. Masuk ke folder projek:
-cd desa-anyam
-
-3. Install Dependencies:
-flutter pub get
-
-4. Jalankan Aplikasi:
-flutter run
+   git clone https://github.com/username/anyaman-app.git
+3. Masuk ke folder projek:
+   cd desa-anyam
+5. Install Dependencies:
+   flutter pub get
+7. Jalankan Aplikasi:
+   flutter run
