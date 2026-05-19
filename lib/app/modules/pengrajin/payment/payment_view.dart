@@ -1,3 +1,5 @@
+// payment_view.dart
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,17 +10,19 @@ class PaymentView extends GetView<PaymentController> {
 
   Widget buildItem({required IconData icon, required String text}) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.only(bottom: 10),
+
       child: Row(
         children: [
-          Icon(icon, size: 18, color: const Color(0xFF6B3408)),
+          Icon(icon, size: 15, color: const Color(0xFF6B3408)),
 
           const SizedBox(width: 10),
 
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(fontSize: 15, color: Colors.black87),
+
+              style: const TextStyle(fontSize: 13, color: Colors.black87),
             ),
           ),
         ],
@@ -36,6 +40,7 @@ class PaymentView extends GetView<PaymentController> {
           children: [
             Padding(
               padding: const EdgeInsets.all(20),
+
               child: Column(
                 children: [
                   // HEADER
@@ -53,7 +58,9 @@ class PaymentView extends GetView<PaymentController> {
 
                           child: Icon(
                             Icons.arrow_back,
-                            size: 32,
+
+                            size: 30,
+
                             color: Colors.black,
                           ),
                         ),
@@ -65,54 +72,68 @@ class PaymentView extends GetView<PaymentController> {
                             'Payment',
 
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 20,
+
                               fontWeight: FontWeight.bold,
+
                               color: Colors.black,
                             ),
                           ),
                         ),
                       ),
 
-                      const SizedBox(width: 32),
+                      const SizedBox(width: 30),
                     ],
                   ),
 
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 20),
 
                   // SEARCH
                   TextField(
                     controller: controller.searchC,
+
                     decoration: InputDecoration(
                       hintText: 'Cari pembayaran...',
 
-                      hintStyle: const TextStyle(color: Colors.black45),
+                      hintStyle: const TextStyle(
+                        color: Colors.black45,
+
+                        fontSize: 13,
+                      ),
 
                       prefixIcon: const Icon(
                         Icons.search,
+
                         color: Colors.black54,
+
+                        size: 22,
                       ),
 
                       filled: true,
+
                       fillColor: Colors.white,
 
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(22),
+                        borderRadius: BorderRadius.circular(20),
+
                         borderSide: BorderSide.none,
                       ),
 
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(22),
+                        borderRadius: BorderRadius.circular(20),
+
                         borderSide: BorderSide.none,
                       ),
 
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(22),
+                        borderRadius: BorderRadius.circular(20),
+
                         borderSide: const BorderSide(color: Color(0xFF8B4513)),
                       ),
 
                       contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 18,
+                        horizontal: 18,
+                        vertical: 15,
                       ),
                     ),
                   ),
@@ -125,7 +146,9 @@ class PaymentView extends GetView<PaymentController> {
               child: Obx(
                 () => ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
+
                   itemCount: controller.paymentList.length,
+
                   itemBuilder: (context, index) {
                     final pembayaran = controller.paymentList[index];
 
@@ -133,55 +156,76 @@ class PaymentView extends GetView<PaymentController> {
 
                     return Container(
                       margin: const EdgeInsets.only(bottom: 16),
-                      padding: const EdgeInsets.all(20),
+
+                      padding: const EdgeInsets.all(16),
+
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(24),
+
+                        borderRadius: BorderRadius.circular(22),
 
                         border: Border.all(color: const Color(0xFFF1E2D3)),
                       ),
+
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
+
                         children: [
                           // ICON
                           Container(
-                            width: 62,
-                            height: 62,
+                            width: 54,
+                            height: 54,
+
                             decoration: const BoxDecoration(
                               color: Color(0xFFF7EBDD),
+
                               shape: BoxShape.circle,
                             ),
+
                             child: const Icon(
                               Icons.person,
+
                               color: Color(0xFF6B3408),
-                              size: 34,
+
+                              size: 30,
                             ),
                           ),
 
-                          const SizedBox(width: 16),
+                          const SizedBox(width: 14),
 
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+
                               children: [
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
+
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+
                                   children: [
-                                    Text(
-                                      pembayaran['nama'],
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF2B0D0D),
+                                    Expanded(
+                                      child: Text(
+                                        pembayaran['nama'],
+
+                                        style: const TextStyle(
+                                          fontSize: 16,
+
+                                          fontWeight: FontWeight.bold,
+
+                                          color: Color(0xFF2B0D0D),
+                                        ),
                                       ),
                                     ),
 
                                     Container(
                                       padding: const EdgeInsets.symmetric(
-                                        horizontal: 14,
-                                        vertical: 7,
+                                        horizontal: 12,
+
+                                        vertical: 6,
                                       ),
+
                                       decoration: BoxDecoration(
                                         color: lunas
                                             ? Colors.green.shade100
@@ -189,9 +233,13 @@ class PaymentView extends GetView<PaymentController> {
 
                                         borderRadius: BorderRadius.circular(30),
                                       ),
+
                                       child: Text(
                                         pembayaran['status'],
+
                                         style: TextStyle(
+                                          fontSize: 11,
+
                                           fontWeight: FontWeight.bold,
 
                                           color: lunas
@@ -203,55 +251,66 @@ class PaymentView extends GetView<PaymentController> {
                                   ],
                                 ),
 
-                                const SizedBox(height: 18),
+                                const SizedBox(height: 14),
 
                                 buildItem(
                                   icon: Icons.calendar_month,
+
                                   text: pembayaran['tanggal'],
                                 ),
 
                                 buildItem(
                                   icon: Icons.account_balance_wallet,
+
                                   text: pembayaran['metode'],
                                 ),
 
                                 buildItem(
                                   icon: Icons.payments_outlined,
+
                                   text: pembayaran['harga'],
                                 ),
 
-                                const SizedBox(height: 6),
-
                                 if (!lunas)
-                                  SizedBox(
-                                    width: double.infinity,
-                                    height: 45,
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        controller
-                                                .paymentList[index]['status'] =
-                                            'Lunas';
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 6),
 
-                                        controller.paymentList.refresh();
-                                      },
+                                    child: SizedBox(
+                                      width: double.infinity,
 
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: const Color(
-                                          0xFF8B4513,
-                                        ),
+                                      height: 42,
 
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            16,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          controller
+                                                  .paymentList[index]['status'] =
+                                              'Lunas';
+
+                                          controller.paymentList.refresh();
+                                        },
+
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color(
+                                            0xFF8B4513,
+                                          ),
+
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              14,
+                                            ),
                                           ),
                                         ),
-                                      ),
 
-                                      child: const Text(
-                                        'Sudah Dibayar',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                        child: const Text(
+                                          'Sudah Dibayar',
+
+                                          style: TextStyle(
+                                            fontSize: 13,
+
+                                            fontWeight: FontWeight.bold,
+
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ),
                                     ),

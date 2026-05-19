@@ -12,43 +12,59 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
     required String value,
   }) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 26),
+      padding: const EdgeInsets.only(bottom: 20),
+
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+
         children: [
           Container(
-            width: 60,
-            height: 60,
+            width: 50,
+            height: 50,
+
             decoration: const BoxDecoration(
               color: Color(0xFFF5EEE7),
+
               shape: BoxShape.circle,
             ),
-            child: Icon(icon, color: const Color(0xFF5C2E00), size: 30),
+
+            child: Icon(icon, color: const Color(0xFF5C2E00), size: 24),
           ),
 
-          const SizedBox(width: 18),
+          const SizedBox(width: 14),
 
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+
               children: [
                 Text(
                   title,
+
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
+
                     fontWeight: FontWeight.bold,
+
                     color: Color(0xFF5C2E00),
                   ),
                 ),
 
-                const SizedBox(height: 6),
+                const SizedBox(height: 5),
 
                 Text(
                   value,
-                  style: const TextStyle(fontSize: 16, color: Colors.black87),
+
+                  style: const TextStyle(
+                    fontSize: 14,
+
+                    color: Colors.black87,
+
+                    height: 1.4,
+                  ),
                 ),
 
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
 
                 Container(height: 1, color: Colors.brown.shade100),
               ],
@@ -65,33 +81,41 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
       backgroundColor: const Color(0xFFF7F7F7),
 
       bottomNavigationBar: Container(
-        height: 85,
+        height: 75,
+
         decoration: const BoxDecoration(
           color: Colors.white,
+
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
         ),
+
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
+
           children: [
             // JADWAL
             InkWell(
               onTap: () {
-                Get.offAllNamed('/jadwal-pengrajin');
+                Get.toNamed('/jadwal-pengrajin');
               },
+
               borderRadius: BorderRadius.circular(20),
+
               child: SizedBox(
                 width: 90,
+
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+
                   children: const [
-                    Icon(Icons.calendar_month_outlined),
+                    Icon(Icons.calendar_month_outlined, size: 22),
 
                     SizedBox(height: 4),
 
-                    Text('Jadwal', style: TextStyle(fontSize: 13)),
+                    Text('Jadwal', style: TextStyle(fontSize: 12)),
                   ],
                 ),
               ),
@@ -100,19 +124,23 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
             // BERANDA
             InkWell(
               onTap: () {
-                Get.offAllNamed('/home-pengrajin');
+                Get.toNamed('/home-pengrajin');
               },
+
               borderRadius: BorderRadius.circular(20),
+
               child: SizedBox(
                 width: 90,
+
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+
                   children: const [
-                    Icon(Icons.home_outlined),
+                    Icon(Icons.home_outlined, size: 22),
 
                     SizedBox(height: 4),
 
-                    Text('Beranda', style: TextStyle(fontSize: 13)),
+                    Text('Beranda', style: TextStyle(fontSize: 12)),
                   ],
                 ),
               ),
@@ -121,22 +149,29 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
             // PROFIL
             InkWell(
               onTap: () {},
+
               borderRadius: BorderRadius.circular(20),
+
               child: SizedBox(
                 width: 90,
+
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+
                   children: const [
-                    Icon(Icons.person, color: Color(0xFFB87333)),
+                    Icon(Icons.person, color: Color(0xFFB87333), size: 22),
 
                     SizedBox(height: 4),
 
                     Text(
                       'Profil',
+
                       style: TextStyle(
                         color: Color(0xFFB87333),
+
                         fontWeight: FontWeight.bold,
-                        fontSize: 13,
+
+                        fontSize: 12,
                       ),
                     ),
                   ],
@@ -149,7 +184,8 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
 
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(22),
+          padding: const EdgeInsets.all(18),
+
           child: Column(
             children: [
               // HEADER
@@ -167,7 +203,9 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
 
                       child: Icon(
                         Icons.arrow_back,
-                        size: 32,
+
+                        size: 28,
+
                         color: Colors.black,
                       ),
                     ),
@@ -179,8 +217,10 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
                         'Profil',
 
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 20,
+
                           fontWeight: FontWeight.bold,
+
                           color: Colors.black,
                         ),
                       ),
@@ -197,75 +237,93 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
                     child: const Padding(
                       padding: EdgeInsets.all(6),
 
-                      child: Icon(Icons.edit, size: 28, color: Colors.black),
+                      child: Icon(Icons.edit, size: 24, color: Colors.black),
                     ),
                   ),
                 ],
               ),
 
-              const SizedBox(height: 30),
+              const SizedBox(height: 22),
 
-              // FOTO PROFIL
+              // FOTO
               Container(
-                width: 150,
-                height: 150,
+                width: 125,
+                height: 125,
+
                 decoration: const BoxDecoration(
                   color: Color(0xFFF1E6DC),
+
                   shape: BoxShape.circle,
                 ),
+
                 child: const Icon(
                   Icons.person,
-                  size: 90,
+
+                  size: 72,
+
                   color: Color(0xFF5C2E00),
                 ),
               ),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 20),
 
               // NAMA
               Obx(
                 () => Text(
                   controller.nama.value,
+
                   style: const TextStyle(
-                    fontSize: 30,
+                    fontSize: 24,
+
                     fontWeight: FontWeight.bold,
+
                     color: Color(0xFF5C2E00),
                   ),
                 ),
               ),
 
-              const SizedBox(height: 6),
+              const SizedBox(height: 4),
 
               Obx(
                 () => Text(
                   controller.role.value,
-                  style: const TextStyle(fontSize: 18, color: Colors.black54),
+
+                  style: const TextStyle(fontSize: 15, color: Colors.black54),
                 ),
               ),
 
-              const SizedBox(height: 34),
+              const SizedBox(height: 24),
 
-              // CARD INFORMASI
+              // CARD INFO
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(24),
+
+                padding: const EdgeInsets.all(18),
+
                 decoration: BoxDecoration(
                   color: const Color(0xFFF5EEE7),
-                  borderRadius: BorderRadius.circular(30),
+
+                  borderRadius: BorderRadius.circular(24),
+
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.04),
+
                       blurRadius: 10,
+
                       offset: const Offset(0, 4),
                     ),
                   ],
                 ),
+
                 child: Column(
                   children: [
                     Obx(
                       () => buildProfileItem(
                         icon: Icons.person_outline,
+
                         title: 'Nama Lengkap',
+
                         value: controller.nama.value,
                       ),
                     ),
@@ -273,7 +331,9 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
                     Obx(
                       () => buildProfileItem(
                         icon: Icons.email_outlined,
+
                         title: 'Email',
+
                         value: controller.email.value,
                       ),
                     ),
@@ -281,7 +341,9 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
                     Obx(
                       () => buildProfileItem(
                         icon: Icons.phone,
+
                         title: 'No Telepon',
+
                         value: controller.telepon.value,
                       ),
                     ),
@@ -289,7 +351,9 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
                     Obx(
                       () => buildProfileItem(
                         icon: Icons.calendar_month,
+
                         title: 'Pengalaman',
+
                         value: controller.pengalaman.value,
                       ),
                     ),
@@ -297,7 +361,9 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
                     Obx(
                       () => buildProfileItem(
                         icon: Icons.description_outlined,
+
                         title: 'Deskripsi',
+
                         value: controller.deskripsi.value,
                       ),
                     ),
@@ -305,12 +371,13 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
                 ),
               ),
 
-              const SizedBox(height: 28),
-
-              // BUTTON KELUAR
+              const SizedBox(height: 24),
+              // BUTTON LOGOUT
               SizedBox(
                 width: double.infinity,
-                height: 55,
+
+                height: 48,
+
                 child: ElevatedButton.icon(
                   onPressed: () {
                     Get.defaultDialog(
@@ -324,7 +391,7 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
 
                       confirmTextColor: Colors.white,
 
-                      buttonColor: const Color(0xFF8B4513),
+                      buttonColor: Colors.red,
 
                       onConfirm: () {
                         Get.offAllNamed('/login');
@@ -333,19 +400,23 @@ class ProfileAkunPengrajinView extends GetView<ProfileAkunPengrajinController> {
                   },
 
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF8B4513),
+                    backgroundColor: Colors.red,
+
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
 
-                  icon: const Icon(Icons.logout, color: Colors.white, size: 24),
+                  icon: const Icon(Icons.logout, color: Colors.white, size: 20),
 
                   label: const Text(
                     'KELUAR',
+
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 15,
+
                       fontWeight: FontWeight.bold,
+
                       color: Colors.white,
                     ),
                   ),
