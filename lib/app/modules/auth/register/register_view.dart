@@ -23,9 +23,7 @@ class RegisterView extends GetView<RegisterController> {
               child: Row(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      Get.offAllNamed('/login');
-                    },
+                    onTap: controller.goToLogin,
 
                     child: const Icon(Icons.arrow_back, color: Colors.white),
                   ),
@@ -75,7 +73,6 @@ class RegisterView extends GetView<RegisterController> {
 
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
-
                     topRight: Radius.circular(40),
                   ),
                 ),
@@ -90,7 +87,7 @@ class RegisterView extends GetView<RegisterController> {
 
                       const SizedBox(height: 8),
 
-                      input(controller.nameC, 'Masukkan Username'),
+                      input(controller.usernameC, 'Masukkan Username'),
 
                       const SizedBox(height: 16),
 
@@ -112,26 +109,9 @@ class RegisterView extends GetView<RegisterController> {
                         () => inputPassword(
                           controller.passwordC,
 
-                          controller.isHiddenPassword.value,
+                          controller.isHidden.value,
 
                           controller.togglePassword,
-                        ),
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      // CONFIRM PASSWORD
-                      const Text('ULANG SANDI'),
-
-                      const SizedBox(height: 8),
-
-                      Obx(
-                        () => inputPassword(
-                          controller.confirmPasswordC,
-
-                          controller.isHiddenConfirm.value,
-
-                          controller.toggleConfirmPassword,
                         ),
                       ),
 
@@ -147,7 +127,9 @@ class RegisterView extends GetView<RegisterController> {
                           child: ElevatedButton(
                             onPressed: controller.isLoading.value
                                 ? null
-                                : controller.register,
+                                : () {
+                                    controller.register();
+                                  },
 
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF9B6B43),
@@ -158,20 +140,49 @@ class RegisterView extends GetView<RegisterController> {
                             ),
 
                             child: controller.isLoading.value
-                                ? const CircularProgressIndicator(
-                                    color: Colors.white,
+                                ? const SizedBox(
+                                    width: 24,
+                                    height: 24,
+
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                    ),
                                   )
                                 : const Text(
                                     'DAFTAR',
 
                                     style: TextStyle(
                                       color: Colors.white,
-
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                           ),
                         ),
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // LOGIN
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+
+                        children: [
+                          const Text('Sudah punya akun?'),
+
+                          TextButton(
+                            onPressed: controller.goToLogin,
+
+                            child: const Text(
+                              'MASUK',
+
+                              style: TextStyle(
+                                color: Color(0xFF9B6B43),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

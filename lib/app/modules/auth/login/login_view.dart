@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'login_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+class LoginView extends StatelessWidget {
+  LoginView({super.key});
+
+  final LoginController controller = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +54,9 @@ class LoginView extends GetView<LoginController> {
               ),
             ),
 
-            // CONTAINER PUTIH
+            // FORM
             Expanded(
               child: Container(
-                margin: const EdgeInsets.only(top: 10),
-
                 width: double.infinity,
 
                 padding: const EdgeInsets.symmetric(
@@ -78,7 +79,11 @@ class LoginView extends GetView<LoginController> {
 
                     children: [
                       // EMAIL
-                      const Text('EMAIL'),
+                      const Text(
+                        'EMAIL',
+
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
 
                       const SizedBox(height: 8),
 
@@ -91,8 +96,6 @@ class LoginView extends GetView<LoginController> {
 
                         decoration: InputDecoration(
                           hintText: 'email@gmail.com',
-
-                          hintStyle: const TextStyle(color: Colors.black38),
 
                           filled: true,
 
@@ -111,10 +114,14 @@ class LoginView extends GetView<LoginController> {
                         ),
                       ),
 
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 20),
 
                       // PASSWORD
-                      const Text('SANDI'),
+                      const Text(
+                        'PASSWORD',
+
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
 
                       const SizedBox(height: 8),
 
@@ -126,7 +133,13 @@ class LoginView extends GetView<LoginController> {
 
                           textInputAction: TextInputAction.done,
 
+                          onSubmitted: (_) {
+                            controller.login();
+                          },
+
                           decoration: InputDecoration(
+                            hintText: 'Masukkan password',
+
                             filled: true,
 
                             fillColor: const Color(0xFFE8EBF0),
@@ -161,15 +174,20 @@ class LoginView extends GetView<LoginController> {
                       Obx(
                         () => SizedBox(
                           width: double.infinity,
+
                           height: 55,
 
                           child: ElevatedButton(
                             onPressed: controller.isLoading.value
                                 ? null
-                                : controller.login,
+                                : () {
+                                    controller.login();
+                                  },
 
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF9B6B43),
+
+                              elevation: 0,
 
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -177,8 +195,14 @@ class LoginView extends GetView<LoginController> {
                             ),
 
                             child: controller.isLoading.value
-                                ? const CircularProgressIndicator(
-                                    color: Colors.white,
+                                ? const SizedBox(
+                                    width: 24,
+                                    height: 24,
+
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                    ),
                                   )
                                 : const Text(
                                     'MASUK',
@@ -186,6 +210,7 @@ class LoginView extends GetView<LoginController> {
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
+                                      fontSize: 16,
                                     ),
                                   ),
                           ),
@@ -209,7 +234,6 @@ class LoginView extends GetView<LoginController> {
 
                               style: TextStyle(
                                 color: Color(0xFF9B6B43),
-
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -226,21 +250,29 @@ class LoginView extends GetView<LoginController> {
                       // GOOGLE LOGIN
                       Center(
                         child: InkWell(
-                          onTap: controller.loginGoogle,
+                          onTap: () {
+                            controller.loginGoogle();
+                          },
 
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
+                          borderRadius: BorderRadius.circular(10),
 
-                            children: [
-                              Image.asset(
-                                'assets/images/google.png',
-                                width: 24,
-                              ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
 
-                              const SizedBox(width: 8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
 
-                              const Text('Masuk dengan Google'),
-                            ],
+                              children: [
+                                Image.asset(
+                                  'assets/images/google.png',
+                                  width: 24,
+                                ),
+
+                                const SizedBox(width: 10),
+
+                                const Text('Masuk dengan Google'),
+                              ],
+                            ),
                           ),
                         ),
                       ),

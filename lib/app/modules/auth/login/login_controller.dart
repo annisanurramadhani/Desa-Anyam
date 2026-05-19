@@ -27,35 +27,40 @@ class LoginController extends GetxController {
       isLoading.value = true;
 
       final response = await AuthService.login(
-        email: emailC.text,
-        password: passwordC.text,
+        email: emailC.text.trim(),
+
+        password: passwordC.text.trim(),
       );
 
       debugPrint(response.toString());
 
-      // LOGIN BERHASIL
       if (response['success'] == true) {
-        final data = response['data'];
+        Get.snackbar("Sukses", response['message']);
 
-        Get.snackbar("Sukses", data['message']);
+        String token = response['token'];
 
-        String role = data['user']['role'];
+        final user = response['user'];
 
-        // ROLE PENGRAJIN
-        if (role == 'pengrajin') {
+        String username = user['username'];
+
+        String role = user['role'];
+
+        debugPrint(token);
+
+        debugPrint(username);
+
+        debugPrint(role);
+
+        if (role == 'admin') {
+          Get.offAllNamed('/dashboard-admin');
+        } else if (role == 'pengrajin') {
           Get.offAllNamed('/home-pengrajin');
-        }
-        // ROLE PENGGUNA
-        else if (role == 'pengguna') {
+        } else if (role == 'pengguna') {
           Get.offAllNamed('/home');
-        }
-        // ROLE TIDAK ADA
-        else {
+        } else {
           Get.snackbar("Error", "Role tidak dikenali");
         }
-      }
-      // LOGIN GAGAL
-      else {
+      } else {
         Get.snackbar("Error", response['message']);
       }
     } catch (e) {
@@ -71,5 +76,7 @@ class LoginController extends GetxController {
     Get.toNamed('/register');
   }
 
-  void loginGoogle() {}
+  Future<void> loginGoogle() async {
+    Get.snackbar("Info", "Login Google belum dibuat");
+  }
 }

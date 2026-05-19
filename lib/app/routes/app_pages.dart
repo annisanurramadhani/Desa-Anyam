@@ -89,7 +89,6 @@ import 'app_routes.dart';
 
 class AppPages {
   static final pages = [
-
     GetPage(
       name: Routes.SPLASH,
       page: () => const SplashView(),
@@ -98,13 +97,13 @@ class AppPages {
 
     GetPage(
       name: Routes.LOGIN,
-      page: () => const LoginView(),
+      page: () => LoginView(),
       binding: LoginBinding(),
     ),
 
     GetPage(
       name: Routes.REGISTER,
-      page: () => const RegisterView(),
+      page: () => RegisterView(),
       binding: RegisterBinding(),
     ),
 
@@ -138,7 +137,6 @@ class AppPages {
       binding: BookingKelasBinding(),
     ),
 
-    /// ✅ PENTING (INI YANG DIPAKAI)
     GetPage(
       name: Routes.DETAIL_JADWAL,
       page: () => const DetailJadwalView(),
