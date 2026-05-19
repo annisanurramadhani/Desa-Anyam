@@ -66,10 +66,13 @@ Aplikasi ini dirancang untuk menghubungkan pengguna (masyarakat) dengan pengraji
 git clone https://github.com/username/anyaman-app.git
 
 2. Masuk ke folder projek:
+```bash
 cd desa-anyam
 
 3.Install Dependencies:
+```bash
 flutter pub get
 
 4. Jalankan Aplikasi:
+```bash
 flutter run
