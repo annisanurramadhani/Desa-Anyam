@@ -1,4 +1,7 @@
+import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../routes/app_routes.dart';
 
 class FormPendaftaranController extends GetxController {
 
@@ -30,8 +33,15 @@ class FormPendaftaranController extends GetxController {
     harga.value = int.tryParse(data["harga"]?.toString() ?? "0") ?? 0;
   }
 
+  /// 🔥 NAVIGASI BOTTOM
   void changeMenu(int index) {
-    // navigasi bawah
+    if (index == 0) {
+      Get.toNamed(Routes.JADWAL_SAYA);
+    } else if (index == 1) {
+      Get.offAllNamed(Routes.HOME);
+    } else if (index == 2) {
+      Get.toNamed(Routes.PROFILE_USER);
+    }
   }
 
   void goToPembayaran() {

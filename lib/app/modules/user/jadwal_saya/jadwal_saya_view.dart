@@ -17,7 +17,7 @@ class JadwalSayaView extends GetView<JadwalSayaController> {
         backgroundColor: Colors.white,
 
         selectedItemColor: const Color(
-          0xFF6B4F3B,
+          0xFF9B6B43,
         ), // 🔥 dibenerin biar keliatan
         unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
@@ -49,7 +49,7 @@ class JadwalSayaView extends GetView<JadwalSayaController> {
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF4E342E),
+                        color: Color(0xFF9B6B43),
                       ),
                     ),
                   ),
@@ -79,7 +79,7 @@ class JadwalSayaView extends GetView<JadwalSayaController> {
               ),
               child: const Row(
                 children: [
-                  Icon(Icons.info, color: Color(0xFF6B4F3B)),
+                  Icon(Icons.info, color: Color(0xFF9B6B43)),
                   SizedBox(width: 10),
                   Expanded(
                     child: Text(
@@ -141,7 +141,7 @@ class JadwalCard extends StatelessWidget {
             /// HEADER
             Row(
               children: [
-                const Icon(Icons.calendar_today, color: Color(0xFF6B4F3B)),
+                const Icon(Icons.calendar_today, color: Color(0xFF9B6B43)),
                 const SizedBox(width: 10),
 
                 const Expanded(
@@ -224,7 +224,7 @@ class JadwalCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          Icon(icon, size: 16, color: const Color(0xFF6B4F3B)),
+          Icon(icon, size: 16, color: const Color(0xFF9B6B43)),
           const SizedBox(width: 10),
           Text("$title : "),
           Expanded(child: Text(value?.toString() ?? "-")),

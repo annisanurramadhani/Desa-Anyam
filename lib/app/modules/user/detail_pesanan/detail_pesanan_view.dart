@@ -14,7 +14,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
-        selectedItemColor: const Color(0xFF6B4F3B),
+        selectedItemColor: const Color(0xFF9B6B43),
         unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
@@ -46,7 +46,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF4E342E),
+                        color: Color(0xFF9B6B43),
                       ),
                     ),
                   ),
@@ -125,7 +125,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
                     children: List.generate(
                       5,
                       (index) => const Icon(Icons.star_border,
-                          color: Color(0xFF6B4F3B)),
+                          color: Color(0xFF9B6B43)),
                     ),
                   ),
 
@@ -171,7 +171,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
                     child: ElevatedButton(
                       onPressed: controller.kirimReview,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF6B4F3B),
+                        backgroundColor: const Color(0xFF9B6B43),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
@@ -216,7 +216,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
 
           Row(
             children: [
-              Icon(icon, color: const Color(0xFF6B4F3B)),
+              Icon(icon, color: const Color(0xFF9B6B43)),
               const SizedBox(width: 8),
               Text(
                 title,
@@ -273,7 +273,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
                   value,
                   style: const TextStyle(
                     fontSize: 11,
-                    color: Color(0xFF6B4F3B),
+                    color: Color(0xFF9B6B43),
                   ),
                 ),
               )

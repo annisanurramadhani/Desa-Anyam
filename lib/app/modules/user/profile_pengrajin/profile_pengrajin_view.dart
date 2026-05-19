@@ -15,7 +15,7 @@ class ProfilePengrajinView extends GetView<ProfilePengrajinController> {
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
-        selectedItemColor: const Color(0xFF6B4F3B),
+        selectedItemColor: const Color(0xFF9B6B43),
         unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
@@ -54,7 +54,7 @@ class ProfilePengrajinView extends GetView<ProfilePengrajinController> {
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF4E342E),
+                        color: Color(0xFF9B6B43),
                       ),
                     ),
                   ),
@@ -209,7 +209,7 @@ class ProfilePengrajinView extends GetView<ProfilePengrajinController> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF4E342E),
+                color: Color(0xFF9B6B43),
               ),
             ),
 

@@ -66,6 +66,9 @@ import '../modules/user/notifikasi/notifikasi_view.dart';
 import '../modules/user/detail_materi/detail_materi_binding.dart';
 import '../modules/user/detail_materi/detail_materi_view.dart';
 
+import '../modules/user/riwayat_aktivitas/riwayat_aktivitas_binding.dart';
+import '../modules/user/riwayat_aktivitas/riwayat_aktivitas_view.dart';
+
 /// ================= PENGRAJIN =================
 import '../modules/pengrajin/home_pengrajin/home_pengrajin_binding.dart';
 import '../modules/pengrajin/home_pengrajin/home_pengrajin_view.dart';
@@ -219,6 +222,12 @@ class AppPages {
       name: Routes.DETAIL_MATERI,
       page: () => const DetailMateriView(),
       binding: DetailMateriBinding(),
+    ),
+
+    GetPage(
+      name: Routes.RIWAYAT_AKTIVITAS,
+      page: () => const RiwayatAktivitasView(),
+      binding: RiwayatAktivitasBinding(),
     ),
 
     /// ================= PENGRAJIN =================

@@ -14,7 +14,7 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
       /// 🔥 BOTTOM NAV
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
-        selectedItemColor: const Color(0xFF6B4F3B),
+        selectedItemColor: const Color(0xFF9B6B43),
         unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
@@ -46,7 +46,7 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF4E342E),
+                          color: Color(0xFF9B6B43),
                         ),
                       ),
                     ),
@@ -162,7 +162,7 @@ class ProfPengrajinView extends GetView<ProfPengrajinController> {
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
-                      color: Color(0xFF4E342E),
+                      color: Color(0xFF9B6B43),
                     ),
                   ),
 

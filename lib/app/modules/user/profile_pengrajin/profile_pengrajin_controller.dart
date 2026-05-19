@@ -18,7 +18,7 @@ class ProfilePengrajinController extends GetxController {
     data = Get.arguments ?? {};
   }
 
-  /// 🔥 BOTTOM NAVIGATION
+  /// 🔥 NAVIGASI BOTTOM
   void changeMenu(int index) {
     if (index == 0) {
       Get.toNamed(Routes.JADWAL_SAYA);

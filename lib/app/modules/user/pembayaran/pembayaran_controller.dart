@@ -12,6 +12,7 @@ class PembayaranController extends GetxController {
     data = Get.arguments ?? {};
   }
 
+  /// 🔥 NAVIGASI BOTTOM
   void changeMenu(int index) {
     if (index == 0) {
       Get.toNamed(Routes.JADWAL_SAYA);

@@ -14,7 +14,7 @@ class HomeView extends GetView<HomeController> {
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
-        selectedItemColor: const Color(0xFF6B4F3B),
+        selectedItemColor: const Color(0xFF9B6B43),
         unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
@@ -30,7 +30,6 @@ class HomeView extends GetView<HomeController> {
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: width * 0.04, vertical: 12),
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -49,26 +48,22 @@ class HomeView extends GetView<HomeController> {
                         ),
                         child: const Icon(Icons.person, size: 22),
                       ),
-
                       const SizedBox(width: 10),
-
                       const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Hi, Syifa", style: TextStyle(fontSize: 12)),
-
+                          Text("Hi, Syifa", style: TextStyle(fontSize: 14)),
                           Text(
                             "Selamat Datang!",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 16,
                             ),
                           ),
                         ],
                       ),
                     ],
                   ),
-
                   IconButton(
                     onPressed: controller.goToNotification,
                     icon: const Icon(Icons.notifications_none),
@@ -81,57 +76,44 @@ class HomeView extends GetView<HomeController> {
               /// BANNER
               Container(
                 width: double.infinity,
-                height: width * 0.42,
-
+                height: width < 600 ? 160 : 220,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
-
                   image: const DecorationImage(
                     image: AssetImage("assets/images/banner.jpg"),
                     fit: BoxFit.cover,
                   ),
                 ),
-
                 child: Container(
                   padding: const EdgeInsets.all(16),
-
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
-
                     gradient: LinearGradient(
                       colors: [
                         Colors.black.withOpacity(0.65),
                         Colors.transparent,
                       ],
-
                       begin: Alignment.bottomLeft,
                       end: Alignment.topRight,
                     ),
-                  ),
-
-                  child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [Spacer()],
                   ),
                 ),
               ),
 
               const SizedBox(height: 14),
 
-              /// GRID MENU
-              GridView.builder(
-                itemCount: 4,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
+              /// GRID RESPONSIVE (FIX OVERFLOW)
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  int crossAxisCount = 2;
 
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 1.9,
-                ),
+                  if (constraints.maxWidth > 600) {
+                    crossAxisCount = 3;
+                  }
+                  if (constraints.maxWidth > 1000) {
+                    crossAxisCount = 4;
+                  }
 
-                itemBuilder: (context, index) {
                   final items = [
                     {
                       "icon": Icons.front_hand,
@@ -158,19 +140,31 @@ class HomeView extends GetView<HomeController> {
                       "icon": Icons.calendar_today,
                       "color": Colors.blue,
                       "title": "Jadwal Saya",
-                      "desc": "Cek jadwal kelas dan pelatihan yang diikuti.",
+                      "desc": "Cek jadwal kelas dan pelatihan.",
                       "tap": controller.goToJadwal,
                     },
                   ];
 
-                  final item = items[index];
-
-                  return menuCard(
-                    icon: item["icon"] as IconData,
-                    color: item["color"] as Color,
-                    title: item["title"] as String,
-                    desc: item["desc"] as String,
-                    onTap: item["tap"] as VoidCallback,
+                  return GridView.builder(
+                    itemCount: items.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 1.2, // 🔥 FIX UTAMA
+                    ),
+                    itemBuilder: (context, index) {
+                      final item = items[index];
+                      return menuCard(
+                        icon: item["icon"] as IconData,
+                        color: item["color"] as Color,
+                        title: item["title"] as String,
+                        desc: item["desc"] as String,
+                        onTap: item["tap"] as VoidCallback,
+                      );
+                    },
                   );
                 },
               ),
@@ -187,19 +181,15 @@ class HomeView extends GetView<HomeController> {
                   gradient: const LinearGradient(
                     colors: [Color(0xFFE7EFE5), Color(0xFFDCE8DA)],
                   ),
-
                   borderRadius: BorderRadius.circular(16),
                 ),
-
                 child: const Row(
                   children: [
                     CircleAvatar(
                       backgroundColor: Colors.green,
                       child: Icon(Icons.lightbulb, color: Colors.white),
                     ),
-
                     SizedBox(width: 12),
-
                     Expanded(
                       child: Text(
                         "Gunakan bambu yang sudah kering agar hasil anyaman lebih kuat dan tahan lama.",
@@ -216,7 +206,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  /// MENU CARD
+  /// MENU CARD FIXED (ANTI OVERFLOW)
   Widget menuCard({
     required IconData icon,
     required Color color,
@@ -227,14 +217,11 @@ class HomeView extends GetView<HomeController> {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(16),
-
       child: Container(
         padding: const EdgeInsets.all(12),
-
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
-
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.05),
@@ -243,62 +230,38 @@ class HomeView extends GetView<HomeController> {
             ),
           ],
         ),
-
-        child: Row(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             /// ICON
             Container(
-              width: 38,
-              height: 38,
-
+              width: 36,
+              height: 36,
               decoration: BoxDecoration(
                 color: color.withOpacity(0.15),
                 shape: BoxShape.circle,
               ),
-
-              child: Icon(icon, color: color, size: 20),
+              child: Icon(icon, color: color, size: 18),
             ),
 
-            const SizedBox(width: 10),
+            const SizedBox(height: 8),
 
-            /// TITLE + DESC
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13,
-                    ),
-                  ),
-
-                  const SizedBox(height: 4),
-
-                  Text(
-                    desc,
-                    style: const TextStyle(
-                      fontSize: 11,
-                      color: Colors.black54,
-                      height: 1.3,
-                    ),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
+            /// TITLE
+            Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
             ),
 
-            /// >
-            Padding(
-              padding: const EdgeInsets.only(top: 2),
-              child: Icon(
-                Icons.arrow_forward_ios,
-                size: 14,
-                color: Colors.grey[400],
-              ),
+            const SizedBox(height: 4),
+
+            /// DESC (FIX TANPA EXPANDED)
+            Text(
+              desc,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 11, color: Colors.black54),
             ),
           ],
         ),

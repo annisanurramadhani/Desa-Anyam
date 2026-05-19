@@ -12,7 +12,7 @@ class NotifikasiView extends StatelessWidget {
       /// 🔥 BOTTOM NAV
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
-        selectedItemColor: const Color(0xFF6B4F3B),
+        selectedItemColor: const Color(0xFF9B6B43),
         unselectedItemColor: Colors.grey,
         onTap: (index) {},
         items: const [
@@ -42,7 +42,7 @@ class NotifikasiView extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF4E342E),
+                        color: Color(0xFF9B6B43),
                       ),
                     ),
                   ),
@@ -59,7 +59,7 @@ class NotifikasiView extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF4E342E),
+                color: Color(0xFF9B6B43),
               ),
             ),
 
@@ -88,7 +88,7 @@ class NotifikasiView extends StatelessWidget {
                         ),
                         child: const Icon(
                           Icons.notifications,
-                          color: Color(0xFF6B4F3B),
+                          color: Color(0xFF9B6B43),
                           size: 28,
                         ),
                       ),
@@ -167,7 +167,7 @@ class NotifikasiView extends StatelessWidget {
                   child: const Icon(
                     Icons.notifications_none,
                     size: 50,
-                    color: Color(0xFF6B4F3B),
+                    color: Color(0xFF9B6B43),
                   ),
                 ),
 
@@ -178,7 +178,7 @@ class NotifikasiView extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF4E342E),
+                    color: Color(0xFF9B6B43),
                   ),
                 ),
 

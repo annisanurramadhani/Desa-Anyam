@@ -12,7 +12,7 @@ class PendaftaranBerhasilView extends GetView<PendaftaranBerhasilController> {
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
-        selectedItemColor: const Color(0xFF6B4F3B),
+        selectedItemColor: const Color(0xFF9B6B43),
         unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
@@ -42,7 +42,7 @@ class PendaftaranBerhasilView extends GetView<PendaftaranBerhasilController> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        color: Color(0xFF4E342E),
+                        color: Color(0xFF9B6B43),
                       ),
                     ),
                   ),

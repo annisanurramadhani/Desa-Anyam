@@ -25,18 +25,14 @@ class PendaftaranBerhasilController extends GetxController {
     Get.offAllNamed(Routes.HOME);
   }
 
-  /// 🔥 BOTTOM NAV
+  /// 🔥 NAVIGASI BOTTOM
   void changeMenu(int index) {
-    switch (index) {
-      case 0:
-        Get.toNamed(Routes.JADWAL_SAYA);
-        break;
-      case 1:
-        Get.offAllNamed(Routes.HOME);
-        break;
-      case 2:
-        Get.toNamed(Routes.PROFILE_USER);
-        break;
+    if (index == 0) {
+      Get.toNamed(Routes.JADWAL_SAYA);
+    } else if (index == 1) {
+      Get.offAllNamed(Routes.HOME);
+    } else if (index == 2) {
+      Get.toNamed(Routes.PROFILE_USER);
     }
   }
 }

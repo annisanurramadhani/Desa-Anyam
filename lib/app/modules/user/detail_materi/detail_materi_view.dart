@@ -38,7 +38,7 @@ class DetailMateriView extends GetView<DetailMateriController> {
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF4E342E),
+                            color: Color(0xFF9B6B43),
                           ),
                         ),
                       ),
@@ -120,7 +120,7 @@ class DetailMateriView extends GetView<DetailMateriController> {
                             c.videoC,
                             allowScrubbing: true,
                             colors: const VideoProgressColors(
-                              playedColor: Color(0xFF6B4F3B),
+                              playedColor: Color(0xFF9B6B43),
                               bufferedColor: Colors.white30,
                               backgroundColor: Colors.white24,
                             ),

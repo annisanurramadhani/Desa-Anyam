@@ -3,16 +3,13 @@ import '../../../routes/app_routes.dart';
 
 class HomeController extends GetxController {
 
+  /// 🔥 NAVIGASI BOTTOM
   void changeMenu(int index) {
     if (index == 0) {
       Get.toNamed(Routes.JADWAL_SAYA);
-    }
-
-    if (index == 1) {
-    Get.offAllNamed(Routes.HOME); 
-  }
-
-    if (index == 2) {
+    } else if (index == 1) {
+      Get.offAllNamed(Routes.HOME);
+    } else if (index == 2) {
       Get.toNamed(Routes.PROFILE_USER);
     }
   }

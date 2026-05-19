@@ -34,6 +34,7 @@ abstract class Routes {
   static const NOTIFIKASI = '/notifikasi';
   static const DETAIL_JADWAL = '/detail-jadwal';
   static const DETAIL_MATERI = '/detail-materi';
+  static const RIWAYAT_AKTIVITAS = '/riwayat-aktivitas';
 
   //pengrajin
 

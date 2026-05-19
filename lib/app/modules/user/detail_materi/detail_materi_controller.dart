@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
+import '../../../routes/app_routes.dart';
 
 class DetailMateriController extends GetxController {
   late VideoPlayerController videoC;
@@ -32,6 +33,17 @@ class DetailMateriController extends GetxController {
     } else {
       videoC.play();
       isPlaying.value = true;
+    }
+  }
+
+  /// 🔥 NAVIGASI BOTTOM
+  void changeMenu(int index) {
+    if (index == 0) {
+      Get.toNamed(Routes.JADWAL_SAYA);
+    } else if (index == 1) {
+      Get.offAllNamed(Routes.HOME);
+    } else if (index == 2) {
+      Get.toNamed(Routes.PROFILE_USER);
     }
   }
 

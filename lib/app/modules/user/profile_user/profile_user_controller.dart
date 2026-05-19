@@ -2,17 +2,13 @@ import 'package:get/get.dart';
 import '../../../routes/app_routes.dart';
 
 class ProfileUserController extends GetxController {
-
+  /// 🔥 NAVIGASI BOTTOM
   void changeMenu(int index) {
     if (index == 0) {
       Get.toNamed(Routes.JADWAL_SAYA);
-    }
-
-    if (index == 1) {
+    } else if (index == 1) {
       Get.offAllNamed(Routes.HOME);
-    }
-
-    if (index == 2) {
+    } else if (index == 2) {
       Get.toNamed(Routes.PROFILE_USER);
     }
   }
@@ -28,6 +24,10 @@ class ProfileUserController extends GetxController {
   /// 🔥 TAMBAHAN INI
   void goToPesanan() {
     Get.toNamed(Routes.DETAIL_PESANAN);
+  }
+
+  void goToRiwayatAktivitas() {
+    Get.toNamed('/riwayat-aktivitas');
   }
 
   void logout() {

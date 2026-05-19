@@ -12,7 +12,7 @@ class ProfileUserView extends GetView<ProfileUserController> {
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 2,
-        selectedItemColor: const Color(0xFF6B4F3B),
+        selectedItemColor: const Color(0xFF9B6B43),
         unselectedItemColor: Colors.grey,
         onTap: controller.changeMenu,
         items: const [
@@ -42,7 +42,7 @@ class ProfileUserView extends GetView<ProfileUserController> {
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF4E342E),
+                        color: Color(0xFF9B6B43),
                       ),
                     ),
                   ),
@@ -53,7 +53,7 @@ class ProfileUserView extends GetView<ProfileUserController> {
 
             const SizedBox(height: 20),
 
-            /// PROFILE CARD (SUDAH TANPA QUOTE)
+            /// PROFILE CARD
             Container(
               padding: const EdgeInsets.all(18),
               decoration: BoxDecoration(
@@ -64,8 +64,6 @@ class ProfileUserView extends GetView<ProfileUserController> {
               ),
               child: Row(
                 children: [
-
-                  /// FOTO
                   Container(
                     width: 80,
                     height: 80,
@@ -79,7 +77,6 @@ class ProfileUserView extends GetView<ProfileUserController> {
 
                   const SizedBox(width: 14),
 
-                  /// INFO
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
@@ -134,6 +131,15 @@ class ProfileUserView extends GetView<ProfileUserController> {
               onTap: controller.goToSertifikat,
             ),
 
+            /// 🔥 TAMBAHAN BARU
+            menuCard(
+              icon: Icons.history,
+              color: Colors.orange,
+              title: "Riwayat Aktivitas",
+              desc: "Lihat aktivitas belajar dan kelas Anda.",
+              onTap: controller.goToRiwayatAktivitas, // 🔥 nanti buat function ini
+            ),
+
             const SizedBox(height: 30),
 
             /// LOGOUT
@@ -181,7 +187,6 @@ class ProfileUserView extends GetView<ProfileUserController> {
         ),
         child: Row(
           children: [
-
             Container(
               width: 50,
               height: 50,

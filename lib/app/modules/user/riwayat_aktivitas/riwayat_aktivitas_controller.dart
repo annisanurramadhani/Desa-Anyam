@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import '../../../routes/app_routes.dart';
 
-class ProdukAnyamanController extends GetxController {
+
+class RiwayatAktivitasController extends GetxController {
 
   /// 🔥 NAVIGASI BOTTOM
   void changeMenu(int index) {
@@ -13,4 +14,17 @@ class ProdukAnyamanController extends GetxController {
       Get.toNamed(Routes.PROFILE_USER);
     }
   }
+
+  var riwayatList = [
+    {
+      "kelas": "Anyaman Bambu Dasar",
+      "pengrajin": "Pak Tarjo",
+      "tanggal": "12 Mei 2026",
+      "jam": "09:00",
+      "lokasi": "Balai Desa Dukuhsembung",
+      "status": "Selesai"
+    },
+    
+  ].obs;
+
 }

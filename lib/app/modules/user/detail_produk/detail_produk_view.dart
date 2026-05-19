@@ -50,7 +50,7 @@ class DetailProdukView extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF4E342E),
+                        color: Color(0xFF9B6B43),
                       ),
                     ),
                   ),
@@ -80,7 +80,7 @@ class DetailProdukView extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF4E342E),
+                color: Color(0xFF9B6B43),
               ),
             ),
 

@@ -3,12 +3,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  // EMULATOR ANDROID
-  static const String baseUrl = "http://localhost:3000/api/auth";
-
-  // HP ASLI
-  // static const String baseUrl =
-  //     "http://192.168.1.5:3000/api/auth";
+  // =========================
+  // BASE URL
+  // =========================
+  static const String baseUrl =
+      "http://192.168.110.207:3000";
 
   // =========================
   // LOGIN
@@ -19,16 +18,24 @@ class AuthService {
   }) async {
     try {
       final response = await http.post(
-        Uri.parse("$baseUrl/login"),
+        Uri.parse("$baseUrl/api/auth/login"),
 
-        headers: {"Content-Type": "application/json"},
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-        body: jsonEncode({"email": email, "password": password}),
+        body: jsonEncode({
+          "email": email,
+          "password": password,
+        }),
       );
 
       return jsonDecode(response.body);
     } catch (e) {
-      return {"success": false, "message": e.toString()};
+      return {
+        "success": false,
+        "message": e.toString(),
+      };
     }
   }
 
@@ -42,22 +49,25 @@ class AuthService {
   }) async {
     try {
       final response = await http.post(
-        Uri.parse("$baseUrl/register"),
+        Uri.parse("$baseUrl/api/auth/register"),
 
-        headers: {"Content-Type": "application/json"},
+        headers: {
+          "Content-Type": "application/json",
+        },
 
         body: jsonEncode({
           "username": username,
-
           "email": email,
-
           "password": password,
         }),
       );
 
       return jsonDecode(response.body);
     } catch (e) {
-      return {"success": false, "message": e.toString()};
+      return {
+        "success": false,
+        "message": e.toString(),
+      };
     }
   }
 }

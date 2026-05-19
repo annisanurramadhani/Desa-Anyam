@@ -73,14 +73,14 @@ class PembayaranView extends GetView<PembayaranController> {
                         borderRadius: BorderRadius.circular(14),
                         border: Border.all(
                           color: controller.selectedMethod.value == 0
-                              ? const Color(0xFF6B4F3B)
+                              ? const Color(0xFF9B6B43)
                               : Colors.grey.shade300,
                         ),
                       ),
                       child: Row(
                         children: [
                           const Icon(Icons.payments,
-                              color: Color(0xFF6B4F3B)),
+                              color: Color(0xFF9B6B43)),
 
                           const SizedBox(width: 10),
 
@@ -142,7 +142,7 @@ class PembayaranView extends GetView<PembayaranController> {
                 child: ElevatedButton(
                   onPressed: controller.bayar,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF6B4F3B),
+                    backgroundColor: const Color(0xFF9B6B43),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),

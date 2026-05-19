@@ -8,6 +8,8 @@ class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: const Color(0xFFF6F3EF),
 
@@ -18,7 +20,9 @@ class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
         onTap: controller.changeMenu,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today), label: 'Jadwal Saya'),
+            icon: Icon(Icons.calendar_today),
+            label: 'Jadwal Saya',
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Akun'),
         ],
@@ -26,9 +30,11 @@ class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
 
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.all(20),
+          padding: EdgeInsets.symmetric(
+            horizontal: width * 0.05, // 🔥 RESPONSIVE
+            vertical: 16,
+          ),
           children: [
-
             /// HEADER
             Row(
               children: [
@@ -41,70 +47,51 @@ class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
                     child: Text(
                       'Belajar Anyaman',
                       style: TextStyle(
-                        fontSize: 22,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF4E342E),
+                        color: Color(0xFF9B6B43),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 40),
+                SizedBox(width: width * 0.1),
               ],
             ),
 
-            const SizedBox(height: 20),
+            SizedBox(height: width * 0.02),
 
-            /// 🔥 HERO (TANPA ICON - LEBIH ELEGAN)
-            Container(
-              padding: const EdgeInsets.all(18),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFFEDE3D7), Color(0xFFF5EFE6)],
-                ),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Text(
+            const Center(
+              child: Text(
                 'Pelajari berbagai teknik anyaman bambu dari dasar hingga mahir.',
-                style: TextStyle(
-                  fontSize: 14,
-                  height: 1.5,
-                ),
+                style: TextStyle(fontSize: 13, color: Colors.black54),
               ),
             ),
-
-            const SizedBox(height: 24),
-
-            const Text(
-              'Materi',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF4E342E),
-              ),
-            ),
-
-            const SizedBox(height: 14),
+            SizedBox(height: width * 0.04),
 
             /// LIST
             materiItem(
+              context,
               image: 'assets/images/m1.png',
               title: 'Dasar Anyaman Silang',
               subtitle: 'Teknik dasar anyaman untuk pemula.',
               video: 'assets/videos/video1.mp4',
             ),
             materiItem(
+              context,
               image: 'assets/images/m2.png',
               title: 'Keranjang Bambu',
               subtitle: 'Cara membuat keranjang sederhana.',
               video: 'assets/videos/m2.mp4',
             ),
             materiItem(
+              context,
               image: 'assets/images/m3.png',
               title: 'Tas Anyaman',
               subtitle: 'Membuat tas bambu yang kuat.',
               video: 'assets/videos/m3.mp4',
             ),
             materiItem(
+              context,
               image: 'assets/images/m4.png',
               title: 'Tampah Bambu',
               subtitle: 'Anyaman bulat yang rapi.',
@@ -116,13 +103,16 @@ class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
     );
   }
 
-  /// 🔥 ITEM (VERSI CLEAN & MODERN)
-  Widget materiItem({
+  /// 🔥 ITEM RESPONSIVE
+  Widget materiItem(
+    BuildContext context, {
     required String image,
     required String title,
     required String subtitle,
     required String video,
   }) {
+    final width = MediaQuery.of(context).size.width;
+
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       onTap: () {
@@ -137,67 +127,55 @@ class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
         );
       },
       child: Container(
-        margin: const EdgeInsets.only(bottom: 14),
-        padding: const EdgeInsets.all(12),
+        margin: EdgeInsets.only(bottom: width * 0.03),
+        padding: EdgeInsets.all(width * 0.03),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.04),
-              blurRadius: 8,
-              offset: const Offset(0, 4),
-            ),
+            BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 8),
           ],
         ),
         child: Row(
           children: [
-
-            /// IMAGE (TANPA PLAY ICON)
+            /// IMAGE RESPONSIVE
             ClipRRect(
               borderRadius: BorderRadius.circular(14),
               child: Image.asset(
                 image,
-                width: 100,
-                height: 80,
+                width: width * 0.25, // 🔥 RESPONSIVE
+                height: width * 0.2,
                 fit: BoxFit.cover,
               ),
             ),
 
-            const SizedBox(width: 12),
+            SizedBox(width: width * 0.03),
 
             /// TEXT
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                  /// TITLE
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                      color: Color(0xFF4E342E),
+                      fontSize: width * 0.035, // 🔥 RESPONSIVE
+                      color: const Color(0xFF9B6B43),
                     ),
                   ),
-
-                  const SizedBox(height: 6),
-
-                  /// SUBTITLE
+                  SizedBox(height: width * 0.015),
                   Text(
                     subtitle,
-                    style: const TextStyle(
-                      fontSize: 12,
+                    style: TextStyle(
+                      fontSize: width * 0.03,
                       color: Colors.black54,
                     ),
                   ),
+                  SizedBox(height: width * 0.02),
 
-                  const SizedBox(height: 8),
-
-                  /// 🔥 ACCENT LINE (BIAR HIDUP)
                   Container(
-                    width: 40,
+                    width: width * 0.1,
                     height: 3,
                     decoration: BoxDecoration(
                       color: const Color(0xFF6B4F3B),
@@ -208,10 +186,13 @@ class BelajarAnyamanView extends GetView<BelajarAnyamanController> {
               ),
             ),
 
-            const SizedBox(width: 6),
+            SizedBox(width: width * 0.02),
 
-            /// ARROW (KEEP BIAR INTERAKTIF)
-            const Icon(Icons.arrow_forward_ios, size: 14),
+            Icon(
+              Icons.arrow_forward_ios,
+              size: width * 0.04,
+              color: Colors.grey,
+            ),
           ],
         ),
       ),

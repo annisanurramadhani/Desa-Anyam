@@ -12,7 +12,7 @@ class SertifikatView extends GetView<SertifikatController> {
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 2,
-        selectedItemColor: const Color(0xFF6B4F3B),
+        selectedItemColor: const Color(0xFF9B6B43),
         unselectedItemColor: Colors.grey,
         showSelectedLabels: false,
         showUnselectedLabels: false,
@@ -44,7 +44,7 @@ class SertifikatView extends GetView<SertifikatController> {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF4E342E),
+                          color: Color(0xFF9B6B43),
                         ),
                       ),
                     ),
@@ -82,7 +82,7 @@ class SertifikatView extends GetView<SertifikatController> {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF4E342E),
+                        color: Color(0xFF9B6B43),
                       ),
                     ),
 
